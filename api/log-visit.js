@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   const { lat, lon } = req.body || {};
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-  const userAgent = req.headers['user-agent'];
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || "";
+  const userAgent = req.headers['user-agent'] || "";
   const time = new Date().toISOString();
 
   let deviceType = "Desktop";
@@ -11,19 +11,24 @@ export default async function handler(req, res) {
   const data = {
     ip,
     time,
-    userAgent,
     deviceType,
-    latitude: lat || "Unavailable",
-    longitude: lon || "Unavailable"
+    userAgent,
+    latitude: lat || "",
+    longitude: lon || ""
   };
 
-  const googleScriptURL = "https://script.google.com/macros/s/AKfycbwsy74kEyZuDuYhThlAMJ-jrVn6SmalE-ucpareO0YYdhPCXgMpielh554xnDy7eneIIg/exec"; // Replace with your actual script URL
+  const googleScriptURL = "https://script.google.com/macros/s/AKfycbwsy74kEyZuDuYhThlAMJ-jrVn6SmalE-ucpareO0YYdhPCXgMpielh554xnDy7eneIIg/exec"; // replace with your real URL
 
-  await fetch(googleScriptURL, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" }
-  });
+  try {
+    await fetch(googleScriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-  res.status(200).json({ message: "Logged exact location", data });
+    res.status(200).json({ message: "Logged to Google Sheets", data });
+  } catch (err) {
+    console.error("Error sending to Google Sheets:", err);
+    res.status(500).json({ error: "Failed to log visit" });
+  }
 }
