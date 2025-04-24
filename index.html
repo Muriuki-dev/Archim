@@ -175,7 +175,7 @@
                         </div>
                         <p>At Popote Networks Thika, we don’t just provide internet—we deliver a reliable connection you can count on. Our affordable packages, fast installation, and dedicated local support team ensure you stay online without interruptions. Whether for home, work, or business, Popote is your trusted partner for smooth, stress-free connectivity.</p>
                     </div>
-                    <a href="package.html" class="btn">Check Today's Offer</a>
+                    <a href="contact.html" class="btn">Leave a Message</a>
                 </div>
             </div>
         </div>
@@ -211,7 +211,8 @@
                                 <li>Free Installation</li>
                                 <li>Free Router</li>
                             </ul>
-                            <a href="#" class="borders-btn">Book Now</a>
+                         <a href="#" onclick="showBookingPopup()">Book Now</a>
+
                         </div>
                     </div>
                 </div>
@@ -256,6 +257,60 @@
             </div>
         </div>
     </section>
+	    <div id="bookingPopup" class="popup">
+  <div class="popup-content">
+    <h3>Choose Booking Method</h3>
+    <button onclick="window.open('https://wa.me/254795211116', '_blank')">WhatsApp Booking</button>
+    <button onclick="window.location.href='tel:+254746828664'">Call Booking</button>
+    <span class="close" onclick="closePopup()">×</span>
+  </div>
+</div>
+<style> .popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.popup-content {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.popup-content h3 {
+  color: hsl(135, 70%, 35%);
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  background-color: hsl(135, 70%, 35%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.popup-content .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+</style>
+	    
     <!-- Pricing Card End -->
     <!-- Latest Offers Start -->
     <div class="latest-wrapper">
@@ -433,6 +488,23 @@
     </div>
 
     <!-- JS here -->
+<script>
+  function showBookingPopup() {
+    document.getElementById('bookingPopup').style.display = 'block';
+  }
+
+  function closePopup() {
+    document.getElementById('bookingPopup').style.display = 'none';
+  }
+
+  // Close popup on outside click
+  window.onclick = function(event) {
+    const popup = document.getElementById('bookingPopup');
+    if (event.target === popup) {
+      popup.style.display = 'none';
+    }
+  }
+</script>
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
