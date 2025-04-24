@@ -113,6 +113,173 @@
     </header>
     <!-- header end -->
     <main>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #a1df3d, #5fb700);
+      color: #fff;
+      text-align: center;
+    }
+
+    .header {
+      background-color: transparent;
+      padding: 20px 10px;
+    }
+
+    .header h1 {
+      font-size: 48px;
+      margin: 0;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px #6a1b9a;
+    }
+
+    .header h2 {
+      margin: 10px 0;
+      font-size: 28px;
+      color: orange;
+      font-weight: bold;
+    }
+
+    .header h3 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+      text-shadow: 1px 1px #6a1b9a;
+    }
+
+    .installation {
+      margin: 20px auto;
+      background: red;
+      padding: 20px;
+      font-size: 28px;
+      color: white;
+      width: 250px;
+      position: relative;
+      font-weight: bold;
+    }
+
+    .installation::after {
+      content: 'FULL INSTALLATION';
+      position: absolute;
+      top: -10px;
+      right: -60px;
+      background: black;
+      color: white;
+      padding: 10px;
+      font-size: 12px;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(-15deg);
+    }
+
+    .sub-note {
+      margin: 10px;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .plans {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 30px auto;
+      max-width: 1000px;
+    }
+
+    .plan {
+      background-color: #fff;
+      color: #000;
+      width: 120px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      font-weight: bold;
+    }
+
+    .plan .top {
+      padding: 10px;
+      font-size: 18px;
+      color: white;
+    }
+
+    .plan .bottom {
+      padding: 10px;
+      font-size: 18px;
+      background-color: white;
+    }
+
+    .plan:nth-child(1) .top { background-color: #e91e63; }
+    .plan:nth-child(2) .top { background-color: #8bc34a; }
+    .plan:nth-child(3) .top { background-color: #ff9800; }
+    .plan:nth-child(4) .top { background-color: #9c27b0; }
+    .plan:nth-child(5) .top { background-color: #3f51b5; }
+    .plan:nth-child(6) .top { background-color: #f44336; }
+
+    .contacts {
+      margin: 40px auto;
+      font-size: 20px;
+    }
+
+    .contacts div {
+      margin: 10px;
+    }
+
+    .phone-icon::before {
+      content: '\260E';
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>RELIABLE</h1>
+    <h2>INTERNET CONNECTION</h2>
+    <h3>With POPOPE FIBRE</h3>
+  </div>
+
+  <div class="installation">Ksh.3,000</div>
+  <div class="sub-note">Our subscriptions runs for 33 days</div>
+
+  <div class="plans">
+    <div class="plan">
+      <div class="top">4 Mbps</div>
+      <div class="bottom">1,000</div>
+    </div>
+    <div class="plan">
+      <div class="top">7 Mbps</div>
+      <div class="bottom">1,500</div>
+    </div>
+    <div class="plan">
+      <div class="top">10 Mbps</div>
+      <div class="bottom">2,000</div>
+    </div>
+    <div class="plan">
+      <div class="top">15 Mbps</div>
+      <div class="bottom">2,500</div>
+    </div>
+    <div class="plan">
+      <div class="top">20 Mbps</div>
+      <div class="bottom">3,000</div>
+    </div>
+    <div class="plan">
+      <div class="top">30 Mbps</div>
+      <div class="bottom">4,000</div>
+    </div>
+  </div>
+
+  <div class="contacts">
+    <div class="phone-icon">Customer Care: 0746 828 664</div>
+    <div class="phone-icon">WhatsApp No: 0795 211 116</div>
+  </div>
+
         <!--? Pricing Card Start -->
         <section class="pricing-card-area section-padding2">
             <div class="container">
