@@ -515,7 +515,6 @@
     popup.classList.add('show-animation');
     playPopupSound();
 
-    // Remove animation class after it runs
     setTimeout(() => {
       popup.classList.remove('show-animation');
     }, 300);
@@ -525,7 +524,6 @@
     document.getElementById('bookingPopup').style.display = 'none';
   }
 
-  // Close popup on outside click
   window.onclick = function(event) {
     const popup = document.getElementById('bookingPopup');
     if (event.target === popup) {
@@ -533,12 +531,12 @@
     }
   }
 
-  // Play pop sound
   function playPopupSound() {
-    const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3'); // You can change this to any sound you like
+    const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a6fc63f93.mp3?filename=ui-click-136184.mp3');
     audio.play();
   }
 </script>
+
 
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
