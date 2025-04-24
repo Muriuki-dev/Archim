@@ -544,34 +544,10 @@
 
 
 <script>
-    function sendLocation(lat, lon) {
-      fetch("/api/log-visit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lat, lon }),
-      })
-      .then(res => res.json())
-      .then(data => console.log("Location sent:", data))
-      .catch(err => console.error("Send error:", err));
-    }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          sendLocation(lat, lon);
-        },
-        (error) => {
-          console.error("Geolocation error:", error);
-          sendLocation(null, null); // fallback
-        }
-      );
-    } else {
-      console.log("Geolocation not supported.");
-      sendLocation(null, null); // fallback
-    }
-  </script>
+  fetch('/api/log-visit')
+    .then(res => res.json())
+    .then(data => console.log("Visitor logged!", data));
+</script>
 
 
 
