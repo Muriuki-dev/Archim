@@ -1,4 +1,5 @@
 export default async function handler(req, res) {
+  const { lat, lon } = req.body || {};
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   const userAgent = req.headers['user-agent'];
   const time = new Date().toISOString();
@@ -12,9 +13,11 @@ export default async function handler(req, res) {
     time,
     userAgent,
     deviceType,
+    latitude: lat || "Unavailable",
+    longitude: lon || "Unavailable"
   };
 
-  const googleScriptURL = "https://script.google.com/macros/s/AKfycbwtiJw0doJ3ZwBpkRnQ3aiMvpga1yFGWbH6JzpU8K3payX5ENebS-pwbCpMJimbEuslyg/exec"; // replace with your actual link
+  const googleScriptURL = "https://script.google.com/macros/s/AKfycbwsy74kEyZuDuYhThlAMJ-jrVn6SmalE-ucpareO0YYdhPCXgMpielh554xnDy7eneIIg/exec"; // Replace with your actual script URL
 
   await fetch(googleScriptURL, {
     method: "POST",
@@ -22,6 +25,5 @@ export default async function handler(req, res) {
     headers: { "Content-Type": "application/json" }
   });
 
-  res.status(200).json({ message: "Logged to Google Sheets" });
+  res.status(200).json({ message: "Logged exact location", data });
 }
-
