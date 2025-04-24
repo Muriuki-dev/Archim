@@ -535,10 +535,13 @@
 
   // Play a professional pop sound
   function playPopupSound() {
-    const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_997ac967b2.mp3'); // Polished UI pop sound
-    audio.play();
+    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
+    audio.play().catch(error => {
+      console.warn("Audio playback failed:", error);
+    });
   }
 </script>
+
 
 
 
