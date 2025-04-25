@@ -162,19 +162,19 @@
             <!-- Left Column: Replaced Image with Buttons -->
            <div class="pack-grid">
     <a href="services.html" class="pack-card">
-        Services
+        CCTV Cameras
         <span class="coming-soon">Coming Soon 🚀</span>
     </a>
     <a href="packages.html" class="pack-card">
-        Packages
+        Online Shop
         <span class="coming-soon">Coming Soon 🚀</span>
     </a>
     <a href="coverage.html" class="pack-card">
-        Coverage
+        Electric Fence
         <span class="coming-soon">Coming Soon 🚀</span>
     </a>
     <a href="contact.html" class="pack-card">
-        Contact
+        Vehicle Tracker
         <span class="coming-soon">Coming Soon 🚀</span>
     </a>
 </div>
@@ -905,7 +905,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setInterval(() => {
             angle += 1;
             card.style.transform = `rotate(${angle}deg)`;
-        }, 30); // Faster rotation
+        }, 10); // Faster rotation
     });
 
     // Coming soon popup every 4 seconds
@@ -919,8 +919,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Confetti at the card's position
             const rect = card.getBoundingClientRect();
             confetti({
-                particleCount: 30,
-                spread: 60,
+                particleCount: 40,
+                spread: 70,
                 origin: {
                     x: (rect.left + rect.width / 2) / window.innerWidth,
                     y: (rect.top + rect.height / 2) / window.innerHeight
