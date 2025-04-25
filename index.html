@@ -741,8 +741,70 @@ function sendToWhatsApp(event) {
 	
 <script>
 const serviceAreas = [
-  "thika", "makongeni", "kiganjo", "gatuanyaga", "landless", "thika greens", "kimunyu", "munyu", "kiboko", "kihunguro", "karibaribi", "mukiriti", "muthaiga", "pilot", "hospital area", "zam zam", "posta", "kiganjo b", "thika town", "magogoni", "githima", "athii", "kiang'ombe", "kiandutu", "joy town", "kiambu road", "karibaribi", "ngoliba", "gatitu", "makutano", "bibirioni"
+  // Central Thika Town Areas & Estates
+  "thika town",
+  "pilot",
+  "hospital area",
+  "zam zam",
+  "posta",
+  "mukiriti",
+  "muthaiga",
+  "joy town",
+  "karibaribi",
+  "landless",
+  "kimathi estate",
+  "section 9",
+  "broadways",
+  "phase 4",
+  "township",
+  "morrison area",
+  "salama estate",
+
+  // Outskirts / Estates
+  "makongeni",
+  "kiganjo",
+  "kiganjo b",
+  "gatuanyaga",
+  "thika greens",
+  "kimunyu",
+  "munyu",
+  "kiboko",
+  "kihunguro",
+  "magogoni",
+  "githima",
+  "athii",
+  "kiang'ombe",
+  "kiandutu",
+  "ngoliba",
+  "gatitu",
+  "makutano",
+  "bibirioni",
+  "magoko",
+  "kieni",
+  "gachagi",
+  "gachororo",
+  "garage area",
+  "delmonte gate",
+  "ngurubani",
+
+  // Notable Streets in Thika Town
+  "kenyatta highway",
+  "commercial street",
+  "station road",
+  "general kago road",
+  "garissa road",
+  "mugo kibiru road",
+  "madaraka avenue",
+  "mugo street",
+  "kwame nkrumah street",
+  "kenyatta avenue",
+  "uhuru street",
+  "morris road",
+  "lumumba drive",
+  "thika bypass",
+  "biashara street"
 ];
+
 
 function checkLocation(event) {
   event.preventDefault();
@@ -764,11 +826,11 @@ function checkLocation(event) {
         document.getElementById('successPopup').style.display = 'none';
         document.getElementById('confirmedLocation').value = input.value;
         document.getElementById('bookingPopup').style.display = 'block';
-      }, 2000);
+      }, 3000);
     } else {
       document.getElementById('notAvailablePopup').style.display = 'block';
     }
-  }, 2500);
+  }, 3000);
 }
 
 function closePopup(id) {
