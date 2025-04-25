@@ -358,6 +358,7 @@
 	    
     <!-- Pricing Card End -->
 <!-- Latest Offers Start -->
+<!-- Latest Offers Start -->
 <div class="latest-wrapper">
   <div class="container">
     <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
@@ -396,6 +397,15 @@
   </div>
 </div>
 
+<!-- Not Available Popup -->
+<div id="notAvailablePopup" class="popup animate-scale">
+  <div class="popup-content">
+    <h3>😞 Oops!</h3>
+    <p>We're currently not available in that area.<br>We will be coming to your side soon!</p>
+    <button onclick="window.open('https://wa.me/254795211116?text=Hello,%20I%20would%20like%20to%20inquire%20about%20availability%20in%20my%20area.', '_blank')">Contact Customer Care</button>
+  </div>
+</div>
+
 <!-- Booking Form Popup -->
 <div id="bookingPopup" class="popup">
   <div class="popup-content animate-fade">
@@ -420,7 +430,6 @@
 </div>
 
 <style>
-/* Popups */
 .popup {
   display: none;
   position: fixed;
@@ -719,6 +728,7 @@ function sendToWhatsApp(event) {
 }
 </script>
 
+	
 <script>
   fetch('/api/log-visit')
     .then(res => res.json())
@@ -728,42 +738,42 @@ function sendToWhatsApp(event) {
 
 	
 <script>
+const serviceAreas = [
+  "Thika", "Thika Town", "Makongeni", "Landless", "Kiganjo", "Biafra", "Pilot",
+  "Hospital area", "Section 9", "Section 2", "Magoko", "Ngoigwa", "Kiboko",
+  "Ngoingwa", "Ziwani", "Kiandutu", "Gatitu", "Happy Valley", "Witeithie",
+  "Juja Farm", "Kilimambogo", "Kibichoi", "Gatuanyaga", "Muthaiga Thika"
+];
+
 function checkLocation(event) {
   event.preventDefault();
-  const location = document.getElementById('locationInput').value.trim();
-  if (!location) {
-    alert("Please enter your location.");
-    return;
-  }
+  const location = document.getElementById('locationInput').value.trim().toLowerCase();
 
-  // Show loading popup
   document.getElementById('waitPopup').style.display = 'block';
 
-  // After 2.5 seconds, show success
   setTimeout(() => {
     document.getElementById('waitPopup').style.display = 'none';
-    document.getElementById('successPopup').style.display = 'block';
+    const isAvailable = serviceAreas.some(area => location.includes(area.toLowerCase()));
 
-    // After 2 more seconds, show booking
-    setTimeout(() => {
-      document.getElementById('successPopup').style.display = 'none';
-      document.getElementById('confirmedLocation').value = location;
-      document.getElementById('bookingPopup').style.display = 'block';
-    }, 3000);
+    if (isAvailable) {
+      document.getElementById('successPopup').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('successPopup').style.display = 'none';
+        document.getElementById('confirmedLocation').value = location;
+        document.getElementById('bookingPopup').style.display = 'block';
+      }, 3000);
+    } else {
+      document.getElementById('notAvailablePopup').style.display = 'block';
+    }
   }, 3000);
 }
 
 function closePopup(id) {
-  const popup = document.getElementById(id);
-  if (popup) {
-    popup.style.display = 'none';
-  }
+  document.getElementById(id).style.display = 'none';
 }
-
 
 function sendToWhatsApp(event) {
   event.preventDefault();
-
   const name = document.getElementById('fullName').value.trim();
   const location = document.getElementById('confirmedLocation').value.trim();
   const phone = document.getElementById('phone').value.trim();
