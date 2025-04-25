@@ -667,9 +667,13 @@ function showBookingPopup() {
   }, 300);
 }
 
-function closePopup() {
-  document.getElementById('bookingPopup').style.display = 'none';
+function closePopup(id) {
+  const popup = document.getElementById(id);
+  if (popup) {
+    popup.style.display = 'none';
+  }
 }
+
 
 window.onclick = function(event) {
   const popup = document.getElementById('bookingPopup');
@@ -745,13 +749,17 @@ function checkLocation(event) {
       document.getElementById('successPopup').style.display = 'none';
       document.getElementById('confirmedLocation').value = location;
       document.getElementById('bookingPopup').style.display = 'block';
-    }, 2000);
-  }, 2500);
+    }, 3000);
+  }, 3000);
 }
 
 function closePopup(id) {
-  document.getElementById(id).style.display = 'none';
+  const popup = document.getElementById(id);
+  if (popup) {
+    popup.style.display = 'none';
+  }
 }
+
 
 function sendToWhatsApp(event) {
   event.preventDefault();
