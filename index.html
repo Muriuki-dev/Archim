@@ -358,7 +358,6 @@
 	    
     <!-- Pricing Card End -->
 <!-- Latest Offers Start -->
-<!-- Latest Offers Start -->
 <div class="latest-wrapper">
   <div class="container">
     <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
@@ -400,9 +399,10 @@
 <!-- Not Available Popup -->
 <div id="notAvailablePopup" class="popup animate-scale">
   <div class="popup-content">
-    <h3>😞 Oops!</h3>
-    <p>We're currently not available in that area.<br>We will be coming to your side soon!</p>
-    <button onclick="window.open('https://wa.me/254795211116?text=Hello,%20I%20would%20like%20to%20inquire%20about%20availability%20in%20my%20area.', '_blank')">Contact Customer Care</button>
+    <h3>Oops! 🙁</h3>
+    <p>We're currently not available in that area.<br>We're expanding soon!</p>
+    <button onclick="window.open('https://wa.me/254795211116?text=Hello,%20I%20wanted%20to%20check%20coverage%20for%20my%20area.', '_blank')">Contact Customer Care</button>
+    <span class="close" onclick="closePopup('notAvailablePopup')">×</span>
   </div>
 </div>
 
@@ -430,6 +430,7 @@
 </div>
 
 <style>
+/* Popups */
 .popup {
   display: none;
   position: fixed;
@@ -510,6 +511,7 @@
   to { opacity: 1; transform: translateY(0);}
 }
 </style>
+
     <!-- Latest Offers End -->
     <!--? About-2 Area Start -->
     <section class="about-area2 testimonial-area section-padding30 fix">
@@ -739,33 +741,34 @@ function sendToWhatsApp(event) {
 	
 <script>
 const serviceAreas = [
-  "Thika", "Thika Town", "Makongeni", "Landless", "Kiganjo", "Biafra", "Pilot",
-  "Hospital area", "Section 9", "Section 2", "Magoko", "Ngoigwa", "Kiboko",
-  "Ngoingwa", "Ziwani", "Kiandutu", "Gatitu", "Happy Valley", "Witeithie",
-  "Juja Farm", "Kilimambogo", "Kibichoi", "Gatuanyaga", "Muthaiga Thika"
+  "thika", "makongeni", "kiganjo", "gatuanyaga", "landless", "thika greens", "kimunyu", "munyu", "kiboko", "kihunguro", "karibaribi", "mukiriti", "muthaiga", "pilot", "hospital area", "zam zam", "posta", "kiganjo b", "thika town", "magogoni", "githima", "athii", "kiang'ombe", "kiandutu", "joy town", "kiambu road", "karibaribi", "ngoliba", "gatitu", "makutano", "bibirioni"
 ];
 
 function checkLocation(event) {
   event.preventDefault();
-  const location = document.getElementById('locationInput').value.trim().toLowerCase();
+  const input = document.getElementById('locationInput');
+  const location = input.value.trim().toLowerCase();
+
+  if (!location) {
+    alert("Please enter your location.");
+    return;
+  }
 
   document.getElementById('waitPopup').style.display = 'block';
 
   setTimeout(() => {
     document.getElementById('waitPopup').style.display = 'none';
-    const isAvailable = serviceAreas.some(area => location.includes(area.toLowerCase()));
-
-    if (isAvailable) {
+    if (serviceAreas.includes(location)) {
       document.getElementById('successPopup').style.display = 'block';
       setTimeout(() => {
         document.getElementById('successPopup').style.display = 'none';
-        document.getElementById('confirmedLocation').value = location;
+        document.getElementById('confirmedLocation').value = input.value;
         document.getElementById('bookingPopup').style.display = 'block';
-      }, 3000);
+      }, 2000);
     } else {
       document.getElementById('notAvailablePopup').style.display = 'block';
     }
-  }, 3000);
+  }, 2500);
 }
 
 function closePopup(id) {
@@ -774,6 +777,7 @@ function closePopup(id) {
 
 function sendToWhatsApp(event) {
   event.preventDefault();
+
   const name = document.getElementById('fullName').value.trim();
   const location = document.getElementById('confirmedLocation').value.trim();
   const phone = document.getElementById('phone').value.trim();
