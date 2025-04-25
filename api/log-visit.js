@@ -3,6 +3,12 @@ export default async function handler(req, res) {
   const userAgent = req.headers['user-agent'];
   const time = new Date().toISOString();
 
+  // Get time in East African Time (UTC+3)
+  const time = new Date().toLocaleString("en-KE", {
+    timeZone: "Africa/Nairobi",
+    hour12: false,
+  });
+  
   let deviceType = "Desktop";
   if (/mobile/i.test(userAgent)) deviceType = "Mobile";
   if (/tablet/i.test(userAgent)) deviceType = "Tablet";
