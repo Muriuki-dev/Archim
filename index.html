@@ -160,14 +160,17 @@
     <div class="container">
         <div class="row justify-content-between">
             <!-- Left Column: Replaced Image with Buttons -->
-            <div class="col-xl-5 col-lg-6 col-md-9 d-flex flex-column justify-content-center">
-                <div class="rotating-buttons">
-                    <a href="services.html" class="rotating-btn">Our Services</a>
-                    <a href="packages.html" class="rotating-btn">View Packages</a>
-                    <a href="coverage.html" class="rotating-btn">Check Coverage</a>
-                    <a href="contact.html" class="rotating-btn">Contact Us</a>
-                </div>
-            </div>
+            <div class="col-xl-5 col-lg-6 col-md-9 d-flex align-items-center">
+    <div class="rotating-packs w-100">
+        <div class="pack-grid">
+            <a href="services.html" class="pack-card">Services</a>
+            <a href="packages.html" class="pack-card">Packages</a>
+            <a href="coverage.html" class="pack-card">Coverage</a>
+            <a href="contact.html" class="pack-card">Contact</a>
+        </div>
+    </div>
+</div>
+
 
             <!-- Right Column: UNTOUCHED "Why Choose Us" -->
             <div class="col-xl-6 col-lg-6 col-md-10">
@@ -185,33 +188,45 @@
     </div>
 </section>
 	  <style> 
-		  .rotating-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    padding: 20px;
+		  /* Grid container for packs */
+.pack-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
 }
 
-.rotating-btn {
+/* Individual square cards */
+.pack-card {
     background: linear-gradient(135deg, #007bff, #00c6ff);
     color: white;
-    padding: 15px 30px;
     font-weight: 600;
-    text-decoration: none;
-    border-radius: 50px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    transform: rotate(-2deg);
-    transition: all 0.3s ease;
-    display: inline-block;
+    border-radius: 20px;
     text-align: center;
-    min-width: 180px;
+    padding: 30px 0;
+    text-decoration: none;
+    transition: transform 0.4s ease;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transform-origin: center;
 }
 
-.rotating-btn:hover {
-    transform: rotate(2deg) scale(1.05);
+/* Hover effect (optional) */
+.pack-card:hover {
     background: linear-gradient(135deg, #00c6ff, #007bff);
+    transform: scale(1.05);
 }
+
+/* Responsive tweaks (stack on small screens if needed) */
+@media (max-width: 480px) {
+    .pack-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 </style>
 <!-- About End -->
 
@@ -841,6 +856,24 @@ function sendToWhatsApp(event) {
 }
 </script>
 
+
+			    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll('.pack-card');
+
+    cards.forEach(card => {
+        let angle = 0;
+
+        setInterval(() => {
+            angle += 1;
+            card.style.transform = `rotate(${angle}deg)`;
+        }, 50); // Adjust speed here
+    });
+});
+</script>
+
+
+			    
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
