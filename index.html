@@ -155,33 +155,66 @@
         </div>
     </div>
     <!-- slider Area End-->
-    <!--? About 1 Start-->
-    <section class="about-low-area section-padding2">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-xl-5 col-lg-6 col-md-9">
-                    <!-- about-img -->
-                    <div class="about-img">
-                        <img src="assets/img/gallery/about1.png" alt="">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-10">
-                    <div class="about-caption mb-50">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle mb-35">
-                            <span></span>
-                            <h2>We Choose us?</h2>
-                           
-                        </div>
-                        <p>At Popote Networks Thika, we don’t just provide internet—we deliver a reliable connection you can count on. Our affordable packages, fast installation, and dedicated local support team ensure you stay online without interruptions. Whether for home, work, or business, Popote is your trusted partner for smooth, stress-free connectivity.</p>
-                    </div>
-                    <a href="contact.html" class="btn">Ask any Question</a>
-			
+   <!--? About 1 Start-->
+<section class="about-low-area section-padding2">
+    <div class="container">
+        <div class="row justify-content-between">
+            <!-- Left Column: Replaced Image with Buttons -->
+            <div class="col-xl-5 col-lg-6 col-md-9 d-flex flex-column justify-content-center">
+                <div class="rotating-buttons">
+                    <a href="services.html" class="rotating-btn">Our Services</a>
+                    <a href="packages.html" class="rotating-btn">View Packages</a>
+                    <a href="coverage.html" class="rotating-btn">Check Coverage</a>
+                    <a href="contact.html" class="rotating-btn">Contact Us</a>
                 </div>
             </div>
+
+            <!-- Right Column: UNTOUCHED "Why Choose Us" -->
+            <div class="col-xl-6 col-lg-6 col-md-10">
+                <div class="about-caption mb-50">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle mb-35">
+                        <span></span>
+                        <h2>We Choose us?</h2>
+                    </div>
+                    <p>At Popote Networks Thika, we don’t just provide internet—we deliver a reliable connection you can count on. Our affordable packages, fast installation, and dedicated local support team ensure you stay online without interruptions. Whether for home, work, or business, Popote is your trusted partner for smooth, stress-free connectivity.</p>
+                </div>
+                <a href="contact.html" class="btn">Ask any Question</a>
+            </div>
         </div>
-    </section>
-    <!-- About  End-->
+    </div>
+</section>
+	  <style> 
+		  .rotating-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.rotating-btn {
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    padding: 15px 30px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: rotate(-2deg);
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    min-width: 180px;
+}
+
+.rotating-btn:hover {
+    transform: rotate(2deg) scale(1.05);
+    background: linear-gradient(135deg, #00c6ff, #007bff);
+}
+</style>
+<!-- About End -->
+
        
     <!--? Pricing Card Start -->
     <section class="pricing-card-area section-padding2">
