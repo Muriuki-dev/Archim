@@ -254,6 +254,7 @@
                                 <li>Free Router</li>
                             </ul>
                             <a href="#" class="borders-btn" onclick="showBookingPopup()">Book Now</a>
+				
 
                         </div>
                     </div>
@@ -263,14 +264,25 @@
     </section>
 	    <div id="bookingPopup" class="popup">
   <div class="popup-content">
-    <h3>Choose Booking Method</h3>
-    <button onclick="window.open('https://wa.me/254795211116?text=Hello,%20I%20am%20from%20the%20website,%20and%20I%20am%20interested%20in%20booking%20a%20package', '_blank')">WhatsApp Booking</button>
-    <button onclick="window.location.href='tel:+254746828664'">Call Booking</button>
     <span class="close" onclick="closePopup()">×</span>
+    <h3>Book a Package</h3>
+    <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+      <input type="text" id="fullName" placeholder="Full Name" required>
+      <input type="text" id="location" placeholder="Location" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <select id="package" required>
+        <option value="">-- Select Package --</option>
+        <option value="Beach Getaway">Beach Getaway</option>
+        <option value="Safari Adventure">Safari Adventure</option>
+        <option value="City Tour">City Tour</option>
+      </select>
+      <button type="submit">Book via WhatsApp</button>
+    </form>
   </div>
 </div>
 
-<style> .popup {
+<style>
+.popup {
   display: none;
   position: fixed;
   z-index: 999;
@@ -283,11 +295,11 @@
 
 .popup-content {
   background-color: #fff;
-  margin: 20% auto;
+  margin: 10% auto;
   padding: 20px;
   border-radius: 12px;
-  width: 80%;
-  max-width: 300px;
+  width: 90%;
+  max-width: 350px;
   text-align: center;
   position: relative;
 }
@@ -297,14 +309,24 @@
   margin-bottom: 20px;
 }
 
+.popup-content input,
+.popup-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
 .popup-content button {
   background-color: hsl(135, 70%, 35%);
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 8px;
+  margin-top: 12px;
   border-radius: 8px;
   cursor: pointer;
+  width: 100%;
 }
 
 .popup-content .close {
@@ -314,7 +336,8 @@
   font-size: 18px;
   cursor: pointer;
 }
-	.show-animation .popup-content {
+
+.show-animation .popup-content {
   animation: popUp 0.3s ease-out;
 }
 
@@ -328,7 +351,6 @@
     opacity: 1;
   }
 }
-
 </style>
 	    
     <!-- Pricing Card End -->
@@ -509,39 +531,53 @@
 
     <!-- JS here -->
 <script>
-  function showBookingPopup() {
-    const popup = document.getElementById('bookingPopup');
-    popup.style.display = 'block';
-    popup.classList.add('show-animation');
-    playPopupSound();
+function showBookingPopup() {
+  const popup = document.getElementById('bookingPopup');
+  popup.style.display = 'block';
+  popup.classList.add('show-animation');
+  playPopupSound();
 
-    // Remove animation class after it runs
-    setTimeout(() => {
-      popup.classList.remove('show-animation');
-    }, 300);
-  }
+  setTimeout(() => {
+    popup.classList.remove('show-animation');
+  }, 300);
+}
 
-  function closePopup() {
-    document.getElementById('bookingPopup').style.display = 'none';
-  }
+function closePopup() {
+  document.getElementById('bookingPopup').style.display = 'none';
+}
 
-  // Close popup on outside click
-  window.onclick = function(event) {
-    const popup = document.getElementById('bookingPopup');
-    if (event.target === popup) {
-      popup.style.display = 'none';
-    }
+window.onclick = function(event) {
+  const popup = document.getElementById('bookingPopup');
+  if (event.target === popup) {
+    popup.style.display = 'none';
   }
+}
 
-  // Play a professional pop sound
-  function playPopupSound() {
-    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
-    audio.play().catch(error => {
-      console.warn("Audio playback failed:", error);
-    });
-  }
+function playPopupSound() {
+  const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
+  audio.play().catch(error => {
+    console.warn("Audio playback failed:", error);
+  });
+}
+
+function sendToWhatsApp(event) {
+  event.preventDefault();
+
+  const fullName = document.getElementById('fullName').value;
+  const location = document.getElementById('location').value;
+  const phone = document.getElementById('phone').value;
+  const package = document.getElementById('package').value;
+
+  const message = `Hello, I am from the website and I would like to book a package:\n
+*Full Name:* ${fullName}
+*Location:* ${location}
+*Phone:* ${phone}
+*Package:* ${package}`;
+
+  const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
+  window.open(whatsappURL, '_blank');
+}
 </script>
-
 
 <script>
   fetch('/api/log-visit')
