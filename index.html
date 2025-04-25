@@ -358,27 +358,112 @@
 	    
     <!-- Pricing Card End -->
     <!-- Latest Offers Start -->
-    <div class="latest-wrapper">
-        <div class="container">
-            <div class="latest-area latest-height  section-bg2" data-background="assets/img/gallery/section_bg01.png">
-                <div class="row  align-items-center justify-content-between">
-                    <div class="col-xl-5 col-lg-7">
-                        <div class="latest-caption">
-                            <h2>Check if your area is listed or if we are available in yor area.</h2>
-                        </div>
-                    </div>
-                     <div class="col-xl-5 col-lg-5 col-md-10 ">
-                        <div class="latest-subscribe">
-                            <form action="#">
-                                <input type="email" placeholder="Enter Location">
-                                <button>Check Now</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Latest Offers Start -->
+<div class="latest-wrapper">
+  <div class="container">
+    <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-xl-5 col-lg-7">
+          <div class="latest-caption">
+            <h2>Check if your area is listed or if we are available in your area.</h2>
+          </div>
         </div>
+        <div class="col-xl-5 col-lg-5 col-md-10 ">
+          <div class="latest-subscribe">
+            <form id="locationForm" onsubmit="checkLocation(event)">
+              <input type="text" id="locationInput" placeholder="Enter Location" required>
+              <button type="submit">Check Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+<!-- Latest Offers End -->
+
+<!-- Success Popup -->
+<div id="successPopup" class="popup">
+  <div class="popup-content">
+    <h3>🎉 Congratulations!</h3>
+    <p>We are within your reach. Please wait while we redirect you to booking...</p>
+  </div>
+</div>
+
+<!-- Booking Form Popup -->
+<div id="bookingPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('bookingPopup')">×</span>
+    <h3>Book a Package</h3>
+    <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+      <input type="text" id="fullName" placeholder="Full Name" required>
+      <input type="text" id="confirmedLocation" placeholder="Location" readonly required>
+      <input type="tel" id="phone" placeholder="Phone Number" maxlength="10" required>
+      <select id="package" required>
+        <option value="">-- Select Package --</option>
+        <option value="4 Mbps @ Ksh 1,000">4 Mbps @ Ksh 1,000</option>
+        <option value="7 Mbps @ Ksh 1,500">7 Mbps @ Ksh 1,500</option>
+        <option value="10 Mbps @ Ksh 2,000">10 Mbps @ Ksh 2,000</option>
+        <option value="15 Mbps @ Ksh 2,500">15 Mbps @ Ksh 2,500</option>
+        <option value="20 Mbps @ Ksh 3,000">20 Mbps @ Ksh 3,000</option>
+        <option value="30 Mbps @ Ksh 4,000">30 Mbps @ Ksh 4,000</option>
+      </select>
+      <button type="submit">Book via WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<style>
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+.popup-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  position: relative;
+}
+.popup-content h3 {
+  color: hsl(135, 70%, 35%);
+  margin-bottom: 15px;
+}
+.popup-content input,
+.popup-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.popup-content button {
+  background-color: hsl(135, 70%, 35%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+.popup-content .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+</style>
     <!-- Latest Offers End -->
     <!--? About-2 Area Start -->
     <section class="about-area2 testimonial-area section-padding30 fix">
@@ -599,7 +684,64 @@ function sendToWhatsApp(event) {
     .then(data => console.log("Visitor logged!", data));
 </script>
 
+<script>
+function checkLocation(event) {
+  event.preventDefault();
+  const location = document.getElementById('locationInput').value.trim();
 
+  if (!location) {
+    alert("Please enter a location.");
+    return;
+  }
+
+  // Show success popup
+  const popup = document.getElementById('successPopup');
+  popup.style.display = 'block';
+
+  // After 2 seconds, show the booking form
+  setTimeout(() => {
+    popup.style.display = 'none';
+
+    // Fill location in booking form
+    document.getElementById('confirmedLocation').value = location;
+
+    // Show booking form
+    document.getElementById('bookingPopup').style.display = 'block';
+  }, 2000);
+}
+
+function closePopup(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function sendToWhatsApp(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('fullName').value.trim();
+  const location = document.getElementById('confirmedLocation').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const pack = document.getElementById('package').value;
+
+  if (!name || !location || !phone || !pack) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (!/^\d{10}$/.test(phone)) {
+    alert("Phone number must be exactly 10 digits.");
+    return;
+  }
+
+  const message = `Hello, I would like to book a package:\n\n` +
+                  `*Full Name:* ${name}\n` +
+                  `*Location:* ${location}\n` +
+                  `*Phone:* ${phone}\n` +
+                  `*Package:* ${pack}`;
+
+  const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
+  window.open(whatsappURL, '_blank');
+}
+</script>
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
