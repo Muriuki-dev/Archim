@@ -160,8 +160,12 @@
     <div class="container">
         <div class="row justify-content-between">
             <!-- Left Column: Replaced Image with Buttons -->
-            <div class="col-xl-5 col-lg-6 col-md-9 d-flex align-items-center">
-    <div class="rotating-packs w-100">
+            <div class="col-xl-5 col-lg-6 col-md-9 d-flex align-items-center position-relative">
+    <div class="rotating-packs w-100 position-relative">
+        <!-- Coming Soon Notification -->
+        <div id="comingSoonNotice" class="coming-soon-popup">Coming Soon 🚀</div>
+
+        <!-- Packs -->
         <div class="pack-grid">
             <a href="services.html" class="pack-card">Services</a>
             <a href="packages.html" class="pack-card">Packages</a>
@@ -170,6 +174,7 @@
         </div>
     </div>
 </div>
+
 
 
             <!-- Right Column: UNTOUCHED "Why Choose Us" -->
@@ -188,6 +193,29 @@
     </div>
 </section>
 	  <style> 
+		  .coming-soon-popup {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4757;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+/* When active */
+.coming-soon-popup.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
 		  /* Grid container for packs */
 .pack-grid {
     display: grid;
@@ -857,20 +885,31 @@ function sendToWhatsApp(event) {
 </script>
 
 
-			    <script>
+			   <script>
 document.addEventListener("DOMContentLoaded", function() {
     const cards = document.querySelectorAll('.pack-card');
+    const popup = document.getElementById('comingSoonNotice');
+    let angle = 0;
 
+    // Rotate each card
     cards.forEach(card => {
-        let angle = 0;
-
         setInterval(() => {
             angle += 1;
             card.style.transform = `rotate(${angle}deg)`;
-        }, 50); // Adjust speed here
+        }, 50);
     });
+
+    // Show popup every few seconds
+    setInterval(() => {
+        popup.classList.add('show');
+
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 2000); // Visible for 2 seconds
+    }, 6000); // Shows every 6 seconds
 });
 </script>
+
 
 
 			    
