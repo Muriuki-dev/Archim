@@ -160,20 +160,25 @@
     <div class="container">
         <div class="row justify-content-between">
             <!-- Left Column: Replaced Image with Buttons -->
-            <div class="col-xl-5 col-lg-6 col-md-9 d-flex align-items-center position-relative">
-    <div class="rotating-packs w-100 position-relative">
-        <!-- Coming Soon Notification -->
-        <div id="comingSoonNotice" class="coming-soon-popup">Coming Soon 🚀</div>
-
-        <!-- Packs -->
-        <div class="pack-grid">
-            <a href="services.html" class="pack-card">Services</a>
-            <a href="packages.html" class="pack-card">Packages</a>
-            <a href="coverage.html" class="pack-card">Coverage</a>
-            <a href="contact.html" class="pack-card">Contact</a>
-        </div>
-    </div>
+           <div class="pack-grid">
+    <a href="services.html" class="pack-card">
+        Services
+        <span class="coming-soon">Coming Soon 🚀</span>
+    </a>
+    <a href="packages.html" class="pack-card">
+        Packages
+        <span class="coming-soon">Coming Soon 🚀</span>
+    </a>
+    <a href="coverage.html" class="pack-card">
+        Coverage
+        <span class="coming-soon">Coming Soon 🚀</span>
+    </a>
+    <a href="contact.html" class="pack-card">
+        Contact
+        <span class="coming-soon">Coming Soon 🚀</span>
+    </a>
 </div>
+
 
 
 
@@ -193,27 +198,31 @@
     </div>
 </section>
 	  <style> 
-		  .coming-soon-popup {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: #ff4757;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.5s ease;
-    z-index: 10;
+		  .pack-card {
+    position: relative;
+    overflow: hidden;
 }
 
-/* When active */
-.coming-soon-popup.show {
+.coming-soon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4757;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.coming-soon.show {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.1);
 }
 
 		  /* Grid container for packs */
@@ -885,30 +894,48 @@ function sendToWhatsApp(event) {
 </script>
 
 
-			   <script>
-document.addEventListener("DOMContentLoaded", function() {
+			<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll('.pack-card');
-    const popup = document.getElementById('comingSoonNotice');
-    let angle = 0;
 
-    // Rotate each card
+    // Slow rotate every card
     cards.forEach(card => {
+        let angle = 0;
         setInterval(() => {
             angle += 1;
             card.style.transform = `rotate(${angle}deg)`;
-        }, 50);
+        }, 30); // Faster rotation
     });
 
-    // Show popup every few seconds
+    // Coming soon popup every 4 seconds
     setInterval(() => {
-        popup.classList.add('show');
+        cards.forEach(card => {
+            const popup = card.querySelector('.coming-soon');
 
-        setTimeout(() => {
-            popup.classList.remove('show');
-        }, 2000); // Visible for 2 seconds
-    }, 6000); // Shows every 6 seconds
+            // Show
+            popup.classList.add('show');
+
+            // Confetti at the card's position
+            const rect = card.getBoundingClientRect();
+            confetti({
+                particleCount: 30,
+                spread: 60,
+                origin: {
+                    x: (rect.left + rect.width / 2) / window.innerWidth,
+                    y: (rect.top + rect.height / 2) / window.innerHeight
+                }
+            });
+
+            // Hide after short burst
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 1200);
+        });
+    }, 4000); // Every 4s
 });
 </script>
+
 
 
 
