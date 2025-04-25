@@ -126,13 +126,23 @@
   <p>We offer reliable internet in Thika Town and surrounding areas including:Thika Town, Landless, Kiganjo, Section 9, Ziwani, Thika Greens, Ngoingwa, Biafra, Pilot, Majengo, Muguga, Chania, Kisii Estate</p>
 </div>
  <!-- Hero-btn -->
-                            <div class="hero__btn flex justify-between px-4 mb-10 space-x-4">
-  <a href="package.html" class="btn hero-btn flex-1 text-center" data-animation="fadeInUp" data-delay=".8s">
+                           <!-- Trigger Button -->
+<div class="hero__btn">
+  <button onclick="openPrompt()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">
     View Packages
-  </a>
-  <a href="contact.html" class="btn hero-btn flex-1 text-center" data-animation="fadeInUp" data-delay="1s">
-    Contact Us
-  </a>
+  </button>
+</div>
+
+<!-- Prompt Modal -->
+<div id="packagePrompt" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-6 w-80 text-center shadow-xl">
+    <h2 class="text-xl font-semibold mb-4">Choose an option</h2>
+    <div class="space-y-4">
+      <a href="package.html" class="block w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">See Sample Packages</a>
+      <a href="book-now.html" class="block w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">Book Packages</a>
+    </div>
+    <button onclick="closePrompt()" class="mt-6 text-gray-500 hover:text-gray-700">Cancel</button>
+  </div>
 </div>
 
                         </div>
@@ -942,6 +952,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
+			    <script>
+  function openPrompt() {
+    document.getElementById("packagePrompt").classList.remove("hidden");
+  }
+
+  function closePrompt() {
+    document.getElementById("packagePrompt").classList.add("hidden");
+  }
+</script>
 
 
 
