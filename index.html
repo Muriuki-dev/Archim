@@ -269,12 +269,15 @@
     <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
       <input type="text" id="fullName" placeholder="Full Name" required>
       <input type="text" id="location" placeholder="Location" required>
-      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <input type="tel" id="phone" placeholder="Phone Number" maxlength="10" required>
       <select id="package" required>
         <option value="">-- Select Package --</option>
-        <option value="Beach Getaway">Beach Getaway</option>
-        <option value="Safari Adventure">Safari Adventure</option>
-        <option value="City Tour">City Tour</option>
+        <option value="4 Mbps @ Ksh 1,000">4 Mbps @ Ksh 1,000</option>
+        <option value="7 Mbps @ Ksh 1,500">7 Mbps @ Ksh 1,500</option>
+        <option value="10 Mbps @ Ksh 2,000">10 Mbps @ Ksh 2,000</option>
+        <option value="15 Mbps @ Ksh 2,500">15 Mbps @ Ksh 2,500</option>
+        <option value="20 Mbps @ Ksh 3,000">20 Mbps @ Ksh 3,000</option>
+        <option value="30 Mbps @ Ksh 4,000">30 Mbps @ Ksh 4,000</option>
       </select>
       <button type="submit">Book via WhatsApp</button>
     </form>
@@ -563,16 +566,27 @@ function playPopupSound() {
 function sendToWhatsApp(event) {
   event.preventDefault();
 
-  const fullName = document.getElementById('fullName').value;
-  const location = document.getElementById('location').value;
-  const phone = document.getElementById('phone').value;
-  const package = document.getElementById('package').value;
+  const fullName = document.getElementById('fullName').value.trim();
+  const location = document.getElementById('location').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const selectedPackage = document.getElementById('package').value;
+
+  // Basic validation
+  if (!fullName || !location || !phone || !selectedPackage) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (!/^\d{10}$/.test(phone)) {
+    alert("Phone number must be exactly 10 digits.");
+    return;
+  }
 
   const message = `Hello, I am from the website and I would like to book a package:\n
 *Full Name:* ${fullName}
 *Location:* ${location}
 *Phone:* ${phone}
-*Package:* ${package}`;
+*Package:* ${selectedPackage}`;
 
   const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
   window.open(whatsappURL, '_blank');
