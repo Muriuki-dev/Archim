@@ -354,11 +354,11 @@
             </div>
         </div>
     </section>
-	    <div id="bookingPopup" class="popup">
+	   <div id="bookingPopup" class="popup" style="display: none;">
   <div class="popup-content">
-    <span class="close" onclick="closePopup()">×</span>
+    <span class="close" onclick="closeBookingPopup('bookingPopup')">×</span>
     <h3>Book a Package</h3>
-    <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+    <form id="bookingForm" onsubmit="sendBookingToWhatsApp(event)">
       <input type="text" id="fullName" placeholder="Full Name" required>
       <input type="text" id="location" placeholder="Location" required>
       <input type="tel" id="phone" placeholder="Phone Number" maxlength="10" required>
@@ -375,6 +375,7 @@
     </form>
   </div>
 </div>
+
 
 <style>
 .popup {
@@ -450,6 +451,7 @@
 	    
     <!-- Pricing Card End -->
 <!-- Latest Offers Start -->
+<!-- Latest Offers Start -->
 <div class="latest-wrapper">
   <div class="container">
     <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
@@ -473,7 +475,7 @@
 </div>
 
 <!-- Wait Loader Popup -->
-<div id="waitPopup" class="popup">
+<div id="waitPopup" class="popup" style="display: none;">
   <div class="popup-content loader-content">
     <div class="loader"></div>
     <p>Please wait while we check your area...</p>
@@ -481,7 +483,7 @@
 </div>
 
 <!-- Success Popup -->
-<div id="successPopup" class="popup animate-scale">
+<div id="successPopup" class="popup animate-scale" style="display: none;">
   <div class="popup-content">
     <h3>🎉 Congratulations!</h3>
     <p>We are within your reach.<br>Redirecting you to booking...</p>
@@ -489,7 +491,7 @@
 </div>
 
 <!-- Not Available Popup -->
-<div id="notAvailablePopup" class="popup animate-scale">
+<div id="notAvailablePopup" class="popup animate-scale" style="display: none;">
   <div class="popup-content">
     <h3>Oops! 🙁</h3>
     <p>We're currently not available in that area.<br>We're expanding soon!</p>
@@ -498,8 +500,8 @@
   </div>
 </div>
 
-<!-- Booking Form Popup -->
-<div id="bookingPopup" class="popup">
+<!-- Booking Form Popup (for after location is confirmed) -->
+<div id="bookingPopup" class="popup" style="display: none;">
   <div class="popup-content animate-fade">
     <span class="close" onclick="closePopup('bookingPopup')">×</span>
     <h3>Book a Package</h3>
@@ -520,6 +522,7 @@
     </form>
   </div>
 </div>
+
 
 <style>
 /* Popups */
