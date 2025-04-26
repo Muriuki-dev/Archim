@@ -161,7 +161,7 @@
     <!-- slider Area End-->
 
  <!--? About 1 Start-->
-<section class="about-low-area section-padding2" style="padding-top: 30px;">
+	    <section class="about-low-area section-padding2">
     <div class="container">
         <div class="row justify-content-between">
             <!-- Left Column: Replaced Image with Buttons -->
@@ -700,69 +700,156 @@
     </div>
 
     <!-- JS here -->
+<!-- First Script -->
 <script>
-function showBookingPopup() {
-  const popup = document.getElementById('bookingPopup');
-  popup.style.display = 'block';
-  popup.classList.add('show-animation');
-  playPopupSound();
+(function() {
+  function showBookingPopup() {
+    const popup = document.getElementById('bookingPopup');
+    popup.style.display = 'block';
+    popup.classList.add('show-animation');
+    playPopupSound();
 
-  setTimeout(() => {
-    popup.classList.remove('show-animation');
-  }, 300);
-}
-
-function closePopup(id) {
-  const popup = document.getElementById(id);
-  if (popup) {
-    popup.style.display = 'none';
-  }
-}
-
-
-window.onclick = function(event) {
-  const popup = document.getElementById('bookingPopup');
-  if (event.target === popup) {
-    popup.style.display = 'none';
-  }
-}
-
-function playPopupSound() {
-  const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
-  audio.play().catch(error => {
-    console.warn("Audio playback failed:", error);
-  });
-}
-
-function sendToWhatsApp(event) {
-  event.preventDefault();
-
-  const fullName = document.getElementById('fullName').value.trim();
-  const location = document.getElementById('location').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const selectedPackage = document.getElementById('package').value;
-
-  // Basic validation
-  if (!fullName || !location || !phone || !selectedPackage) {
-    alert("Please fill in all fields.");
-    return;
+    setTimeout(() => {
+      popup.classList.remove('show-animation');
+    }, 300);
   }
 
-  if (!/^\d{10}$/.test(phone)) {
-    alert("Phone number must be exactly 10 digits.");
-    return;
+  function closePopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) {
+      popup.style.display = 'none';
+    }
   }
 
-  const message = `Hello, I am from the website and I would like to book a package:\n
+  window.onclick = function(event) {
+    const popup = document.getElementById('bookingPopup');
+    if (event.target === popup) {
+      popup.style.display = 'none';
+    }
+  }
+
+  function playPopupSound() {
+    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
+    audio.play().catch(error => {
+      console.warn("Audio playback failed:", error);
+    });
+  }
+
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById('fullName').value.trim();
+    const location = document.getElementById('location').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const selectedPackage = document.getElementById('package').value;
+
+    if (!fullName || !location || !phone || !selectedPackage) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+      alert("Phone number must be exactly 10 digits.");
+      return;
+    }
+
+    const message = `Hello, I am from the website and I would like to book a package:\n
 *Full Name:* ${fullName}
 *Location:* ${location}
 *Phone:* ${phone}
 *Package:* ${selectedPackage}`;
 
-  const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
-  window.open(whatsappURL, '_blank');
-}
+    const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+  }
+
+  // Expose to global if needed
+  window.showBookingPopup = showBookingPopup;
+  window.closeBookingPopup = closePopup;
+  window.sendBookingToWhatsApp = sendToWhatsApp;
+})();
 </script>
+
+<!-- Second Script -->
+<script>
+(function() {
+  const serviceAreas = [
+    "thika town", "pilot", "hospital area", "zam zam", "posta", "mukiriti", "muthaiga", "joy town", "karibaribi", "landless",
+    "kimathi estate", "section 9", "broadways", "phase 4", "township", "morrison area", "salama estate",
+    "makongeni", "kiganjo", "kiganjo b", "gatuanyaga", "thika greens", "kimunyu", "munyu", "kiboko", "kihunguro", "magogoni",
+    "githima", "athii", "kiang'ombe", "kiandutu", "ngoliba", "gatitu", "makutano", "bibirioni", "magoko", "kieni",
+    "gachagi", "gachororo", "garage area", "delmonte gate", "ngurubani",
+    "kenyatta highway", "commercial street", "station road", "general kago road", "garissa road", "mugo kibiru road",
+    "madaraka avenue", "mugo street", "kwame nkrumah street", "kenyatta avenue", "uhuru street", "morris road",
+    "lumumba drive", "thika bypass", "biashara street"
+  ];
+
+  function checkLocation(event) {
+    event.preventDefault();
+    const input = document.getElementById('locationInput');
+    const location = input.value.trim().toLowerCase();
+
+    if (!location) {
+      alert("Please enter your location.");
+      return;
+    }
+
+    document.getElementById('waitPopup').style.display = 'block';
+
+    setTimeout(() => {
+      document.getElementById('waitPopup').style.display = 'none';
+      if (serviceAreas.includes(location)) {
+        document.getElementById('successPopup').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('successPopup').style.display = 'none';
+          document.getElementById('confirmedLocation').value = input.value;
+          document.getElementById('bookingPopup').style.display = 'block';
+        }, 3000);
+      } else {
+        document.getElementById('notAvailablePopup').style.display = 'block';
+      }
+    }, 3000);
+  }
+
+  function closePopup(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('fullName').value.trim();
+    const location = document.getElementById('confirmedLocation').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const pack = document.getElementById('package').value;
+
+    if (!name || !location || !phone || !pack) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+      alert("Phone number must be exactly 10 digits.");
+      return;
+    }
+
+    const message = `Hello, I would like to book a package:\n\n` +
+                    `*Full Name:* ${name}\n` +
+                    `*Location:* ${location}\n` +
+                    `*Phone:* ${phone}\n` +
+                    `*Package:* ${pack}`;
+
+    const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+  }
+
+  // Expose to global if needed
+  window.checkLocation = checkLocation;
+  window.closeLocationPopup = closePopup;
+  window.sendLocationToWhatsApp = sendToWhatsApp;
+})();
+</script>
+
 
 	
 <script>
@@ -773,132 +860,7 @@ function sendToWhatsApp(event) {
 
 
 	
-<script>
-const serviceAreas = [
-  // Central Thika Town Areas & Estates
-  "thika town",
-  "pilot",
-  "hospital area",
-  "zam zam",
-  "posta",
-  "mukiriti",
-  "muthaiga",
-  "joy town",
-  "karibaribi",
-  "landless",
-  "kimathi estate",
-  "section 9",
-  "broadways",
-  "phase 4",
-  "township",
-  "morrison area",
-  "salama estate",
 
-  // Outskirts / Estates
-  "makongeni",
-  "kiganjo",
-  "kiganjo b",
-  "gatuanyaga",
-  "thika greens",
-  "kimunyu",
-  "munyu",
-  "kiboko",
-  "kihunguro",
-  "magogoni",
-  "githima",
-  "athii",
-  "kiang'ombe",
-  "kiandutu",
-  "ngoliba",
-  "gatitu",
-  "makutano",
-  "bibirioni",
-  "magoko",
-  "kieni",
-  "gachagi",
-  "gachororo",
-  "garage area",
-  "delmonte gate",
-  "ngurubani",
-
-  // Notable Streets in Thika Town
-  "kenyatta highway",
-  "commercial street",
-  "station road",
-  "general kago road",
-  "garissa road",
-  "mugo kibiru road",
-  "madaraka avenue",
-  "mugo street",
-  "kwame nkrumah street",
-  "kenyatta avenue",
-  "uhuru street",
-  "morris road",
-  "lumumba drive",
-  "thika bypass",
-  "biashara street"
-];
-
-
-function checkLocation(event) {
-  event.preventDefault();
-  const input = document.getElementById('locationInput');
-  const location = input.value.trim().toLowerCase();
-
-  if (!location) {
-    alert("Please enter your location.");
-    return;
-  }
-
-  document.getElementById('waitPopup').style.display = 'block';
-
-  setTimeout(() => {
-    document.getElementById('waitPopup').style.display = 'none';
-    if (serviceAreas.includes(location)) {
-      document.getElementById('successPopup').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('successPopup').style.display = 'none';
-        document.getElementById('confirmedLocation').value = input.value;
-        document.getElementById('bookingPopup').style.display = 'block';
-      }, 3000);
-    } else {
-      document.getElementById('notAvailablePopup').style.display = 'block';
-    }
-  }, 3000);
-}
-
-function closePopup(id) {
-  document.getElementById(id).style.display = 'none';
-}
-
-function sendToWhatsApp(event) {
-  event.preventDefault();
-
-  const name = document.getElementById('fullName').value.trim();
-  const location = document.getElementById('confirmedLocation').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const pack = document.getElementById('package').value;
-
-  if (!name || !location || !phone || !pack) {
-    alert("Please fill in all fields.");
-    return;
-  }
-
-  if (!/^\d{10}$/.test(phone)) {
-    alert("Phone number must be exactly 10 digits.");
-    return;
-  }
-
-  const message = `Hello, I would like to book a package:\n\n` +
-                  `*Full Name:* ${name}\n` +
-                  `*Location:* ${location}\n` +
-                  `*Phone:* ${phone}\n` +
-                  `*Package:* ${pack}`;
-
-  const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
-  window.open(whatsappURL, '_blank');
-}
-</script>
 
 
 			<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
