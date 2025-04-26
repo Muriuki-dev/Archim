@@ -128,9 +128,11 @@
 </div>
  <!-- Hero-btn -->
                            <!-- Trigger Button -->
+<!-- Hero-btn -->
 <div class="hero__btn">
-                                <a href="package.html" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">View Packages</a>
-                            </div>
+  <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">View Packages</button>
+</div>
+
 
 
                         </div>
@@ -159,6 +161,26 @@
         </div>
     </div>
     <!-- slider Area End-->
+<!-- Hero Options Popup -->
+<div id="heroOptionsModal" class="popup animate-scale" style="display: none;">
+  <div class="popup-content">
+    <span class="close" onclick="document.getElementById('heroOptionsModal').style.display='none'">×</span>
+    <h3>What would you like to do?</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+      <button onclick="window.location.href='package.html'" class="btn">📄 View Packages Sheet</button>
+      <button onclick="alert('🚧 Our services page is coming soon!')" class="btn">🛠️ Our Services</button>
+      <button onclick="window.open('https://wa.me/254795211116?text=Hello,%20I%20need%20help%20with%20your%20services.', '_blank')" class="btn">💬 Customer Support</button>
+      <button onclick="showBookingPopup()" class="btn">📦 Book a Package</button>
+    </div>
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  function openHeroOptions() {
+    document.getElementById('heroOptionsModal').style.display = 'block';
+  }
+</script>
 
  <!--? About 1 Start-->
 	    <section class="about-low-area section-padding2">
