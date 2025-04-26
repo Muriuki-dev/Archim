@@ -216,7 +216,7 @@
                     <!-- Section Tittle -->
                     <div class="section-tittle mb-35">
                         <span></span>
-                        <h2>We Choose us?</h2>
+                        <h2>Why Choose us?</h2>
                     </div>
                     <p>At Popote Networks Thika, we don’t just provide internet—we deliver a reliable connection you can count on. Our affordable packages, fast installation, and dedicated local support team ensure you stay online without interruptions. Whether for home, work, or business, Popote is your trusted partner for smooth, stress-free connectivity.</p>
                 </div>
@@ -377,6 +377,125 @@
             </div>
         </div>
     </section>
+	    <style>
+/* Section background and spacing */
+.pricing-card-area {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+}
+
+/* Card container */
+.single-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.single-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Top section */
+.card-top p {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-top h4 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Middle pricing */
+.card-mid h4 {
+  font-size: 28px;
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card-mid span {
+  font-size: 16px;
+  color: #666;
+  font-weight: 400;
+}
+
+/* Features list */
+.card-bottom ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.card-bottom ul li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #444;
+  display: flex;
+  align-items: center;
+}
+
+.card-bottom ul li::before {
+  content: '✓';
+  color: #28a745;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* Book Now Button */
+.borders-btn {
+  background-color: #007bff;
+  color: #fff !important;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.borders-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Section title */
+.section-tittle h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #222;
+}
+
+.section-tittle p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .single-card {
+    padding: 25px;
+  }
+  .card-mid h4 {
+    font-size: 24px;
+  }
+  .card-top h4 {
+    font-size: 20px;
+  }
+}
+</style>
+
 	   <div id="bookingPopup" class="popup" style="display: none;">
   <div class="popup-content">
     <span class="close" onclick="closeBookingPopup('bookingPopup')">×</span>
