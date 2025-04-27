@@ -740,14 +740,14 @@
         </div>
     </section>
     <!-- About-2 Area End -->
-    <!-- 📍 Location Check Popup -->
+   <!-- 📍 Modern Location Checker Popup -->
 <div id="locationPopup" class="modern-location-popup">
   <div class="popup-inner">
     <button class="popup-close" onclick="closeLocationPopup('locationPopup')">×</button>
 
     <div class="popup-header">
       <h2>📍 Check Service Availability</h2>
-      <p>Enter your area and check if we're available!</p>
+      <p>Enter your location below and see if we are available!</p>
     </div>
 
     <form id="locationForm" onsubmit="checkLocation(event)">
@@ -757,99 +757,100 @@
   </div>
 </div>
 
-<!-- 🕑 Waiting Popup -->
-<div id="waitPopup" class="mini-popup" style="display: none;">
-  <div class="mini-popup-inner">
-    <p>Checking your location... ⏳</p>
-  </div>
-</div>
-
-<!-- ✅ Success Popup -->
-<div id="successPopup" class="mini-popup" style="display: none;">
-  <div class="mini-popup-inner">
-    <p>🎉 Good news! We are available in your area!</p>
-  </div>
-</div>
-
-<!-- 🚫 Not Available Popup -->
-<div id="notAvailablePopup" class="mini-popup" style="display: none;">
-  <div class="mini-popup-inner">
-    <p>😞 Sorry, we're not yet available in that area.</p>
-  </div>
-</div>
-
-<!-- 📦 Booking Popup (Already in your code) -->
-<!-- Booking popup will show from your existing bookingPopup div -->
-
-
-
 <style>
-/* Location Popup */
+/* --- Modern Popup Styles --- */
 #locationPopup {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 99999;
+  backdrop-filter: blur(5px);
 }
 
 #locationPopup .popup-inner {
   background: #fff;
-  padding: 30px 20px;
-  border-radius: 12px;
-  text-align: center;
+  padding: 30px 25px;
+  border-radius: 16px;
   width: 90%;
-  max-width: 400px;
+  max-width: 450px;
+  text-align: center;
   position: relative;
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: all 0.4s ease;
 }
 
+#locationPopup.show .popup-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Close Button */
 #locationPopup .popup-close {
   position: absolute;
-  right: 15px;
-  top: 10px;
+  top: 15px;
+  right: 20px;
   background: transparent;
   border: none;
-  font-size: 26px;
+  font-size: 28px;
+  color: #333;
   cursor: pointer;
 }
 
-#locationPopup input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
+/* Heading & Text */
+#locationPopup .popup-header h2 {
   margin-bottom: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  font-size: 24px;
+  color: #2a2a2a;
+}
+#locationPopup .popup-header p {
+  font-size: 15px;
+  color: #777;
 }
 
-#locationPopup .check-btn {
+/* Form Input */
+#locationPopup form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+#locationPopup form input:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+/* Check Now Button */
+#locationPopup form .check-btn {
   width: 100%;
   padding: 12px;
   background: linear-gradient(135deg, #28a745, #218838);
+  color: #fff;
   border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
   border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+#locationPopup form .check-btn:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
 }
 
-/* Mini Popups */
-.mini-popup {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #222;
-  color: #fff;
-  padding: 15px 20px;
-  border-radius: 10px;
-  z-index: 10000;
-  font-size: 15px;
+/* Responsive */
+@media (max-width: 480px) {
+  #locationPopup .popup-inner {
+    padding: 25px 20px;
+  }
 }
 </style>
+
 
 
     </main>
@@ -1180,16 +1181,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			  
 
 <script>
-// Open the location input popup
 function showLocationPopup() {
-  document.getElementById('locationPopup').style.display = 'flex';
+  const popup = document.getElementById('locationPopup');
+  popup.style.display = 'flex';
+  setTimeout(() => popup.classList.add('show'), 10);
 }
 
-// Close any popup
-function closePopup(id) {
-  document.getElementById(id).style.display = 'none';
+function closeLocationPopup(id) {
+  const popup = document.getElementById(id);
+  popup.classList.remove('show');
+  setTimeout(() => popup.style.display = 'none', 400);
 }
 </script>
+
 
 
 
