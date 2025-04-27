@@ -568,118 +568,7 @@
   </div>
 </div>
 	    <!--popup for location -->
-	<!-- 📍 Location Check Popup -->
-<div id="locationPopup" class="modern-location-popup">
-  <div class="popup-inner">
-    <button class="popup-close" onclick="closeLocationPopup('locationPopup')">×</button>
-
-    <div class="popup-header">
-      <h2>📍 Check Service Availability</h2>
-      <p>Enter your area and check if we're available!</p>
-    </div>
-
-    <form id="locationForm" onsubmit="checkLocation(event)">
-      <input type="text" id="locationInput" placeholder="Enter Location" required>
-      <button type="submit" class="check-btn">Check Now</button>
-    </form>
-  </div>
-</div>
-
-<!-- 🕑 Waiting Popup -->
-<div id="waitPopup" class="mini-popup" style="display: none;">
-  <div class="mini-popup-inner">
-    <p>Checking your location... ⏳</p>
-  </div>
-</div>
-
-<!-- ✅ Success Popup -->
-<div id="successPopup" class="mini-popup" style="display: none;">
-  <div class="mini-popup-inner">
-    <p>🎉 Good news! We are available in your area!</p>
-  </div>
-</div>
-
-<!-- 🚫 Not Available Popup -->
-<div id="notAvailablePopup" class="mini-popup" style="display: none;">
-  <div class="mini-popup-inner">
-    <p>😞 Sorry, we're not yet available in that area.</p>
-  </div>
-</div>
-
-<!-- 📦 Booking Popup (Already in your code) -->
-<!-- Booking popup will show from your existing bookingPopup div -->
-
-
-
-<style>
-/* Location Popup */
-#locationPopup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-#locationPopup .popup-inner {
-  background: #fff;
-  padding: 30px 20px;
-  border-radius: 12px;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  position: relative;
-}
-
-#locationPopup .popup-close {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  background: transparent;
-  border: none;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-#locationPopup input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-#locationPopup .check-btn {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #28a745, #218838);
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* Mini Popups */
-.mini-popup {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #222;
-  color: #fff;
-  padding: 15px 20px;
-  border-radius: 10px;
-  z-index: 10000;
-  font-size: 15px;
-}
-</style>
-
-
+	
 
 
 <!-- Wait Loader Popup -->
@@ -851,7 +740,118 @@
         </div>
     </section>
     <!-- About-2 Area End -->
-    
+    <!-- 📍 Location Check Popup -->
+<div id="locationPopup" class="modern-location-popup">
+  <div class="popup-inner">
+    <button class="popup-close" onclick="closeLocationPopup('locationPopup')">×</button>
+
+    <div class="popup-header">
+      <h2>📍 Check Service Availability</h2>
+      <p>Enter your area and check if we're available!</p>
+    </div>
+
+    <form id="locationForm" onsubmit="checkLocation(event)">
+      <input type="text" id="locationInput" placeholder="Enter Location" required>
+      <button type="submit" class="check-btn">Check Now</button>
+    </form>
+  </div>
+</div>
+
+<!-- 🕑 Waiting Popup -->
+<div id="waitPopup" class="mini-popup" style="display: none;">
+  <div class="mini-popup-inner">
+    <p>Checking your location... ⏳</p>
+  </div>
+</div>
+
+<!-- ✅ Success Popup -->
+<div id="successPopup" class="mini-popup" style="display: none;">
+  <div class="mini-popup-inner">
+    <p>🎉 Good news! We are available in your area!</p>
+  </div>
+</div>
+
+<!-- 🚫 Not Available Popup -->
+<div id="notAvailablePopup" class="mini-popup" style="display: none;">
+  <div class="mini-popup-inner">
+    <p>😞 Sorry, we're not yet available in that area.</p>
+  </div>
+</div>
+
+<!-- 📦 Booking Popup (Already in your code) -->
+<!-- Booking popup will show from your existing bookingPopup div -->
+
+
+
+<style>
+/* Location Popup */
+#locationPopup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#locationPopup .popup-inner {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+#locationPopup .popup-close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+#locationPopup input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#locationPopup .check-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #28a745, #218838);
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Mini Popups */
+.mini-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  z-index: 10000;
+  font-size: 15px;
+}
+</style>
+
+
     </main>
     <footer>
         <!--? Footer Start-->
