@@ -308,66 +308,81 @@
 </style>
 <!-- About End -->
 
-<section class="about-low-area section-padding2">
+<section class="about-low-area section-padding2" id="popote-section">
     <div class="container">
-        <div class="row justify-content-between">
+        <div class="row justify-content-between align-items-center">
             <div class="col-xl-5 col-lg-6 col-md-9">
                 <!-- about-img -->
                 <div class="about-img mb-20">
-                    <img src="assets/img/gallery/popote3.jpg" alt="">
+                    <img src="assets/img/gallery/popote3.jpg" alt="" style="border-radius: 20px;">
                 </div>
             </div>
-            <!-- Texts in message style -->
             <div class="col-xl-7 col-lg-6 col-md-9">
-                <div class="message-container">
-                    <div class="message message1">Popote Internet Kazini</div>
-                    <div class="message message2">Internet Sokoni</div>
-                    <div class="message message3">Internet Nyumbani</div>
-                    <div class="message message4">Internet Shuleni</div>
-                </div>
+                <div id="message-container" class="message-container"></div>
             </div>
         </div>
     </div>
 </section>
 
 <style>
-/* Container for the messages */
+/* Message container */
 .message-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    text-align: left;
     margin-top: 30px;
 }
 
-/* Individual message styling */
+/* Message bubble style */
 .message {
-    background: #f4f6f8;
-    padding: 15px;
-    border-radius: 15px;
-    font-weight: 600;
-    color: #333;
+    background: #e0f7fa;
+    padding: 15px 20px;
+    border-radius: 20px;
     font-size: 20px;
-    max-width: 80%;
+    color: #007bff;
+    font-weight: bold;
+    max-width: fit-content;
     opacity: 0;
-    transform: translateY(30px);
-    animation: slideUp 1s ease forwards;
+    transform: scale(0.5);
+    animation: pop 0.5s forwards;
 }
 
-/* Different animation delays for each text */
-.message1 { animation-delay: 0.3s; }
-.message2 { animation-delay: 0.5s; }
-.message3 { animation-delay: 0.7s; }
-.message4 { animation-delay: 0.9s; }
-
-@keyframes slideUp {
+/* Pop animation */
+@keyframes pop {
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
 }
 </style>
 
+<script>
+// JavaScript to pop messages one after another
+const messages = [
+    "Popote Internet Kazini 🚀",
+    "Internet Sokoni 🛒",
+    "Internet Nyumbani 🏠",
+    "Internet Shuleni 🎓"
+];
+
+const container = document.getElementById('message-container');
+
+let index = 0;
+
+function popMessage() {
+    if (index < messages.length) {
+        const bubble = document.createElement('div');
+        bubble.className = 'message';
+        bubble.textContent = messages[index];
+        container.appendChild(bubble);
+        index++;
+        setTimeout(popMessage, 800); // Delay between pops
+    }
+}
+
+// Start popping after small delay
+setTimeout(popMessage, 500);
+</script>
 
 
 <!--? Pricing Card Start -->
