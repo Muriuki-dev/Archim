@@ -469,32 +469,31 @@
 /* Start hidden and off-screen */
 .single-card {
   opacity: 0;
-  transform: translateX(100px); /* Start from right */
-  transition: all 0.8s ease-out;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--delay, 0s); /* dynamic delay */
 }
 
 /* When in view */
 .single-card.show {
   opacity: 1;
-  transform: translateX(0); /* Slide to normal position */
-}
-
-/* Make every second card slide from left */
-.single-card:nth-child(even) {
-  transform: translateX(-100px);
+  transform: translateY(0);
 }
 </style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const cards = document.querySelectorAll('.single-card');
 
   function checkCards() {
-    const triggerBottom = window.innerHeight * 0.9; // when 90% of the viewport
+    const triggerBottom = window.innerHeight * 0.9; // 90% of viewport
 
-    cards.forEach(card => {
+    cards.forEach((card, index) => {
       const cardTop = card.getBoundingClientRect().top;
 
       if (cardTop < triggerBottom) {
+        // set staggered delay using CSS variable
+        card.style.setProperty('--delay', `${index * 0.2}s`);
         card.classList.add('show');
       }
     });
@@ -504,6 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
   checkCards(); // Run once on load
 });
 </script>
+
 
 
 </section>
