@@ -713,40 +713,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-</section>
-
 <section class="about-low-area section-padding2" id="popote-section" style="position: relative; overflow: hidden; padding-top: 5px; padding-bottom: 5px;">
   <div class="container">
-    <div class="row justify-content-center text-center">
+  
+    <!-- The header sits above the image -->
+    <div class="row justify-content-center text-center mb-3">
       <div class="col-xl-8 col-lg-8 col-md-10">
-        <div class="about-img mb-20" style="position: relative; z-index: 1;">
-          
-          <!-- Text on top of the image -->
-          <div class="popote-header-fixed">Popote got you covered</div>
-
-          <img src="assets/img/gallery/popote6.png" alt="" style="border-radius: 20px; max-width: 100%;">
-          
+        <div class="popote-section-header">
+          Popote got you covered
         </div>
       </div>
     </div>
+
+    <div class="row justify-content-center text-center">
+      <div class="col-xl-8 col-lg-8 col-md-10">
+        <div class="about-img mb-20" style="position: relative; z-index: 1;">
+          <img src="assets/img/gallery/popote6.png" alt="" style="border-radius: 20px; max-width: 100%;">
+        </div>
+      </div>
+    </div>
+    
   </div>
 </section>
+
 <style>
-.popote-header-fixed {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.6); /* semi-transparent black */
-  color: #fff;
+.popote-section-header {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
   padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 18px;
-  font-weight: bold;
-  z-index: 5;
-  backdrop-filter: blur(5px); /* slight glass effect */
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
 }
 </style>
+
 
 
 
