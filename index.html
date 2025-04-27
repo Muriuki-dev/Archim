@@ -441,38 +441,43 @@ for (let i = 0; i < 7; i++) {
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-8 col-md-10 col-sm-10">
         <div class="section-tittle text-center mb-100">
-          <p>Popote pricing plan for you</p>
-          <h2>Choose your plan and book for installation.</h2>
+          <p>Pricing plan for you</p>
+          <h2>Popote Internet plans book for installation</h2>
         </div>
       </div>
     </div>
 
     <!-- Pricing Cards -->
     <div class="row justify-content-center">
-      <!-- 4 Mbps Package -->
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-10">
-        <div class="single-card text-center mb-30">
-		<div class="icon-badge">
-  <img src="https://cdn-icons-png.flaticon.com/512/2583/2583125.png" alt="Bronze Solid Icon" />
+     <!-- 4 Mbps Package -->
+<div class="col-xl-4 col-lg-4 col-md-6 col-sm-10">
+  <div class="single-card text-center mb-30 position-relative">
+
+    <!-- Popping Offer Badge -->
+    <div class="offer-badge-pop">On Offer</div>
+
+    <div class="icon-badge">
+      <img src="https://cdn-icons-png.flaticon.com/512/2583/2583125.png" alt="Bronze Solid Icon" />
+    </div>
+
+    <div class="card-top">
+      <p class="package-title">Bronze Package</p>
+      <h4 class="connection-speed">4 Mbps Connection</h4>
+    </div>
+    <div class="card-mid">
+      <h4 class="price">Ksh 1,000 <span>/ month</span></h4>
+    </div>
+    <div class="card-bottom">
+      <ul class="package-features">
+        <li>✅ 4 Mbps average speed</li>
+        <li>✅ Free Installation</li>
+        <li>✅ Free Router</li>
+      </ul>
+      <a href="#" class="borders-btn" onclick="showBookingPopup()">BOOK THIS PLAN</a>
+    </div>
+  </div>
 </div>
 
-          <div class="card-top">
-            <p class="package-title">Bronze Package</p>
-            <h4 class="connection-speed">4 Mbps Connection</h4>
-          </div>
-          <div class="card-mid">
-            <h4 class="price">Ksh 1,000 <span>/ month</span></h4>
-          </div>
-          <div class="card-bottom">
-            <ul class="package-features">
-              <li>✅ 4 Mbps average speed</li>
-              <li>✅ Free Installation</li>
-              <li>✅ Free Router</li>
-            </ul>
-            <a href="#" class="borders-btn" onclick="showBookingPopup()">BOOK THIS PLAN</a>
-          </div>
-        </div>
-      </div>
 
       <!-- 7 Mbps Package -->
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-10">
@@ -614,6 +619,41 @@ for (let i = 0; i < 7; i++) {
   transform: translateY(-5px); /* slight lift on hover */
 }
 </style>
+	<style>
+/* Popping Offer Badge */
+.offer-badge-pop {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: linear-gradient(135deg, #ff5f6d, #ffc371); /* gradient for more pop */
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 50px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
+  transform: rotate(-10deg) scale(1.1);
+  z-index: 20;
+  animation: popBounce 2s infinite ease-in-out;
+}
+
+/* Make card relative */
+.single-card {
+  position: relative;
+}
+
+/* Animation: soft bouncing */
+@keyframes popBounce {
+  0%, 100% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(-10deg) scale(1.2);
+  }
+}
+</style>
+
 	<style>
   .position-relative {
     position: relative;
