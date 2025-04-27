@@ -568,93 +568,151 @@
   </div>
 </div>
 	    <!--popup for location -->
-	  <!-- Unique Location Checker Popup -->
-<div id="locationPopup" class="location-popup" style="display: none;">
-  <div class="location-popup-content">
-    <span class="location-close" onclick="closeLocationPopup()">×</span>
+	 <!-- 🌟 Modern Location Checker Popup -->
+<div id="locationPopup" class="modern-location-popup">
+  <div class="popup-inner">
+    <button class="popup-close" onclick="closeLocationPopup()">×</button>
 
-    <div class="latest-wrapper">
-      <div class="container">
-        <div class="latest-area section-bg2" style="background: url('assets/img/gallery/section_bg01.png') no-repeat center center/cover; padding: 40px 20px; border-radius: 10px;">
-          <div class="row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
-
-            <div class="col-12" style="margin-bottom: 20px;">
-              <div class="latest-caption" style="text-align: center;">
-                <h2 style="font-size: 24px; margin-bottom: 20px;">Check if we are available in your area</h2>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <div class="latest-subscribe" style="text-align: center;">
-                <form id="locationFormPopup" onsubmit="checkLocation(event)">
-                  <input type="text" id="locationInputPopup" placeholder="Enter your location" required style="width: 90%; max-width: 400px; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
-                  <br>
-                  <button type="submit" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-weight: bold;">Check Now</button>
-                </form>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
+    <div class="popup-header">
+      <h2>📍 Check Service Availability</h2>
+      <p>Enter your location below and see if we are available in your area!</p>
     </div>
 
+    <form id="locationFormPopup" class="popup-form" onsubmit="checkLocation(event)">
+      <input type="text" id="locationInputPopup" placeholder="Enter your Location" required>
+      <button type="submit" class="check-btn">Check Now</button>
+    </form>
   </div>
 </div>
 
 <style>
-/* Location Popup Unique */
+/* ✨ Modern Popup Styles */
 #locationPopup {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 99999;
+  backdrop-filter: blur(5px);
 }
 
-/* Popup Content */
-#locationPopup .location-popup-content {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
+/* Inner box */
+#locationPopup .popup-inner {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 16px;
   width: 90%;
-  max-width: 600px;
+  max-width: 450px;
+  text-align: center;
   position: relative;
-  transform: scale(0.8);
+  transform: translateY(-30px);
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 /* Show Animation */
-#locationPopup.show .location-popup-content {
-  transform: scale(1);
+#locationPopup.show .popup-inner {
+  transform: translateY(0);
   opacity: 1;
 }
 
-/* Close Button */
-#locationPopup .location-close {
+/* Close button */
+#locationPopup .popup-close {
   position: absolute;
-  top: 10px; right: 20px;
-  font-size: 30px;
-  font-weight: bold;
-  color: #333;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: #555;
   cursor: pointer;
 }
 
-/* Responsive Mobile */
-@media (max-width: 576px) {
-  #locationPopup .location-popup-content {
-    width: 95%;
-  }
+/* Header */
+#locationPopup .popup-header h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #2a2a2a;
+}
+#locationPopup .popup-header p {
+  font-size: 15px;
+  color: #777;
+}
 
-  #locationFormPopup input {
-    width: 95%;
+/* Form */
+#locationPopup .popup-form {
+  margin-top: 25px;
+}
+#locationPopup .popup-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+#locationPopup .popup-form input:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+/* Button */
+#locationPopup .check-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#locationPopup .check-btn:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  #locationPopup .popup-inner {
+    padding: 25px 20px;
   }
 }
 </style>
+
+<script>
+/* 🌟 JavaScript Popup Control */
+function showLocationPopup() {
+  var popup = document.getElementById('locationPopup');
+  popup.style.display = 'flex';
+  setTimeout(() => {
+    popup.classList.add('show');
+  }, 10);
+}
+
+function closeLocationPopup() {
+  var popup = document.getElementById('locationPopup');
+  popup.classList.remove('show');
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 400);
+}
+
+/* Handle Location Submit */
+function checkLocation(event) {
+  event.preventDefault();
+  const location = document.getElementById('locationInputPopup').value.trim();
+  if (location) {
+    alert(`✅ We are checking availability for: ${location}`);
+    closeLocationPopup();
+  }
+}
+</script>
+
 
 
 <!-- Wait Loader Popup -->
