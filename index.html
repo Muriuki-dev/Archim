@@ -568,32 +568,39 @@
   </div>
 </div>
 	    <!--popup for location -->
-	    <div id="locationPopup" class="popup">
-  <div class="popup-content popup-large">
-    <span class="close" onclick="closePopup('locationPopup')">×</span>
-<div class="latest-wrapper">
-  <div class="container">
-    <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-xl-5 col-lg-7">
-          <div class="latest-caption">
-            <h2>Check if we are available in your area.</h2>
-          </div>
-        </div>
-        <div class="col-xl-5 col-lg-5 col-md-10">
-          <div class="latest-subscribe">
-            <form id="locationForm" onsubmit="checkLocation(event)">
-              <input type="text" id="locationInput" placeholder="Enter Location" required>
-              <button type="submit">Check Now</button>
-            </form>
+	    <!-- Location Checker Popup -->
+<div id="locationPopup" class="popup">
+  <div class="popup-content popup-large" style="padding: 0; overflow: hidden;">
+    <span class="close" onclick="closePopup('locationPopup')" style="position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer;">×</span>
+
+    <div class="latest-wrapper" style="padding-top: 50px;">
+      <div class="container" style="padding: 20px;">
+        <div class="latest-area latest-height section-bg2" style="background: url('assets/img/gallery/section_bg01.png') no-repeat center center/cover; padding: 40px 20px; border-radius: 10px;">
+          <div class="row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+
+            <div class="col-12 col-lg-6" style="margin-bottom: 20px;">
+              <div class="latest-caption">
+                <h2 style="font-size: 24px; text-align: center;">Check if we are available in your area.</h2>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <div class="latest-subscribe" style="text-align: center;">
+                <form id="locationForm" onsubmit="checkLocation(event)">
+                  <input type="text" id="locationInput" placeholder="Enter Location" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                  <button type="submit" style="padding: 10px 20px; width: 100%; background-color: #28a745; color: white; border: none; border-radius: 5px;">Check Now</button>
+                </form>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
-</div>
-</div>
+
 <!-- Wait Loader Popup -->
 <div id="waitPopup" class="popup" style="display: none;">
   <div class="popup-content loader-content">
