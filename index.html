@@ -568,27 +568,28 @@
   </div>
 </div>
 	    <!--popup for location -->
-	   <!-- Unique Location Checker Popup -->
+	  <!-- Unique Location Checker Popup -->
 <div id="locationPopup" class="location-popup" style="display: none;">
-  <div class="location-popup-content" style="padding: 0; overflow: hidden; position: relative;">
+  <div class="location-popup-content">
     <span class="location-close" onclick="closeLocationPopup()">×</span>
 
-    <div class="latest-wrapper" style="padding-top: 50px;">
-      <div class="container" style="padding: 20px;">
-        <div class="latest-area latest-height section-bg2" style="background: url('assets/img/gallery/section_bg01.png') no-repeat center center/cover; padding: 40px 20px; border-radius: 10px;">
-          <div class="row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+    <div class="latest-wrapper">
+      <div class="container">
+        <div class="latest-area section-bg2" style="background: url('assets/img/gallery/section_bg01.png') no-repeat center center/cover; padding: 40px 20px; border-radius: 10px;">
+          <div class="row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
 
-            <div class="col-12 col-lg-6" style="margin-bottom: 20px;">
-              <div class="latest-caption">
-                <h2 style="font-size: 24px; text-align: center;">Check if we are available in your area.</h2>
+            <div class="col-12" style="margin-bottom: 20px;">
+              <div class="latest-caption" style="text-align: center;">
+                <h2 style="font-size: 24px; margin-bottom: 20px;">Check if we are available in your area</h2>
               </div>
             </div>
 
-            <div class="col-12 col-lg-6">
+            <div class="col-12">
               <div class="latest-subscribe" style="text-align: center;">
-                <form id="locationForm" onsubmit="checkLocation(event)">
-                  <input type="text" id="locationInput" placeholder="Enter Location" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
-                  <button type="submit" style="padding: 10px 20px; width: 100%; background-color: #28a745; color: white; border: none; border-radius: 5px;">Check Now</button>
+                <form id="locationFormPopup" onsubmit="checkLocation(event)">
+                  <input type="text" id="locationInputPopup" placeholder="Enter your location" required style="width: 90%; max-width: 400px; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+                  <br>
+                  <button type="submit" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-weight: bold;">Check Now</button>
                 </form>
               </div>
             </div>
@@ -600,13 +601,14 @@
 
   </div>
 </div>
+
 <style>
 /* Location Popup Unique */
 #locationPopup {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -619,13 +621,14 @@
   border-radius: 10px;
   overflow: hidden;
   width: 90%;
-  max-width: 800px;
+  max-width: 600px;
+  position: relative;
   transform: scale(0.8);
   opacity: 0;
   transition: all 0.3s ease;
 }
 
-/* Show animation */
+/* Show Animation */
 #locationPopup.show .location-popup-content {
   transform: scale(1);
   opacity: 1;
@@ -636,6 +639,8 @@
   position: absolute;
   top: 10px; right: 20px;
   font-size: 30px;
+  font-weight: bold;
+  color: #333;
   cursor: pointer;
 }
 
@@ -644,8 +649,13 @@
   #locationPopup .location-popup-content {
     width: 95%;
   }
+
+  #locationFormPopup input {
+    width: 95%;
+  }
 }
 </style>
+
 
 <!-- Wait Loader Popup -->
 <div id="waitPopup" class="popup" style="display: none;">
@@ -1160,7 +1170,16 @@ function closeLocationPopup() {
     popup.style.display = 'none';
   }, 300);
 }
+
+/* Dummy checkLocation Function */
+function checkLocation(event) {
+  event.preventDefault();
+  const location = document.getElementById('locationInputPopup').value;
+  alert('Checking location: ' + location);
+  closeLocationPopup();
+}
 </script>
+
 
 
 
