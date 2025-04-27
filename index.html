@@ -173,8 +173,10 @@
       <button onclick="alert('🚧 Our services page is coming soon!')" class="btn">🛠️ Our Other Services</button>
       
       <button onclick="showBookingPopup()" class="btn">📦 Book a Package</button>
+	    <button onclick="showLocationPopup()" class="btn">📍 Check Area Availability</button>
+
 	    <button onclick="window.open('https://wa.me/254795211116?text=Hello,%20I%20need%20help%20with%20your%20services.', '_blank')" class="btn">💬 Customer Support</button>
-   <button onclick="showLocationChecker()" class="btn">📍 Check Area Availability</button>
+   
     </div>
   </div>
 </div>
@@ -544,7 +546,28 @@
 </style>
 	    
     <!-- Pricing Card End -->
-<!-- Latest Offers Start -->
+<!-- Latest Offers Start --><div class="latest-wrapper">
+  <div class="container">
+    <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-xl-5 col-lg-7">
+          <div class="latest-caption">
+            <h2>Check if we are available in your area.</h2>
+          </div>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-10">
+          <div class="latest-subscribe">
+            <form id="locationForm" onsubmit="checkLocation(event)">
+              <input type="text" id="locationInput" placeholder="Enter Location" required>
+              <button type="submit">Check Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+	    <!--popup for location -->
 	    <div id="locationPopup" class="popup">
   <div class="popup-content popup-large">
     <span class="close" onclick="closePopup('locationPopup')">×</span>
