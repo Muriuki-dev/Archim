@@ -568,22 +568,70 @@
   </div>
 </div>
 	    <!--popup for location -->
-	<!-- 📍 Modern Location Checker Popup -->
-<div id="locationPopup" class="modern-location-popup">
-  <div class="popup-inner">
-    <button class="popup-close" onclick="closeLocationPopup('locationPopup')">×</button>
-
-    <div class="popup-header">
-      <h2>📍 Check Service Availability</h2>
-      <p>Enter your location below and see if we are available!</p>
-    </div>
-
+	<!-- 📍 Location Check Popup -->
+<div id="locationPopup" class="popup" style="display: none;">
+  <div class="popup-content animate-scale">
+    <span class="close" onclick="closePopup('locationPopup')">×</span>
+    <h3>Check Service Availability 📍</h3>
+    <p>Enter your location below:</p>
     <form id="locationForm" onsubmit="checkLocation(event)">
-      <input type="text" id="locationInput" placeholder="Enter Location" required>
-      <button type="submit" class="check-btn">Check Now</button>
+      <input type="text" id="locationInput" placeholder="Enter your location" required>
+      <button type="submit">Check Now</button>
     </form>
   </div>
 </div>
+
+<!-- ✅ Already provided by you: -->
+
+<!-- Wait Loader Popup -->
+<div id="waitPopup" class="popup" style="display: none;">
+  <div class="popup-content loader-content">
+    <div class="loader"></div>
+    <p>Please wait while we check your area...</p>
+  </div>
+</div>
+
+<!-- Success Popup -->
+<div id="successPopup" class="popup animate-scale" style="display: none;">
+  <div class="popup-content">
+    <h3>🎉 Congratulations!</h3>
+    <p>We are within your reach.<br>Redirecting you to booking...</p>
+  </div>
+</div>
+
+<!-- Not Available Popup -->
+<div id="notAvailablePopup" class="popup animate-scale" style="display: none;">
+  <div class="popup-content">
+    <h3>Oops! 🙁</h3>
+    <p>We're currently not available in that area.<br>We're expanding soon!</p>
+    <button onclick="window.open('https://wa.me/254795211116?text=Hello,%20I%20wanted%20to%20check%20coverage%20for%20my%20area.', '_blank')">Contact Customer Care</button>
+    <span class="close" onclick="closePopup('notAvailablePopup')">×</span>
+  </div>
+</div>
+
+<!-- Booking Form Popup -->
+<div id="bookingPopup" class="popup" style="display: none;">
+  <div class="popup-content animate-fade">
+    <span class="close" onclick="closePopup('bookingPopup')">×</span>
+    <h3>Book a Package</h3>
+    <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+      <input type="text" id="fullName" placeholder="Full Name" required>
+      <input type="text" id="confirmedLocation" placeholder="Location" readonly required>
+      <input type="tel" id="phone" placeholder="Phone Number (10 digits)" maxlength="10" required>
+      <select id="package" required>
+        <option value="">-- Select Package --</option>
+        <option value="4 Mbps @ Ksh 1,000">4 Mbps @ Ksh 1,000</option>
+        <option value="7 Mbps @ Ksh 1,500">7 Mbps @ Ksh 1,500</option>
+        <option value="10 Mbps @ Ksh 2,000">10 Mbps @ Ksh 2,000</option>
+        <option value="15 Mbps @ Ksh 2,500">15 Mbps @ Ksh 2,500</option>
+        <option value="20 Mbps @ Ksh 3,000">20 Mbps @ Ksh 3,000</option>
+        <option value="30 Mbps @ Ksh 4,000">30 Mbps @ Ksh 4,000</option>
+      </select>
+      <button type="submit">Book via WhatsApp</button>
+    </form>
+  </div>
+</div>
+
 
 
 <style>
@@ -1180,18 +1228,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			  
 
 <script>
+// Open the location input popup
 function showLocationPopup() {
-  const popup = document.getElementById('locationPopup');
-  popup.style.display = 'flex';
-  setTimeout(() => popup.classList.add('show'), 10);
+  document.getElementById('locationPopup').style.display = 'flex';
 }
 
-function closeLocationPopup(id) {
-  const popup = document.getElementById(id);
-  popup.classList.remove('show');
-  setTimeout(() => popup.style.display = 'none', 400);
+// Close any popup
+function closePopup(id) {
+  document.getElementById(id).style.display = 'none';
 }
 </script>
+
 
 
 
