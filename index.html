@@ -308,32 +308,33 @@
 </style>
 <!-- About End -->
 
-<section class="about-low-area section-padding2" id="popote-section">
+<section class="about-low-area section-padding2" id="popote-section" style="position: relative; overflow: hidden;">
   <div class="container">
-    <div class="row justify-content-center text-center position-relative" style="height: 400px; overflow: hidden;">
+    <div class="row justify-content-center text-center">
       <div class="col-xl-8 col-lg-8 col-md-10">
         <!-- about-img -->
         <div class="about-img mb-20">
           <img src="assets/img/gallery/popote3.jpg" alt="" style="border-radius: 20px; max-width: 100%;">
         </div>
-
-        <!-- Bubbles will appear here -->
-        <div id="bubble-container" class="bubble-container"></div>
       </div>
     </div>
   </div>
+
+  <!-- Bubbles floating over the entire section -->
+  <div id="bubble-container" class="bubble-container"></div>
 </section>
 
 <style>
-/* Bubble container */
+/* Bubble container covers the WHOLE section */
 .bubble-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Allow clicks to pass through */
+  pointer-events: none; /* Let clicks pass through */
   overflow: hidden;
+  z-index: 2;
 }
 
 /* Each text bubble */
@@ -347,7 +348,7 @@
   font-weight: bold;
   white-space: nowrap;
   opacity: 0;
-  animation: fly 6s linear forwards;
+  animation: fly 8s linear forwards;
 }
 
 /* Flying animation */
@@ -370,7 +371,7 @@
 </style>
 
 <script>
-// JavaScript
+// JavaScript to generate floating bubbles
 const texts = [
   "Popote Internet Kazini 🚀",
   "Internet Sokoni 🛒",
@@ -385,22 +386,24 @@ function createBubble() {
   bubble.className = 'bubble';
   bubble.textContent = texts[Math.floor(Math.random() * texts.length)];
   
-  // Random horizontal start position
-  bubble.style.left = Math.random() * 80 + '%';
-  
+  // Random left position within 90% of width
+  bubble.style.left = Math.random() * 90 + '%';
+  // Random delay to make floating more natural
+  bubble.style.animationDelay = (Math.random() * 2) + 's';
+
   container.appendChild(bubble);
 
   // Remove bubble after animation ends
   setTimeout(() => {
     bubble.remove();
-  }, 6000);
+  }, 8000);
 }
 
-// Create a new bubble every 1.5 seconds
-setInterval(createBubble, 1500);
+// Generate new bubble every 1.2 seconds
+setInterval(createBubble, 1200);
 
-// Create a few bubbles instantly on load
-for (let i = 0; i < 4; i++) {
+// Generate a few immediately
+for (let i = 0; i < 6; i++) {
   createBubble();
 }
 </script>
