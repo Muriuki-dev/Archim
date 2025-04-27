@@ -465,6 +465,46 @@
   transform: translateY(-5px); /* slight lift on hover */
 }
 </style>
+	<style>
+/* Start hidden and off-screen */
+.single-card {
+  opacity: 0;
+  transform: translateX(100px); /* Start from right */
+  transition: all 0.8s ease-out;
+}
+
+/* When in view */
+.single-card.show {
+  opacity: 1;
+  transform: translateX(0); /* Slide to normal position */
+}
+
+/* Make every second card slide from left */
+.single-card:nth-child(even) {
+  transform: translateX(-100px);
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const cards = document.querySelectorAll('.single-card');
+
+  function checkCards() {
+    const triggerBottom = window.innerHeight * 0.9; // when 90% of the viewport
+
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+
+      if (cardTop < triggerBottom) {
+        card.classList.add('show');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkCards);
+  checkCards(); // Run once on load
+});
+</script>
+
 
 </section>
 
