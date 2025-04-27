@@ -312,7 +312,6 @@
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-xl-8 col-lg-8 col-md-10">
-        <!-- about-img -->
         <div class="about-img mb-20" style="position: relative; z-index: 1;">
           <img src="assets/img/gallery/popote3.jpg" alt="" style="border-radius: 20px; max-width: 100%;">
         </div>
@@ -320,62 +319,59 @@
     </div>
   </div>
 
-  <!-- Floating bubbles over everything -->
+  <!-- Bubble Area -->
   <div id="bubble-container" class="bubble-container"></div>
 </section>
 
 <style>
-/* Cover the entire section */
+/* Cover whole section */
 .bubble-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 2; /* Above the image */
+  z-index: 2;
 }
 
-/* Bubble design */
+/* Bubble Style */
 .bubble {
   position: absolute;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  background: linear-gradient(135deg, #28c76f, #00c6ff);
   color: white;
   padding: 8px 16px;
   border-radius: 30px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   white-space: nowrap;
   opacity: 0;
-  animation: fly 10s linear forwards;
-  transform: translateY(0) scale(0.8) rotate(0deg);
+  animation: flyBubble 6s ease-out forwards;
+  transform: translate(0, 0) scale(0.8);
 }
 
-/* Fly animation + slight rotation */
-@keyframes fly {
+/* Floating animation */
+@keyframes flyBubble {
   0% {
-    transform: translateY(100%) scale(0.8) rotate(0deg);
     opacity: 0;
+    transform: translate(0, 0) scale(0.5);
   }
-  20% {
+  10% {
     opacity: 1;
   }
   50% {
-    transform: translateY(-30%) scale(1) rotate(10deg);
+    transform: translate(-50px, -150px) scale(1);
   }
-  70% {
-    transform: translateY(-70%) scale(1.1) rotate(-10deg);
+  80% {
+    transform: translate(50px, -300px) scale(1.1);
   }
   100% {
-    transform: translateY(-150%) scale(1.2) rotate(0deg);
     opacity: 0;
+    transform: translate(0px, -400px) scale(1.2);
   }
 }
 </style>
 
 <script>
-// Text messages
+// Texts to pop
 const texts = [
   "Popote Internet Kazini 🚀",
   "Internet Sokoni 🛒",
@@ -383,7 +379,6 @@ const texts = [
   "Internet Shuleni 🎓"
 ];
 
-// Bubble container
 const container = document.getElementById('bubble-container');
 
 function createBubble() {
@@ -391,31 +386,48 @@ function createBubble() {
   bubble.className = 'bubble';
   bubble.textContent = texts[Math.floor(Math.random() * texts.length)];
   
-  // Random horizontal position
-  bubble.style.left = Math.random() * 90 + '%';
+  // Pick random corner
+  const corner = Math.floor(Math.random() * 4);
+  switch(corner) {
+    case 0: // left-bottom
+      bubble.style.left = '0';
+      bubble.style.bottom = '0';
+      break;
+    case 1: // right-bottom
+      bubble.style.right = '0';
+      bubble.style.bottom = '0';
+      break;
+    case 2: // left-top
+      bubble.style.left = '0';
+      bubble.style.top = '0';
+      break;
+    case 3: // right-top
+      bubble.style.right = '0';
+      bubble.style.top = '0';
+      break;
+  }
   
-  // Random starting vertical position a bit lower or higher
-  bubble.style.bottom = Math.random() * 20 + '%';
-  
-  // Random animation delay
-  bubble.style.animationDelay = (Math.random() * 2) + 's';
+  // Slight random offsets
+  bubble.style.transform = `translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) scale(0.8)`;
+  bubble.style.animationDelay = (Math.random() * 1) + 's';
 
   container.appendChild(bubble);
 
-  // Clean up after floating
+  // Remove after animation
   setTimeout(() => {
     bubble.remove();
-  }, 10000);
+  }, 6000);
 }
 
-// Create bubbles repeatedly
+// Spawn bubbles every second
 setInterval(createBubble, 1000);
 
-// Start with a few bubbles
-for (let i = 0; i < 8; i++) {
+// Start with some bubbles
+for (let i = 0; i < 6; i++) {
   createBubble();
 }
 </script>
+
 
 
 
