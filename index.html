@@ -373,10 +373,10 @@
 <script>
 // Texts to pop
 const texts = [
-  "Popote Internet Kazini 🚀",
-  "Internet Sokoni 🛒",
-  "Internet Nyumbani 🏠",
-  "Internet Shuleni 🎓"
+  "Popote Kazini 🚀",
+  "Popote Sokoni 🛒",
+  "Popote Nyumbani 🏠",
+  "Popote Shuleni 🎓"
 ];
 
 const container = document.getElementById('bubble-container');
@@ -416,11 +416,11 @@ function createBubble() {
   // Remove after animation
   setTimeout(() => {
     bubble.remove();
-  }, 6000);
+  }, 9000);
 }
 
 // Spawn bubbles every second
-setInterval(createBubble, 1000);
+setInterval(createBubble, 500);
 
 // Start with some bubbles
 for (let i = 0; i < 6; i++) {
