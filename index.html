@@ -313,31 +313,31 @@
     <div class="row justify-content-center text-center">
       <div class="col-xl-8 col-lg-8 col-md-10">
         <!-- about-img -->
-        <div class="about-img mb-20">
+        <div class="about-img mb-20" style="position: relative; z-index: 1;">
           <img src="assets/img/gallery/popote3.jpg" alt="" style="border-radius: 20px; max-width: 100%;">
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bubbles floating over the entire section -->
+  <!-- Floating bubbles over everything -->
   <div id="bubble-container" class="bubble-container"></div>
 </section>
 
 <style>
-/* Bubble container covers the WHOLE section */
+/* Cover the entire section */
 .bubble-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Let clicks pass through */
+  pointer-events: none;
   overflow: hidden;
-  z-index: 2;
+  z-index: 2; /* Above the image */
 }
 
-/* Each text bubble */
+/* Bubble design */
 .bubble {
   position: absolute;
   background: linear-gradient(135deg, #00c6ff, #0072ff);
@@ -348,30 +348,34 @@
   font-weight: bold;
   white-space: nowrap;
   opacity: 0;
-  animation: fly 8s linear forwards;
+  animation: fly 10s linear forwards;
+  transform: translateY(0) scale(0.8) rotate(0deg);
 }
 
-/* Flying animation */
+/* Fly animation + slight rotation */
 @keyframes fly {
   0% {
-    transform: translateY(100%) scale(0.5);
+    transform: translateY(100%) scale(0.8) rotate(0deg);
     opacity: 0;
   }
-  10% {
+  20% {
     opacity: 1;
   }
-  90% {
-    opacity: 1;
+  50% {
+    transform: translateY(-30%) scale(1) rotate(10deg);
+  }
+  70% {
+    transform: translateY(-70%) scale(1.1) rotate(-10deg);
   }
   100% {
-    transform: translateY(-150%) scale(1);
+    transform: translateY(-150%) scale(1.2) rotate(0deg);
     opacity: 0;
   }
 }
 </style>
 
 <script>
-// JavaScript to generate floating bubbles
+// Text messages
 const texts = [
   "Popote Internet Kazini 🚀",
   "Internet Sokoni 🛒",
@@ -379,6 +383,7 @@ const texts = [
   "Internet Shuleni 🎓"
 ];
 
+// Bubble container
 const container = document.getElementById('bubble-container');
 
 function createBubble() {
@@ -386,27 +391,32 @@ function createBubble() {
   bubble.className = 'bubble';
   bubble.textContent = texts[Math.floor(Math.random() * texts.length)];
   
-  // Random left position within 90% of width
+  // Random horizontal position
   bubble.style.left = Math.random() * 90 + '%';
-  // Random delay to make floating more natural
+  
+  // Random starting vertical position a bit lower or higher
+  bubble.style.bottom = Math.random() * 20 + '%';
+  
+  // Random animation delay
   bubble.style.animationDelay = (Math.random() * 2) + 's';
 
   container.appendChild(bubble);
 
-  // Remove bubble after animation ends
+  // Clean up after floating
   setTimeout(() => {
     bubble.remove();
-  }, 8000);
+  }, 10000);
 }
 
-// Generate new bubble every 1.2 seconds
-setInterval(createBubble, 1200);
+// Create bubbles repeatedly
+setInterval(createBubble, 1000);
 
-// Generate a few immediately
-for (let i = 0; i < 6; i++) {
+// Start with a few bubbles
+for (let i = 0; i < 8; i++) {
   createBubble();
 }
 </script>
+
 
 
 <!--? Pricing Card Start -->
