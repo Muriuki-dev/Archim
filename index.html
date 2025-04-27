@@ -313,13 +313,61 @@
         <div class="row justify-content-between">
             <div class="col-xl-5 col-lg-6 col-md-9">
                 <!-- about-img -->
-                <div class="about-img">
+                <div class="about-img mb-20">
                     <img src="assets/img/gallery/popote3.jpg" alt="">
+                </div>
+            </div>
+            <!-- Texts in message style -->
+            <div class="col-xl-7 col-lg-6 col-md-9">
+                <div class="message-container">
+                    <div class="message message1">Popote Internet Kazini</div>
+                    <div class="message message2">Internet Sokoni</div>
+                    <div class="message message3">Internet Nyumbani</div>
+                    <div class="message message4">Internet Shuleni</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+/* Container for the messages */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    margin-top: 30px;
+}
+
+/* Individual message styling */
+.message {
+    background: #f4f6f8;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: 600;
+    color: #333;
+    font-size: 20px;
+    max-width: 80%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 1s ease forwards;
+}
+
+/* Different animation delays for each text */
+.message1 { animation-delay: 0.3s; }
+.message2 { animation-delay: 0.5s; }
+.message3 { animation-delay: 0.7s; }
+.message4 { animation-delay: 0.9s; }
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
 
 
 <!--? Pricing Card Start -->
