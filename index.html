@@ -94,6 +94,74 @@
 </nav>
 
                                     </div>
+					<style>
+/* Glassmorphism Navbar Container */
+.glass-navbar {
+  backdrop-filter: blur(10px); /* Makes it blurred */
+  background: rgba(255, 255, 255, 0.15); /* Slight transparent white */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 15px 30px;
+  margin: 20px auto;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+}
+
+/* Navigation list inside */
+#navigation {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* List items */
+#navigation li {
+  position: relative;
+}
+
+/* Navigation links */
+#navigation li a {
+  text-decoration: none;
+  color: #fff; /* White color text */
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effects */
+#navigation li a:hover {
+  color: #00BFFF; /* Light Blue on hover */
+}
+
+/* Underline animation */
+#navigation li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #00BFFF;
+  transition: width 0.3s;
+  margin: auto;
+  margin-top: 4px;
+}
+
+#navigation li a:hover::after {
+  width: 100%;
+}
+
+/* Active page styling */
+#navigation li a.active {
+  color: #00BFFF;
+  font-weight: 600;
+}
+</style>
+
                                     <!-- Header-btn -->
                                     <div class="header-right-btn d-none d-lg-block ml-30">
                                         <a href="#" class="btn header-btn">Get Started</a>
