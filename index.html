@@ -131,11 +131,55 @@
           </div>
 
           <!-- 🌟 New Features List -->
-          <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s" style="list-style: none; padding-left: 0; margin-top: 20px;">
-            <li style="margin-bottom: 10px; font-size: 18px; color: #2c3e50;">✅ Super Fast Internet</li>
-            <li style="margin-bottom: 10px; font-size: 18px; color: #333333;">✅ Free Installation</li>
-            <li style="margin-bottom: 10px; font-size: 18px; color: #2ecc71;">✅ 24/7 Customer Service</li>
-          </ul>
+<ul id="hero-features" style="list-style: none; padding-left: 0; margin-top: 20px;">
+  <li style="margin-bottom: 10px; font-size: 18px; color: #2c3e50;">✅ <span class="typing"></span></li>
+</ul>
+
+<script>
+// Your features list
+const features = [
+  "Super Fast Internet",
+  "Free Installation",
+  "24/7 Customer Service"
+];
+
+// Select the span inside the li
+const typingSpan = document.querySelector(".typing");
+
+let featureIndex = 0;
+let charIndex = 0;
+let typingSpeed = 100; // speed of typing (ms per character)
+let pauseBetweenWords = 1500; // pause after each feature (ms)
+
+function typeFeature() {
+  if (charIndex < features[featureIndex].length) {
+    typingSpan.textContent += features[featureIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeFeature, typingSpeed);
+  } else {
+    // After the word is fully typed, wait a bit and erase
+    setTimeout(eraseFeature, pauseBetweenWords);
+  }
+}
+
+function eraseFeature() {
+  if (charIndex > 0) {
+    typingSpan.textContent = features[featureIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseFeature, 50); // speed of erasing
+  } else {
+    // Move to the next feature
+    featureIndex = (featureIndex + 1) % features.length;
+    setTimeout(typeFeature, typingSpeed);
+  }
+}
+
+// Start the typing effect
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(typeFeature, 500);
+});
+</script>
+
           
           <!-- Hero-btn -->
           <div class="hero__btn">
