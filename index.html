@@ -682,26 +682,6 @@
 }
 </style>
 
-<script>
-/* 🌟 JavaScript Popup Control */
-function showLocationPopup() {
-  var popup = document.getElementById('locationPopup');
-  popup.style.display = 'flex';
-  setTimeout(() => {
-    popup.classList.add('show');
-  }, 10);
-}
-
-function closeLocationPopup() {
-  var popup = document.getElementById('locationPopup');
-  popup.classList.remove('show');
-  setTimeout(() => {
-    popup.style.display = 'none';
-  }, 400);
-}
-</script>
-
-
 
 <!-- Wait Loader Popup -->
 <div id="waitPopup" class="popup" style="display: none;">
@@ -1201,10 +1181,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			  
 
 <script>
+/* 🌟 JavaScript Popup Control */
 function showLocationPopup() {
   var popup = document.getElementById('locationPopup');
   popup.style.display = 'flex';
-  setTimeout(function() {
+  setTimeout(() => {
     popup.classList.add('show');
   }, 10);
 }
@@ -1212,19 +1193,14 @@ function showLocationPopup() {
 function closeLocationPopup() {
   var popup = document.getElementById('locationPopup');
   popup.classList.remove('show');
-  setTimeout(function() {
+  setTimeout(() => {
     popup.style.display = 'none';
-  }, 300);
-}
-
-/* Dummy checkLocation Function */
-function checkLocation(event) {
-  event.preventDefault();
-  const location = document.getElementById('locationInputPopup').value;
-  alert('Checking location: ' + location);
-  closeLocationPopup();
+  }, 400);
 }
 </script>
+
+
+
 
 
 
