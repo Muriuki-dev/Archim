@@ -568,17 +568,16 @@
   </div>
 </div>
 	    <!--popup for location -->
-	<!-- 🌟 Modern Location Checker Popup (Using Existing Validation) -->
+	<!-- 📍 Modern Location Checker Popup -->
 <div id="locationPopup" class="modern-location-popup">
   <div class="popup-inner">
-    <button class="popup-close" onclick="closeLocationPopup()">×</button>
+    <button class="popup-close" onclick="closeLocationPopup('locationPopup')">×</button>
 
     <div class="popup-header">
       <h2>📍 Check Service Availability</h2>
-      <p>Enter your location below and see if we are available in your area!</p>
+      <p>Enter your location below and see if we are available!</p>
     </div>
 
-    <!-- Using your existing checkLocation(event) -->
     <form id="locationForm" onsubmit="checkLocation(event)">
       <input type="text" id="locationInput" placeholder="Enter Location" required>
       <button type="submit" class="check-btn">Check Now</button>
@@ -586,8 +585,9 @@
   </div>
 </div>
 
+
 <style>
-/* ✨ Modern Popup Styles */
+/* --- Modern Popup Styles --- */
 #locationPopup {
   position: fixed;
   top: 0; left: 0;
@@ -600,7 +600,6 @@
   backdrop-filter: blur(5px);
 }
 
-/* Inner popup box */
 #locationPopup .popup-inner {
   background: #fff;
   padding: 30px 25px;
@@ -614,7 +613,6 @@
   transition: all 0.4s ease;
 }
 
-/* Show Animation */
 #locationPopup.show .popup-inner {
   transform: translateY(0);
   opacity: 1;
@@ -628,11 +626,11 @@
   background: transparent;
   border: none;
   font-size: 28px;
-  color: #555;
+  color: #333;
   cursor: pointer;
 }
 
-/* Popup Header */
+/* Heading & Text */
 #locationPopup .popup-header h2 {
   margin-bottom: 10px;
   font-size: 24px;
@@ -657,7 +655,7 @@
   outline: none;
 }
 
-/* Check Button */
+/* Check Now Button */
 #locationPopup form .check-btn {
   width: 100%;
   padding: 12px;
@@ -674,13 +672,14 @@
   background: linear-gradient(135deg, #218838, #1e7e34);
 }
 
-/* Mobile responsive */
+/* Responsive */
 @media (max-width: 480px) {
   #locationPopup .popup-inner {
     padding: 25px 20px;
   }
 }
 </style>
+
 
 
 <!-- Wait Loader Popup -->
@@ -1181,23 +1180,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			  
 
 <script>
-/* 🌟 JavaScript Popup Control */
 function showLocationPopup() {
-  var popup = document.getElementById('locationPopup');
+  const popup = document.getElementById('locationPopup');
   popup.style.display = 'flex';
-  setTimeout(() => {
-    popup.classList.add('show');
-  }, 10);
+  setTimeout(() => popup.classList.add('show'), 10);
 }
 
-function closeLocationPopup() {
-  var popup = document.getElementById('locationPopup');
+function closeLocationPopup(id) {
+  const popup = document.getElementById(id);
   popup.classList.remove('show');
-  setTimeout(() => {
-    popup.style.display = 'none';
-  }, 400);
+  setTimeout(() => popup.style.display = 'none', 400);
 }
 </script>
+
 
 
 
