@@ -309,82 +309,100 @@
 <!-- About End -->
 
 <section class="about-low-area section-padding2" id="popote-section">
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-xl-8 col-lg-8 col-md-10">
-                <!-- about-img -->
-                <div class="about-img mb-20">
-                    <img src="assets/img/gallery/popote3.jpg" alt="" style="border-radius: 20px; max-width: 100%;">
-                </div>
-
-                <!-- Messages will appear here -->
-                <div id="message-container" class="message-container"></div>
-            </div>
+  <div class="container">
+    <div class="row justify-content-center text-center position-relative" style="height: 400px; overflow: hidden;">
+      <div class="col-xl-8 col-lg-8 col-md-10">
+        <!-- about-img -->
+        <div class="about-img mb-20">
+          <img src="assets/img/gallery/popote3.jpg" alt="" style="border-radius: 20px; max-width: 100%;">
         </div>
+
+        <!-- Bubbles will appear here -->
+        <div id="bubble-container" class="bubble-container"></div>
+      </div>
     </div>
+  </div>
 </section>
 
 <style>
-/* Message container */
-.message-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
+/* Bubble container */
+.bubble-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allow clicks to pass through */
+  overflow: hidden;
 }
 
-/* Message bubble */
-.message {
-    background: #00c6ff;
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 20px;
-    font-weight: 600;
+/* Each text bubble */
+.bubble {
+  position: absolute;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fly 6s linear forwards;
+}
+
+/* Flying animation */
+@keyframes fly {
+  0% {
+    transform: translateY(100%) scale(0.5);
     opacity: 0;
-    transform: scale(0.5);
-    animation: pop 0.5s forwards;
-}
-
-/* Animation */
-@keyframes pop {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-150%) scale(1);
+    opacity: 0;
+  }
 }
 </style>
 
 <script>
 // JavaScript
-const messages = [
-    "Popote Internet Kazini 🚀",
-    "Internet Sokoni 🛒",
-    "Internet Nyumbani 🏠",
-    "Internet Shuleni 🎓"
+const texts = [
+  "Popote Internet Kazini 🚀",
+  "Internet Sokoni 🛒",
+  "Internet Nyumbani 🏠",
+  "Internet Shuleni 🎓"
 ];
 
-const container = document.getElementById('message-container');
+const container = document.getElementById('bubble-container');
 
-let index = 0;
+function createBubble() {
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.textContent = texts[Math.floor(Math.random() * texts.length)];
+  
+  // Random horizontal start position
+  bubble.style.left = Math.random() * 80 + '%';
+  
+  container.appendChild(bubble);
 
-function popMessage() {
-    if (index < messages.length) {
-        const bubble = document.createElement('div');
-        bubble.className = 'message';
-        bubble.textContent = messages[index];
-        container.appendChild(bubble);
-        index++;
-        setTimeout(popMessage, 1000); // Delay before next message
-    }
+  // Remove bubble after animation ends
+  setTimeout(() => {
+    bubble.remove();
+  }, 6000);
 }
 
-// Start the popping when page is ready
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(popMessage, 500);
-});
+// Create a new bubble every 1.5 seconds
+setInterval(createBubble, 1500);
+
+// Create a few bubbles instantly on load
+for (let i = 0; i < 4; i++) {
+  createBubble();
+}
 </script>
 
 
