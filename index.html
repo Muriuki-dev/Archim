@@ -545,6 +545,9 @@
 	    
     <!-- Pricing Card End -->
 <!-- Latest Offers Start -->
+	    <div id="locationPopup" class="popup">
+  <div class="popup-content popup-large">
+    <span class="close" onclick="closePopup('locationPopup')">×</span>
 <div class="latest-wrapper">
   <div class="container">
     <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
@@ -566,7 +569,8 @@
     </div>
   </div>
 </div>
-
+</div>
+</div>
 <!-- Wait Loader Popup -->
 <div id="waitPopup" class="popup" style="display: none;">
   <div class="popup-content loader-content">
@@ -1065,39 +1069,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			  
 
 <script>
-function showLocationChecker() {
-    // Scroll to the location checker section if it's already on the page
-    var locationSection = document.querySelector('.latest-wrapper');
-    if (locationSection) {
-        locationSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-        // If the section is not there yet, inject it (only if needed)
-        var container = document.createElement('div');
-        container.innerHTML = `
-        <div class="latest-wrapper">
-          <div class="container">
-            <div class="latest-area latest-height section-bg2" data-background="assets/img/gallery/section_bg01.png">
-              <div class="row align-items-center justify-content-between">
-                <div class="col-xl-5 col-lg-7">
-                  <div class="latest-caption">
-                    <h2>Check if we are available in your area.</h2>
-                  </div>
-                </div>
-                <div class="col-xl-5 col-lg-5 col-md-10">
-                  <div class="latest-subscribe">
-                    <form id="locationForm" onsubmit="checkLocation(event)">
-                      <input type="text" id="locationInput" placeholder="Enter Location" required>
-                      <button type="submit">Check Now</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>`;
-        document.body.appendChild(container);
-        container.scrollIntoView({ behavior: 'smooth' });
-    }
+function showLocationPopup() {
+    document.getElementById('locationPopup').style.display = 'flex';
+}
+
+function closePopup(popupId) {
+    document.getElementById(popupId).style.display = 'none';
 }
 </script>
 
