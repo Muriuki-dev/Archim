@@ -119,6 +119,7 @@
     <div class="slider-active">
 	    
       <!-- Single Slider -->
+<!-- Single Slider -->
 <div class="single-slider slider-height d-flex align-items-center" style="background-image: url('assets/img/gallery/about-shape.png'); background-size: cover; background-position: center;">
   <div class="container">
     <div class="row">
@@ -129,17 +130,29 @@
             <p>Fast, reliable internet and professional IT services — proudly serving Thika Town and beyond. Explore our services below 👇</p>
           </div>
 
-          <!-- 🌟 New Features List -->
-          <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s" style="list-style: none; padding-left: 0; margin-top: 20px;">
-            <li style="margin-bottom: 10px; font-size: 18px; color: #2ecc71;">✅ Super Fast Internet</li>
-            <li style="margin-bottom: 10px; font-size: 18px; color: #2ecc71;">✅ Unlimited Data</li>
-            <li style="margin-bottom: 10px; font-size: 18px; color: #2ecc71;">✅ Free Installation</li>
-            <li style="margin-bottom: 10px; font-size: 18px; color: #2ecc71;">✅ 24/7 Customer Service</li>
+          <!-- 🌟 Official Features List with Animations -->
+          <ul class="hero-features" style="list-style: none; padding-left: 0; margin-top: 20px;">
+            <li class="feature-item" style="animation-delay: 0.2s;">
+              <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Verified" class="feature-icon">
+              <span class="feature-text">Super Fast Internet</span>
+            </li>
+            <li class="feature-item" style="animation-delay: 0.4s;">
+              <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Verified" class="feature-icon">
+              <span class="feature-text">Unlimited Data</span>
+            </li>
+            <li class="feature-item" style="animation-delay: 0.6s;">
+              <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Verified" class="feature-icon">
+              <span class="feature-text">Free Installation</span>
+            </li>
+            <li class="feature-item" style="animation-delay: 0.8s;">
+              <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Verified" class="feature-icon">
+              <span class="feature-text">24/7 Customer Service</span>
+            </li>
           </ul>
-          
-          <!-- Hero-btn -->
+
+          <!-- Hero Button -->
           <div class="hero__btn">
-            <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">Popote Services</button>
+            <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay="1s">Popote Services</button>
           </div>
 
         </div>
@@ -147,6 +160,37 @@
     </div>
   </div>
 </div>
+
+<!-- ✨ Add this CSS -->
+<style>
+.hero-features .feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: fadeSlideIn 0.8s forwards;
+}
+
+.hero-features .feature-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.hero-features .feature-text {
+  font-size: 18px;
+  color: #333;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
+
 
 
 	    <!-- Single Slider -->
