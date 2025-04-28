@@ -196,16 +196,12 @@
     <div class="container">
         <div class="row justify-content-between">
 		<div class="col-xl-5 col-lg-6 col-md-9">
-    <!-- about-img -->
     <div class="about-img" style="position: relative; overflow: hidden;">
         <img src="assets/img/gallery/popote.png" alt="" style="width: 100%;">
-
-        <!-- Hotspot packages -->
-        <div class="hotspot" style="left: 90%;">Package 1</div>
-        <div class="hotspot" style="left: 90%;">Package 2</div>
-        <div class="hotspot" style="left: 90%;">Package 4</div>
+        <div id="hotspot-container"></div> <!-- Container for dynamic hotspots -->
     </div>
 </div>
+
 
             <!-- Left Column: Replaced Image with Buttons -->
            <div class="pack-grid">
@@ -248,35 +244,71 @@
 	    <style>
 .hotspot {
     position: absolute;
-    bottom: -50px; /* start off the screen */
+    bottom: 0;
     background: white;
-    padding: 10px 15px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
-    transform: translateX(-50%);
-    white-space: nowrap;
+    padding: 8px 12px;
+    border-radius: 50px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
     font-weight: bold;
-    opacity: 0.9;
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+    white-space: nowrap;
+    animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: 0;
+        opacity: 0;
+        transform: translateX(-50%) scale(0);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.1);
+    }
+    20% {
+        transform: translateX(-50%) scale(1);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(-50%) scale(0.5);
+    }
 }
 </style>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    const hotspots = document.querySelectorAll('.hotspot');
+    const container = document.getElementById('hotspot-container');
+    const packages = ["Package 1", "Package 2", "Package 3", "Special Offer", "Bundle Deal"];
 
-    hotspots.forEach((hotspot, index) => {
-        let position = -50; // start below the image
-        let interval = setInterval(() => {
-            position += 1; // move up
-            hotspot.style.bottom = position + 'px';
+    function createHotspot() {
+        const hotspot = document.createElement('div');
+        hotspot.className = 'hotspot';
+        hotspot.innerText = packages[Math.floor(Math.random() * packages.length)];
+        
+        // Random left or right side
+        const side = Math.random() < 0.5 ? 'left' : 'right';
+        const randomOffset = Math.floor(Math.random() * 40) + 10; // 10% to 50% from edge
+        
+        hotspot.style[side] = randomOffset + '%';
 
-            if (position > 100 + (index * 80)) { 
-                // Stop at different heights for each hotspot
-                clearInterval(interval);
-            }
-        }, 20); // speed of movement (smaller = faster)
-    });
+        container.appendChild(hotspot);
+
+        // Remove after animation ends
+        hotspot.addEventListener('animationend', () => {
+            hotspot.remove();
+        });
+    }
+
+    // Create a new hotspot every 1.5 seconds
+    setInterval(createHotspot, 1500);
 });
 </script>
+
 
 	  <style> 
 		  .pack-card {
