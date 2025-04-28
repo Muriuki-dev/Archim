@@ -206,40 +206,30 @@
 </div>
 
 
-<section class="about-low-area section-padding2">
-    <div class="container">
-        <div class="row justify-content-between">
-		<div class="col-xl-5 col-lg-6 col-md-9">
-    <div class="about-img" style="position: relative; overflow: hidden;">
-        <img src="assets/img/gallery/popote.png" alt="" style="width: 100%;">
-        <div id="hotspot-container"></div> <!-- Container for dynamic hotspots -->
-    </div>
-</div>
 
-
-           <div class="pack-grid">
-    <a href="javascript:void(0);" class="pack-card" onclick="showBookingPopup()">
+<div class="pack-grid">
+    <a href="javascript:void(0);" class="pack-card bronze" onclick="showBookingPopup()">
         <div class="pack-title">Bronze Plan</div>
         <div class="pack-speed">4Mbps</div>
         <div class="pack-price">Ksh 1,000 / month</div>
         <span class="coming-soon">Book Now</span>
     </a>
 
-    <a href="javascript:void(0);" class="pack-card" onclick="showBookingPopup()">
+    <a href="javascript:void(0);" class="pack-card silver" onclick="showBookingPopup()">
         <div class="pack-title">Silver Plan</div>
         <div class="pack-speed">7Mbps</div>
         <div class="pack-price">Ksh 1,500 / month</div>
         <span class="coming-soon">Book Now</span>
     </a>
 
-    <a href="javascript:void(0);" class="pack-card" onclick="showBookingPopup()">
+    <a href="javascript:void(0);" class="pack-card gold" onclick="showBookingPopup()">
         <div class="pack-title">Gold Plan</div>
         <div class="pack-speed">10Mbps</div>
         <div class="pack-price">Ksh 2,000 / month</div>
         <span class="coming-soon">Book Now</span>
     </a>
 
-    <a href="javascript:void(0);" class="pack-card" onclick="showBookingPopup()">
+    <a href="javascript:void(0);" class="pack-card diamond" onclick="showBookingPopup()">
         <div class="pack-title">Diamond Plan</div>
         <div class="pack-speed">15Mbps</div>
         <div class="pack-price">Ksh 2,500 / month</div>
@@ -608,7 +598,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-	 <style>
+	<style>
 /* Grid container for packs */
 .pack-grid {
     display: grid;
@@ -618,24 +608,50 @@ document.addEventListener("DOMContentLoaded", function() {
     padding: 20px 0;
 }
 
-/* Individual pack card */
+/* Individual pack card (NO background here!) */
 .pack-card {
-    background: linear-gradient(135deg, #28a745, #00ff99); /* Premium green gradient */
     color: white;
     font-weight: 600;
     border-radius: 20px;
     text-align: center;
     padding: 25px 10px;
     text-decoration: none;
-    transition: transform 0.4s ease, background 0.4s ease;
+    transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
     height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     position: relative;
     overflow: hidden;
+}
+
+/* Bronze */
+.pack-card.bronze {
+    background: linear-gradient(135deg, #cd7f32, #b87333);
+}
+
+/* Silver */
+.pack-card.silver {
+    background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+}
+
+/* Gold */
+.pack-card.gold {
+    background: linear-gradient(135deg, #ffd700, #ffcc00);
+}
+
+/* Diamond */
+.pack-card.diamond {
+    background: linear-gradient(135deg, #b9f2ff, #89cff0);
+}
+
+/* Hover effect with 3D shine */
+.pack-card:hover {
+    transform: scale(1.08);
+    filter: brightness(1.15);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 /* Package title */
@@ -683,12 +699,6 @@ document.addEventListener("DOMContentLoaded", function() {
 .coming-soon.show {
     opacity: 1;
     transform: scale(1.1);
-}
-
-/* Hover effect */
-.pack-card:hover {
-    background: linear-gradient(135deg, #00c6ff, #0072ff); /* Modern blue hover */
-    transform: scale(1.05) rotate(-1deg);
 }
 
 /* Responsive for small devices */
