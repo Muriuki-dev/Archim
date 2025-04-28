@@ -204,29 +204,33 @@
 
 
             <!-- Left Column: Replaced Image with Buttons -->
-           <!-- Left Column: WiFi Packages -->
-<div class="pack-grid">
+           <div class="pack-grid">
     <a href="#" class="pack-card">
         <div class="pack-title">Home Basic</div>
         <div class="pack-speed">10Mbps</div>
-        <span class="coming-soon">Starting at $25</span>
+        <div class="pack-price">$25 / month</div>
+        <span class="coming-soon">Book Now</span>
     </a>
     <a href="#" class="pack-card">
         <div class="pack-title">Family Plus</div>
         <div class="pack-speed">20Mbps</div>
-        <span class="coming-soon">Starting at $35</span>
+        <div class="pack-price">$35 / month</div>
+        <span class="coming-soon">Book Now</span>
     </a>
     <a href="#" class="pack-card">
         <div class="pack-title">Business Pro</div>
         <div class="pack-speed">50Mbps</div>
-        <span class="coming-soon">Starting at $60</span>
+        <div class="pack-price">$60 / month</div>
+        <span class="coming-soon">Book Now</span>
     </a>
     <a href="#" class="pack-card">
         <div class="pack-title">Enterprise Unlimited</div>
         <div class="pack-speed">100Mbps</div>
-        <span class="coming-soon">Starting at $120</span>
+        <div class="pack-price">$120 / month</div>
+        <span class="coming-soon">Book Now</span>
     </a>
 </div>
+
 
 
 
@@ -328,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-	 <style>
+	<style>
 /* Grid container for packs */
 .pack-grid {
     display: grid;
@@ -340,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /* Individual pack card */
 .pack-card {
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    background: linear-gradient(135deg, #28a745, #00ff99); /* Premium green gradient */
     color: white;
     font-weight: 600;
     border-radius: 20px;
@@ -371,17 +375,27 @@ document.addEventListener("DOMContentLoaded", function() {
     font-weight: 400;
 }
 
-/* "Coming Soon" badge */
+/* Package price */
+.pack-price {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* "Book Now" badge */
 .coming-soon {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: rgba(255, 71, 87, 0.9);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.3);
     color: white;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 700;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     opacity: 0;
     transform: scale(0.8);
     transition: all 0.3s ease;
@@ -397,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /* Hover effect */
 .pack-card:hover {
-    background: linear-gradient(135deg, #28a745, #00ff99);
+    background: linear-gradient(135deg, #00c6ff, #0072ff); /* Modern blue hover */
     transform: scale(1.05) rotate(-1deg);
 }
 
@@ -420,8 +434,13 @@ document.addEventListener("DOMContentLoaded", function() {
     .pack-speed {
         font-size: 12px;
     }
+
+    .pack-price {
+        font-size: 14px;
+    }
 }
 </style>
+
 
 <!-- About End -->
 
