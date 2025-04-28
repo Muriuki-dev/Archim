@@ -368,26 +368,17 @@
     <div class="popote-popup-overlay" onclick="closePopotePopup()"></div>
     <div class="popote-popup-content">
         <button class="popote-popup-close" onclick="closePopotePopup()">✖</button>
-        <h3>How would you like to ask?</h3>
+        <h4>How would you like to ask?</h4>
         <div class="popote-popup-buttons">
             <a href="contact.html" class="popote-popup-btn popote-email-btn">Ask with Email</a>
-            <a href="https://wa.me/254700000000" target="_blank" class="popote-popup-btn popote-whatsapp-btn">Ask with WhatsApp</a>
+            <a href="https://wa.me/254795211116" target="_blank" class="popote-popup-btn popote-whatsapp-btn">Ask with WhatsApp</a>
         </div>
     </div>
 </div>
 
 <!-- STYLE -->
 <style>
-/* Section animation */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.6s ease-out;
-}
-.animate-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+
 
 /* Unique Popote Popup */
 #popote-question-popup {
@@ -507,20 +498,6 @@
 
 <!-- SCRIPT -->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Animate on scroll
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.2 });
-
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => observer.observe(el));
-});
-
 // Show Popup
 function showQuestionOptions() {
     document.getElementById('popote-question-popup').classList.add('show');
@@ -531,6 +508,7 @@ function closePopotePopup() {
     document.getElementById('popote-question-popup').classList.remove('show');
 }
 </script>
+
 
 
 
