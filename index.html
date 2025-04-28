@@ -204,24 +204,30 @@
 
 
             <!-- Left Column: Replaced Image with Buttons -->
-           <div class="pack-grid">
+           <!-- Left Column: WiFi Packages -->
+<div class="pack-grid">
     <a href="#" class="pack-card">
-        CCTV Cameras
-        <span class="coming-soon">Coming Soon 🚀</span>
+        <div class="pack-title">Home Basic</div>
+        <div class="pack-speed">10Mbps</div>
+        <span class="coming-soon">Starting at $25</span>
     </a>
     <a href="#" class="pack-card">
-        Online Shop
-        <span class="coming-soon">Coming Soon 🚀</span>
+        <div class="pack-title">Family Plus</div>
+        <div class="pack-speed">20Mbps</div>
+        <span class="coming-soon">Starting at $35</span>
     </a>
     <a href="#" class="pack-card">
-        Electric Fence
-        <span class="coming-soon">Coming Soon 🚀</span>
+        <div class="pack-title">Business Pro</div>
+        <div class="pack-speed">50Mbps</div>
+        <span class="coming-soon">Starting at $60</span>
     </a>
     <a href="#" class="pack-card">
-        Vehicle Tracker
-        <span class="coming-soon">Coming Soon 🚀</span>
+        <div class="pack-title">Enterprise Unlimited</div>
+        <div class="pack-speed">100Mbps</div>
+        <span class="coming-soon">Starting at $120</span>
     </a>
 </div>
+
 
 
 
@@ -286,7 +292,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('hotspot-container');
-    const packages = ["Package 1", "Package 2", "Bundle 50GB", "Special 🎈", "Gift 🎁"];
+    const packages = ["Hotspot 1", "Hotspot2", "Hotspot", "Hotspot 🎈", "Hotspot 🎁"];
 
     function createHotspot(side) {
         const hotspot = document.createElement('div');
@@ -322,22 +328,60 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-	  <style> 
-		  .pack-card {
+	 <style>
+/* Grid container for packs */
+.pack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* Individual pack card */
+.pack-card {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    text-align: center;
+    padding: 25px 10px;
+    text-decoration: none;
+    transition: transform 0.4s ease, background 0.4s ease;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     position: relative;
     overflow: hidden;
 }
 
+/* Package title */
+.pack-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Package speed */
+.pack-speed {
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+/* "Coming Soon" badge */
 .coming-soon {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #ff4757;
+    background: rgba(255, 71, 87, 0.9);
     color: white;
-    padding: 6px 12px;
+    padding: 5px 12px;
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 700;
     opacity: 0;
     transform: scale(0.8);
     transition: all 0.3s ease;
@@ -345,51 +389,40 @@ document.addEventListener("DOMContentLoaded", function() {
     z-index: 5;
 }
 
+/* Show badge */
 .coming-soon.show {
     opacity: 1;
     transform: scale(1.1);
 }
 
-		  /* Grid container for packs */
-.pack-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    width: 100%;
-}
-
-/* Individual square cards */
-.pack-card {
-    background: linear-gradient(135deg, #28a745, #00ff99);
- color: white;
-    font-weight: 600;
-    border-radius: 20px;
-    text-align: center;
-    padding: 30px 0;
-    text-decoration: none;
-    transition: transform 0.4s ease;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    transform-origin: center;
-}
-
-/* Hover effect (optional) */
+/* Hover effect */
 .pack-card:hover {
-    background: linear-gradient(135deg, #00c6ff, #007bff);
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #28a745, #00ff99);
+    transform: scale(1.05) rotate(-1deg);
 }
 
-/* Responsive tweaks (stack on small screens if needed) */
+/* Responsive for small devices */
 @media (max-width: 480px) {
     .pack-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .pack-card {
+        height: 120px;
+        padding: 20px 5px;
+    }
+
+    .pack-title {
+        font-size: 16px;
+    }
+
+    .pack-speed {
+        font-size: 12px;
     }
 }
-
 </style>
+
 <!-- About End -->
 
 <section class="about-low-area section-padding2" id="popote-section" style="position: relative; overflow: hidden;">
