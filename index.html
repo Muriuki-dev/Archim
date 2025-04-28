@@ -519,32 +519,6 @@ function closePopotePopup() {
 </script>
 
 
-<!-- SCRIPT -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Animate on scroll
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.2 });
-
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => observer.observe(el));
-});
-
-// Show Popup
-function showQuestionOptions() {
-    document.getElementById('question-popup').classList.add('show');
-}
-
-// Close Popup
-function closePopup() {
-    document.getElementById('question-popup').classList.remove('show');
-}
-</script>
 
 </section>
 	   
