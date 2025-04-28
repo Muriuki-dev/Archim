@@ -344,7 +344,7 @@
 
 
 
-        <!-- Why Choose Popote Section -->
+      <!-- Why Choose Popote Section -->
 <section class="why-choose-popote">
     <div class="container">
         <div class="row justify-content-center">
@@ -365,13 +365,14 @@
 
 <!-- Floating Popup for Choosing Option -->
 <div id="popote-question-popup" class="popote-popup-hidden">
+    <div class="popote-popup-overlay" onclick="closePopotePopup()"></div>
     <div class="popote-popup-content">
+        <button class="popote-popup-close" onclick="closePopotePopup()">✖</button>
         <h3>How would you like to ask?</h3>
         <div class="popote-popup-buttons">
             <a href="contact.html" class="popote-popup-btn popote-email-btn">Ask with Email</a>
             <a href="https://wa.me/254700000000" target="_blank" class="popote-popup-btn popote-whatsapp-btn">Ask with WhatsApp</a>
         </div>
-        <button class="popote-popup-close" onclick="closePopotePopup()">✖</button>
     </div>
 </div>
 
@@ -388,21 +389,17 @@
     transform: translateY(0);
 }
 
-/* Popote Popup Unique Styles */
+/* Unique Popote Popup */
 #popote-question-popup {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    inset: 0;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     z-index: 10000;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 #popote-question-popup.show {
@@ -410,45 +407,62 @@
     opacity: 1;
 }
 
+/* Dark background overlay */
+.popote-popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+/* Centered popup content */
 .popote-popup-content {
     background: #ffffff;
-    padding: 35px 25px;
-    border-radius: 25px 25px 0 0;
+    padding: 35px 30px;
+    border-radius: 20px;
     text-align: center;
-    width: 100%;
-    max-width: 420px;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.25);
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    z-index: 2;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    animation: popote-popup-animate 0.4s ease;
 }
 
-#popote-question-popup.show .popote-popup-content {
-    transform: translateY(0);
+@keyframes popote-popup-animate {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
+/* Heading */
 .popote-popup-content h3 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #0d6efd;
     margin-bottom: 25px;
 }
 
+/* Buttons */
 .popote-popup-buttons {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 15px;
 }
 
 .popote-popup-btn {
-    padding: 14px 20px;
+    padding: 12px 20px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;
-    display: block;
     transition: background 0.3s;
     color: #ffffff;
+    display: block;
 }
 
 .popote-email-btn {
@@ -469,11 +483,11 @@
 .popote-popup-close {
     position: absolute;
     top: 15px;
-    right: 20px;
+    right: 15px;
     background: none;
     border: none;
     font-size: 24px;
-    color: #555;
+    color: #333;
     cursor: pointer;
     transition: color 0.3s;
 }
@@ -482,11 +496,11 @@
 }
 
 
-/* Responsive Popup */
+/* Responsive */
 @media (max-width: 480px) {
     .popote-popup-content {
-        border-radius: 20px 20px 0 0;
-        padding: 30px 20px;
+        width: 90%;
+        padding: 25px 20px;
     }
 }
 </style>
@@ -517,6 +531,7 @@ function closePopotePopup() {
     document.getElementById('popote-question-popup').classList.remove('show');
 }
 </script>
+
 
 
 
