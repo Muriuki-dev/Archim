@@ -241,21 +241,21 @@
         </div>
     </div>
 </section>
-	   <style>
+	  <style>
 .hotspot {
     position: absolute;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.7); /* semi-transparent white */
+    background: rgba(255, 255, 255, 0.4); /* MORE transparent now */
     padding: 8px 15px;
     border-radius: 30px;
-    box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
     font-weight: 600;
     font-size: 14px;
     opacity: 0;
     transform: translateX(-50%) scale(0);
     white-space: nowrap;
     animation: floatUp 6s linear forwards;
-    backdrop-filter: blur(5px); /* soft blur effect inside */
+    backdrop-filter: blur(5px);
 }
 
 @keyframes floatUp {
@@ -286,34 +286,40 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('hotspot-container');
-    const packages = ["Package 1", "Package 2", "Bundle 50GB", "Special Deal 🎈", "Gift Offer 🎁"];
+    const packages = ["Package 1", "Package 2", "Bundle 50GB", "Special 🎈", "Gift 🎁"];
 
-    function createHotspot() {
+    function createHotspot(side) {
         const hotspot = document.createElement('div');
         hotspot.className = 'hotspot';
         hotspot.innerText = packages[Math.floor(Math.random() * packages.length)];
-        
-        // Random side: left or right
-        const side = Math.random() < 0.5 ? 'left' : 'right';
-        const randomOffset = Math.floor(Math.random() * 40) + 10; // 10% to 50% offset from side
-        
-        hotspot.style[side] = randomOffset + '%';
 
-        // Add slight random delay per hotspot (optional for natural effect)
-        hotspot.style.animationDelay = (Math.random() * 0.5) + 's';
+        // Left side or Right side
+        if (side === 'left') {
+            hotspot.style.left = '5%'; // near bottom left
+        } else if (side === 'right') {
+            hotspot.style.right = '5%'; // near bottom right
+        }
 
         container.appendChild(hotspot);
 
-        // Remove after animation ends
+        // Remove when animation ends
         hotspot.addEventListener('animationend', () => {
             hotspot.remove();
         });
     }
 
-    // Create a new balloon every 1.2 seconds
-    setInterval(createHotspot, 1200);
+    // Create left hotspot every 1.5 seconds
+    setInterval(() => {
+        createHotspot('left');
+    }, 1500);
+
+    // Create right hotspot every 1.7 seconds
+    setInterval(() => {
+        createHotspot('right');
+    }, 1700);
 });
 </script>
+
 
 
 	  <style> 
