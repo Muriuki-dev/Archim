@@ -196,11 +196,17 @@
     <div class="container">
         <div class="row justify-content-between">
 		<div class="col-xl-5 col-lg-6 col-md-9">
-                    <!-- about-img -->
-                    <div class="about-img">
-                        <img src="assets/img/gallery/popote.png" alt="">
-                    </div>
-                </div>
+    <!-- about-img -->
+    <div class="about-img" style="position: relative; overflow: hidden;">
+        <img src="assets/img/gallery/popote.png" alt="" style="width: 100%;">
+
+        <!-- Hotspot packages -->
+        <div class="hotspot" style="left: 90%;">Package 1</div>
+        <div class="hotspot" style="left: 90%;">Package 2</div>
+        <div class="hotspot" style="left: 90%;">Package 3</div>
+    </div>
+</div>
+
             <!-- Left Column: Replaced Image with Buttons -->
            <div class="pack-grid">
     <a href="#" class="pack-card">
@@ -239,6 +245,39 @@
         </div>
     </div>
 </section>
+	    <style>
+.hotspot {
+    position: absolute;
+    bottom: -50px; /* start off the screen */
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-weight: bold;
+    opacity: 0.9;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const hotspots = document.querySelectorAll('.hotspot');
+
+    hotspots.forEach((hotspot, index) => {
+        let position = -50; // start below the image
+        let interval = setInterval(() => {
+            position += 1; // move up
+            hotspot.style.bottom = position + 'px';
+
+            if (position > 100 + (index * 80)) { 
+                // Stop at different heights for each hotspot
+                clearInterval(interval);
+            }
+        }, 20); // speed of movement (smaller = faster)
+    });
+});
+</script>
+
 	  <style> 
 		  .pack-card {
     position: relative;
