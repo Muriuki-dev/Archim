@@ -237,6 +237,53 @@
 </div>
 
 
+<section class="about-low-area section-padding2" id="popote-section" style="position: relative; overflow: hidden; padding-top: 5px; padding-bottom: 5px;">
+  <div class="container">
+
+    <!-- Small Offer Label -->
+    <div class="row justify-content-center text-center mb-3">
+      <div class="col-xl-8 col-lg-8 col-md-10">
+        <div class="popote-offer-label">
+          Popote Online Shop - Everything You Need 🚀
+        </div>
+      </div>
+    </div>
+
+    <!-- Online Shop Cards -->
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-10 col-md-12">
+        <div class="shop-grid">
+
+          <div class="shop-card">
+            <h3 class="shop-title">Smartphones 📱</h3>
+            <p class="shop-description">Latest models at unbeatable prices!</p>
+            <a href="#" class="shop-btn">Shop Now</a>
+          </div>
+
+          <div class="shop-card">
+            <h3 class="shop-title">Home Internet 🌐</h3>
+            <p class="shop-description">Reliable and fast WiFi packages for your home.</p>
+            <a href="#" class="shop-btn">Get Connected</a>
+          </div>
+
+          <div class="shop-card">
+            <h3 class="shop-title">Security Systems 🔒</h3>
+            <p class="shop-description">CCTV cameras, alarms & fencing solutions.</p>
+            <a href="#" class="shop-btn">Secure Home</a>
+          </div>
+
+          <div class="shop-card">
+            <h3 class="shop-title">Accessories 🎧</h3>
+            <p class="shop-description">Chargers, headphones, gadgets & more.</p>
+            <a href="#" class="shop-btn">View Collection</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 
@@ -1551,7 +1598,7 @@ document.addEventListener('DOMContentLoaded', function () {
     "gachagi", "gachororo", "garage area", "delmonte gate", "ngurubani",
     "kenyatta highway", "commercial street", "station road", "general kago road", "garissa road", "mugo kibiru road",
     "madaraka avenue", "mugo street", "kwame nkrumah street", "kenyatta avenue", "uhuru street", "morris road",
-    "lumumba drive", "thika bypass", "Majengo", "biashara street"
+    "lumumba drive", "thika bypass", "majengo", "biashara street"
   ];
 
   function checkLocation(event) {
@@ -1697,25 +1744,6 @@ function closeLocationPopup(id) {
 }
 </script>
 
-
-<script>
-let scrollCounter = 0; 
-
-function handleScroll() {
-    scrollCounter++;
-
-    if (scrollCounter === 10) {
-        showHelpPopup();
-        window.removeEventListener('scroll', handleScroll); // Stop listening after
-    }
-}
-
-window.addEventListener('scroll', handleScroll);
-
-function showHelpPopup() {
-    alert("👋 Need help booking? Tap on any package to get started!");
-}
-</script>
 
 
 
