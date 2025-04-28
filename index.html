@@ -251,7 +251,7 @@
           </div>
 
           <h2 class="shop-title-big">Everything You Need, Delivered!</h2>
-          <p class="shop-description-big">From smartphones, accessories, internet devices, security systems, and much more — Popote Online Shop got you covered with fast, reliable, and affordable products and services.</p>
+          <p class="shop-description-big">From Wifi routers, CCtv cameras, accessories, internet devices, security systems, and much more — Popote Online Shop got you covered with fast, reliable, and affordable products and services.</p>
           
           <a href="#" class="shop-btn-big">Visit Shop Now</a>
 
@@ -344,10 +344,13 @@
 
 
 
-            <!-- Right Column: UNTOUCHED "Why Choose Us" -->
+           <!-- Why Choose Popote Section -->
+<section class="why-choose-popote">
+    <div class="container">
+        <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-6 col-md-10">
-                <div class="about-caption mb-50">
-                    <!-- Section Tittle -->
+                <div class="about-caption mb-50 animate-on-scroll">
+                    <!-- Section Title -->
                     <div class="section-tittle mb-35">
                         <span></span>
                         <h2>Why Choose Popote?</h2>
@@ -358,6 +361,71 @@
             </div>
         </div>
     </div>
+</section>
+
+<!-- STYLE -->
+<style>
+/* Section padding */
+.why-choose-popote {
+    padding: 60px 0;
+}
+
+/* Animation initial state */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease-out;
+}
+
+/* Animation when visible */
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Section title styling */
+.section-tittle h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: #00c6ff;
+}
+</style>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.2 // Trigger when 20% visible
+    });
+
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    elements.forEach(el => observer.observe(el));
+});
+</script>
+
 </section>
 	   
 
