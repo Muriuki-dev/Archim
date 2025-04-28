@@ -1698,6 +1698,24 @@ function closeLocationPopup(id) {
 </script>
 
 
+<script>
+let scrollCounter = 0; 
+
+function handleScroll() {
+    scrollCounter++;
+
+    if (scrollCounter === 10) {
+        showHelpPopup();
+        window.removeEventListener('scroll', handleScroll); // Stop listening after
+    }
+}
+
+window.addEventListener('scroll', handleScroll);
+
+function showHelpPopup() {
+    alert("👋 Need help booking? Tap on any package to get started!");
+}
+</script>
 
 
 
