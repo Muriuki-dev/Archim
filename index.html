@@ -1464,75 +1464,109 @@ document.addEventListener('DOMContentLoaded', function () {
 </style>
     </section>
     <!-- About-2 Area End -->
-	<!-- 🌟 Premium Blog Area Start -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<!-- 🌟 Premium Single-Slide Blog Section -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@9/swiper-bundle.min.css"
+/>
 
 <section class="home-blog-area section-padding30">
   <div class="container">
+
     <div class="row justify-content-center mb-5">
       <div class="col-xl-6 col-lg-8 text-center">
         <div class="section-title">
           <h2 class="mb-4">Insights & Innovations at Popote Networks</h2>
-          <p>Stay updated with our latest advancements, success stories, and expert insights shaping the future of technology and connectivity.</p>
+          <p>Explore our latest success stories, tech advancements, and expert insights.</p>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="100">
-        <div class="home-blog-single mb-30 shadow-sm rounded overflow-hidden">
-          <div class="blog-img-cap">
-            <div class="blog-img">
-              <img src="assets/img/gallery/home-blog1.png" alt="Empowering Businesses with Technology" class="img-fluid">
-            </div>
-            <div class="blog-cap p-3">
-              <h3><a href="blog_details.html">Empowering Businesses with Innovative Technology</a></h3>
-              <p class="text-muted">April 22, 2025</p>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="home-blog-single mb-30 shadow-sm rounded overflow-hidden">
+            <div class="blog-img-cap">
+              <div class="blog-img">
+                <img src="assets/img/gallery/home-blog1.png" alt="Empowering Businesses" class="img-fluid">
+              </div>
+              <div class="blog-cap p-3 text-center">
+                <h3><a href="blog_details.html">Empowering Businesses with Innovative Technology</a></h3>
+                <p class="text-muted">April 22, 2025</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="300">
-        <div class="home-blog-single mb-30 shadow-sm rounded overflow-hidden">
-          <div class="blog-img-cap">
-            <div class="blog-img">
-              <img src="assets/img/gallery/home-blog2.png" alt="Smart Connectivity Solutions" class="img-fluid">
-            </div>
-            <div class="blog-cap p-3">
-              <h3><a href="blog_details.html">Smart Connectivity: Revolutionizing Digital Experiences</a></h3>
-              <p class="text-muted">February 22, 2025</p>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="home-blog-single mb-30 shadow-sm rounded overflow-hidden">
+            <div class="blog-img-cap">
+              <div class="blog-img">
+                <img src="assets/img/gallery/home-blog2.png" alt="Smart Connectivity" class="img-fluid">
+              </div>
+              <div class="blog-cap p-3 text-center">
+                <h3><a href="blog_details.html">Smart Connectivity: Revolutionizing Digital Experiences</a></h3>
+                <p class="text-muted">February 22, 2025</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="500">
-        <div class="home-blog-single mb-30 shadow-sm rounded overflow-hidden">
-          <div class="blog-img-cap">
-            <div class="blog-img">
-              <img src="assets/img/gallery/home-blog3.png" alt="Future of Secure Networks" class="img-fluid">
-            </div>
-            <div class="blog-cap p-3">
-              <h3><a href="blog_details.html">Building the Future of Secure, Scalable Networks</a></h3>
-              <p class="text-muted">January 22, 2025</p>
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="home-blog-single mb-30 shadow-sm rounded overflow-hidden">
+            <div class="blog-img-cap">
+              <div class="blog-img">
+                <img src="assets/img/gallery/home-blog3.png" alt="Future Networks" class="img-fluid">
+              </div>
+              <div class="blog-cap p-3 text-center">
+                <h3><a href="blog_details.html">Building the Future of Secure, Scalable Networks</a></h3>
+                <p class="text-muted">January 22, 2025</p>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
+      <!-- Navigation buttons -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <!-- Pagination dots -->
+      <div class="swiper-pagination"></div>
     </div>
+
   </div>
 </section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+
 <script>
-  AOS.init({
-    duration: 1000, // Animation duration in ms
-    once: true // Animate only once
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1, // Show 1 slide at a time
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 3000, // Change slide every 3 seconds
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    effect: "slide",
+    speed: 800, // 800ms transition
   });
 </script>
-<!-- 🌟 Premium Blog Area End -->
 
     <!-- Blog Area End -->
    <!-- 📍 Modern Location Checker Popup -->
