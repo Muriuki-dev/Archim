@@ -249,40 +249,129 @@
       </div>
     </div>
 
-    <!-- Online Shop Cards -->
+    <!-- Big Box for Shop -->
     <div class="row justify-content-center">
       <div class="col-xl-10 col-lg-10 col-md-12">
-        <div class="shop-grid">
 
-          <div class="shop-card">
-            <h3 class="shop-title">Smartphones 📱</h3>
-            <p class="shop-description">Latest models at unbeatable prices!</p>
-            <a href="#" class="shop-btn">Shop Now</a>
+        <div class="shop-box">
+          <div class="shop-grid">
+
+            <div class="shop-card">
+              <h3 class="shop-title">Smartphones 📱</h3>
+              <p class="shop-description">Latest models at unbeatable prices!</p>
+              <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="shop-card">
+              <h3 class="shop-title">Home Internet 🌐</h3>
+              <p class="shop-description">Reliable and fast WiFi packages for your home.</p>
+              <a href="#" class="shop-btn">Get Connected</a>
+            </div>
+
+            <div class="shop-card">
+              <h3 class="shop-title">Security Systems 🔒</h3>
+              <p class="shop-description">CCTV, alarms, fencing solutions.</p>
+              <a href="#" class="shop-btn">Secure Now</a>
+            </div>
+
+            <div class="shop-card">
+              <h3 class="shop-title">Accessories 🎧</h3>
+              <p class="shop-description">Chargers, headphones & gadgets.</p>
+              <a href="#" class="shop-btn">View Collection</a>
+            </div>
+
           </div>
-
-          <div class="shop-card">
-            <h3 class="shop-title">Home Internet 🌐</h3>
-            <p class="shop-description">Reliable and fast WiFi packages for your home.</p>
-            <a href="#" class="shop-btn">Get Connected</a>
-          </div>
-
-          <div class="shop-card">
-            <h3 class="shop-title">Security Systems 🔒</h3>
-            <p class="shop-description">CCTV cameras, alarms & fencing solutions.</p>
-            <a href="#" class="shop-btn">Secure Home</a>
-          </div>
-
-          <div class="shop-card">
-            <h3 class="shop-title">Accessories 🎧</h3>
-            <p class="shop-description">Chargers, headphones, gadgets & more.</p>
-            <a href="#" class="shop-btn">View Collection</a>
-          </div>
-
         </div>
+
       </div>
     </div>
 
   </div>
+	<style>
+/* Offer Label */
+.popote-offer-label {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #28a745, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+}
+
+/* Big Box */
+.shop-box {
+    background: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+/* Shop Grid inside the box */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Shop Card */
+.shop-card {
+    background: #f9f9f9;
+    border-radius: 20px;
+    padding: 20px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.shop-card:hover {
+    background: linear-gradient(135deg, #00c6ff, #007bff);
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+/* Card Text */
+.shop-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.shop-description {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Button */
+.shop-btn {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.shop-btn:hover {
+    background: #00c6ff;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .shop-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
 </section>
 
 
@@ -303,72 +392,7 @@
         </div>
     </div>
 </section>
-	    <style>
-/* Offer label */
-.popote-offer-label {
-    font-size: 20px;
-    font-weight: 700;
-    color: #28a745;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #28a745, #00c6ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Shop Grid */
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-/* Shop Card */
-.shop-card {
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    padding: 25px 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.shop-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Titles */
-.shop-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #0072ff;
-}
-
-/* Description */
-.shop-description {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-/* Button */
-.shop-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #28a745, #00ff99);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: background 0.3s ease;
-}
-
-.shop-btn:hover {
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
-}
-</style>
+	   
 
 	  <style>
 .hotspot {
