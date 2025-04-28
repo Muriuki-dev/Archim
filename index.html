@@ -344,7 +344,7 @@
 
 
 
-          <!-- Why Choose Popote Section -->
+        <!-- Why Choose Popote Section -->
 <section class="why-choose-popote">
     <div class="container">
         <div class="row justify-content-center">
@@ -364,14 +364,14 @@
 </section>
 
 <!-- Floating Popup for Choosing Option -->
-<div id="question-popup" class="popup-hidden">
-    <div class="popup-content">
+<div id="popote-question-popup" class="popote-popup-hidden">
+    <div class="popote-popup-content">
         <h3>How would you like to ask?</h3>
-        <div class="popup-buttons">
-            <a href="contact.html" class="popup-btn email-btn">Ask with Email</a>
-            <a href="https://wa.me/254700000000" target="_blank" class="popup-btn whatsapp-btn">Ask with WhatsApp</a>
+        <div class="popote-popup-buttons">
+            <a href="contact.html" class="popote-popup-btn popote-email-btn">Ask with Email</a>
+            <a href="https://wa.me/254700000000" target="_blank" class="popote-popup-btn popote-whatsapp-btn">Ask with WhatsApp</a>
         </div>
-        <button class="popup-close" onclick="closePopup()">✖</button>
+        <button class="popote-popup-close" onclick="closePopotePopup()">✖</button>
     </div>
 </div>
 
@@ -388,103 +388,136 @@
     transform: translateY(0);
 }
 
-/* Popup styles */
-#question-popup {
+/* Popote Popup Unique Styles */
+#popote-question-popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    z-index: 999;
+    z-index: 10000;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
-#question-popup.show {
+#popote-question-popup.show {
     visibility: visible;
     opacity: 1;
 }
 
-.popup-content {
-    background: #fff;
-    padding: 30px;
-    border-radius: 20px;
+.popote-popup-content {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 25px 25px 0 0;
     text-align: center;
-    position: relative;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.25);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
 }
 
-.popup-content h3 {
-    font-size: 22px;
+#popote-question-popup.show .popote-popup-content {
+    transform: translateY(0);
+}
+
+.popote-popup-content h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 25px;
+}
+
+.popote-popup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin-bottom: 20px;
 }
 
-.popup-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.popup-btn {
-    padding: 12px 20px;
+.popote-popup-btn {
+    padding: 14px 20px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: 600;
-    color: #fff;
-    transition: background 0.3s;
+    font-weight: 700;
     font-size: 16px;
+    display: block;
+    transition: background 0.3s;
+    color: #ffffff;
 }
 
-.email-btn {
+.popote-email-btn {
     background: #28a745;
 }
-
-.email-btn:hover {
+.popote-email-btn:hover {
     background: #218838;
 }
 
-.whatsapp-btn {
+.popote-whatsapp-btn {
     background: #25D366;
 }
-
-.whatsapp-btn:hover {
+.popote-whatsapp-btn:hover {
     background: #1ebe5a;
 }
 
-/* Close button */
-.popup-close {
+/* Close Button */
+.popote-popup-close {
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 20px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 24px;
+    color: #555;
     cursor: pointer;
+    transition: color 0.3s;
+}
+.popote-popup-close:hover {
+    color: #000;
 }
 
-/* Main Button */
-.btn {
-    display: inline-block;
-    background: #28a745;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s ease;
-    margin-top: 20px;
-}
-.btn:hover {
-    background: #00c6ff;
+
+/* Responsive Popup */
+@media (max-width: 480px) {
+    .popote-popup-content {
+        border-radius: 20px 20px 0 0;
+        padding: 30px 20px;
+    }
 }
 </style>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Animate on scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    elements.forEach(el => observer.observe(el));
+});
+
+// Show Popup
+function showQuestionOptions() {
+    document.getElementById('popote-question-popup').classList.add('show');
+}
+
+// Close Popup
+function closePopotePopup() {
+    document.getElementById('popote-question-popup').classList.remove('show');
+}
+</script>
+
 
 <!-- SCRIPT -->
 <script>
