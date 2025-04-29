@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 100px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      font-size: 28px;
+      color: #333;
+    }
+    .countdown {
+      font-size: 48px;
+      margin-top: 20px;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>We are redirecting you to Popote Shop in <span class="countdown">3</span>...</h1>
+
+  <script>
+    let countdown = 3;
+    const countdownElement = document.querySelector('.countdown');
+    const redirectUrl = "https://popote-shop.vercel.app/";
+
+    const interval = setInterval(() => {
+      countdown--;
+      countdownElement.textContent = countdown;
+      if (countdown === 0) {
+        clearInterval(interval);
+        window.location.href = redirectUrl;
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
