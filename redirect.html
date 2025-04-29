@@ -6,24 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
-      --primary-color: #0d6efd;
-      --background-color: #f5f7fa;
-      --text-color: #212529;
-      --font-main: 'Inter', 'Segoe UI', sans-serif;
+      --primary: #0d6efd;
+      --background: linear-gradient(135deg, #f9fafc, #e9eef5);
+      --text-color: #1a1a1a;
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
       display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: var(--text-color);
+    }
+
+    .container {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 40px 60px;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background: var(--primary);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--background-color);
-      font-family: var(--font-main);
-      color: var(--text-color);
-      text-align: center;
-      padding: 2rem;
-      animation: fadeIn 1s ease-in-out;
+      font-weight: 600;
+      color: white;
+      font-size: 1.2rem;
+      user-select: none;
     }
 
     h1 {
@@ -32,39 +64,53 @@
       margin-bottom: 0.5rem;
     }
 
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+
     .countdown {
-      font-size: 4rem;
+      font-size: 3rem;
       font-weight: 600;
-      color: var(--primary-color);
-      margin-top: 0.5rem;
+      color: var(--primary);
       animation: pulse 1s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.8;
-        transform: scale(1.1);
-      }
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.8; }
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.25rem;
+      }
+
+      .countdown {
+        font-size: 2.5rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <div>
-    <h1>You're being securely redirected to <strong>Popote Shop</strong> in</h1>
-    <div class="countdown">3</div>
+  <div class="container">
+    <div class="logo">Popote</div> <!-- Replace with actual logo if available -->
+    <h1>Redirecting to Popote Shop</h1>
+    <p>Hang tight! You'll be redirected in <span class="countdown">5</span> seconds.</p>
   </div>
 
   <script>
-    let countdown = 3;
+    let countdown = 5;
     const countdownElement = document.querySelector('.countdown');
     const redirectUrl = "https://popote-shop.verce.app/";
 
@@ -75,7 +121,7 @@
         clearInterval(interval);
         window.location.href = redirectUrl;
       }
-    }, 1000);
+    }, 1500);
   </script>
 </body>
 </html>
