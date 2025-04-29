@@ -4,48 +4,64 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <style>
+<style>
+    :root {
+      --primary-color: #0d6efd;
+      --background-color: #f5f7fa;
+      --text-color: #212529;
+      --font-main: 'Inter', 'Segoe UI', sans-serif;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f4f4f4, #ffffff);
+      margin: 0;
+      height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      color: #1f1f1f;
+      background-color: var(--background-color);
+      font-family: var(--font-main);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      animation: fadeIn 1s ease-in-out;
     }
 
     h1 {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       font-weight: 500;
-      color: #333;
-      text-align: center;
+      margin-bottom: 0.5rem;
     }
 
     .countdown {
-      font-size: 3rem;
-      font-weight: bold;
-      color: #007bff;
-      margin-top: 10px;
+      font-size: 4rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-top: 0.5rem;
       animation: pulse 1s infinite;
     }
 
     @keyframes pulse {
       0%, 100% {
-        transform: scale(1);
         opacity: 1;
+        transform: scale(1);
       }
       50% {
-        transform: scale(1.2);
-        opacity: 0.7;
+        opacity: 0.8;
+        transform: scale(1.1);
       }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>Redirecting you to <strong>Popote Shop</strong> in <span class="countdown">3</span> seconds...</h1>
+  <div>
+    <h1>You're being securely redirected to <strong>Popote Shop</strong> in</h1>
+    <div class="countdown">3</div>
+  </div>
 
   <script>
     let countdown = 3;
