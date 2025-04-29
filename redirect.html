@@ -2,69 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting to Popote Shop...</title>
+  <title>Redirecting...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Google Fonts for modern typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #ffffff, #f0f4f8);
-      font-family: 'Inter', sans-serif;
-      color: #1a1a1a;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
       text-align: center;
+      padding: 100px;
+      background-color: #f9f9f9;
     }
-
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      max-width: 500px;
-      width: 90%;
-    }
-
     h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 10px;
+      font-size: 28px;
+      color: #333;
     }
-
     .countdown {
-      font-size: 64px;
-      font-weight: 600;
+      font-size: 48px;
+      margin-top: 20px;
       color: #007bff;
-      animation: pulse 1s infinite;
-    }
-
-    .subtext {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #666;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Hold tight! We're taking you to Popote Shop 🚀</h1>
-    <div class="countdown">3</div>
-    <div class="subtext">You will be redirected shortly...</div>
-  </div>
+  <h1>We are redirecting you to Popote Shop in <span class="countdown">3</span>...</h1>
 
   <script>
     let countdown = 3;
