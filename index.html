@@ -2531,38 +2531,99 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     <!-- JS here -->
-<!-- First Script -->
-<script>
+/**
+ * Unified JavaScript for website functionality
+ * - Booking popup management
+ * - Location checking
+ * - Animations and effects
+ * - Form validation
+ */
+
+// Main IIFE to avoid global namespace pollution
 (function() {
-  // Show booking popup with animation
-  function showBookingPopup() {
-    const popup = document.getElementById('bookingPopup');
-    popup.style.display = 'block';
-    // Allow DOM to update before adding the active class for animation
-    setTimeout(() => {
-      popup.classList.add('active');
-    }, 10);
-    playPopupSound();
+  // ===== CONFIGURATION =====
+  
+  // Service areas list
+  const SERVICE_AREAS = [
+    "thika town", "pilot", "hospital area", "zam zam", "posta", "mukiriti", "muthaiga", "joy town", "karibaribi", "landless",
+    "kimathi estate", "section 9", "broadways", "phase 4", "phase4", "section 2", "section9", "huduma", "section2", "township", "morrison area", "salama estate",
+    "makongeni", "kiganjo", "kiganjo b", "gatuanyaga", "thika greens", "kimunyu", "munyu", "kiboko", "kihunguro", "magogoni",
+    "githima", "athii", "kiang'ombe", "kiandutu", "ngoliba", "gatitu", "makutano", "bibirioni", "magoko", "kieni",
+    "gachagi", "gachororo", "garage area", "delmonte gate", "ngurubani",
+    "kenyatta highway", "commercial street", "station road", "general kago road", "garissa road", "mugo kibiru road",
+    "madaraka avenue", "mugo street", "kwame nkrumah street", "kenyatta avenue", "uhuru street", "morris road",
+    "lumumba drive", "thika bypass", "majengo", "biashara street"
+  ];
+
+  // ===== UTILITIES =====
+  
+  // Check if an element exists before performing operations
+  function getElement(id) {
+    return document.getElementById(id);
   }
   
-  // Close popup with animation
-  function closeBookingPopup(id) {
-    const popup = document.getElementById(id);
-    if (popup) {
-      popup.classList.remove('active');
-      // Wait for animation to complete before hiding
-      setTimeout(() => {
-        popup.style.display = 'none';
-        resetForm();
-      }, 300);
+  // Show element with optional animation
+  function showElement(id, useAnimation = true) {
+    const element = getElement(id);
+    if (!element) return;
+    
+    element.style.display = 'block';
+    if (useAnimation) {
+      setTimeout(() => element.classList.add('active', 'show'), 10);
     }
   }
   
-  // Reset the form when closing
-  function resetForm() {
-    document.getElementById('bookingForm').reset();
-    clearErrors();
-    document.getElementById('successMessage').style.display = 'none';
+  // Hide element with optional animation
+  function hideElement(id, useAnimation = true) {
+    const element = getElement(id);
+    if (!element) return;
+    
+    if (useAnimation) {
+      element.classList.remove('active', 'show');
+      setTimeout(() => {
+        element.style.display = 'none';
+      }, 300);
+    } else {
+      element.style.display = 'none';
+    }
+  }
+  
+  // Display a flex element (for modals that use flex)
+  function showFlexElement(id, useAnimation = true) {
+    const element = getElement(id);
+    if (!element) return;
+    
+    element.style.display = 'flex';
+    if (useAnimation) {
+      setTimeout(() => element.classList.add('show'), 10);
+    }
+  }
+  
+  // Play sound effect safely
+  function playSound(url, volume = 0.5) {
+    try {
+      const audio = new Audio(url);
+      audio.volume = volume;
+      audio.play().catch(error => {
+        console.warn("Audio playback failed:", error);
+      });
+    } catch (err) {
+      console.warn("Sound playback error:", err);
+    }
+  }
+  
+  // ===== FORM VALIDATION =====
+  
+  // Validate phone number using configurable pattern
+  function validatePhone(phone, format = 'kenya-7') {
+    if (format === 'kenya-7') {
+      // Format for Kenya: 7 followed by 8 digits
+      return /^[7][0-9]{8}$/.test(phone);
+    } else if (format === '10-digit') {
+      // Standard 10-digit format
+      return /^\d{10}$/.test(phone);
+    }
+    return false;
   }
   
   // Clear all error messages
@@ -2573,30 +2634,63 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   
-  // Play sound effect
-  function playPopupSound() {
-    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
-    audio.volume = 0.5;
-    audio.play().catch(error => {
-      console.warn("Audio playback failed:", error);
-    });
+  // Set an error message on a specific field
+  function setFieldError(fieldId, message) {
+    const errorElement = getElement(fieldId + 'Error');
+    if (errorElement) {
+      errorElement.textContent = message;
+    }
   }
   
-  // Validate phone number format
-  function validatePhone(phone) {
-    const phonePattern = /^[7][0-9]{8}$/;
-    return phonePattern.test(phone);
+  // Reset form inputs and errors
+  function resetForm(formId) {
+    const form = getElement(formId);
+    if (form && form.reset) {
+      form.reset();
+    }
+    clearErrors();
   }
   
-  // Handle form submission and validation
+  // Shake animation for invalid form
+  function shakeElement(id) {
+    const element = getElement(id);
+    if (!element) return;
+    
+    element.classList.add('shake');
+    setTimeout(() => {
+      element.classList.remove('shake');
+    }, 600);
+  }
+  
+  // ===== BOOKING POPUP FUNCTIONS =====
+  
+  // Show booking popup with animation and sound
+  function showBookingPopup() {
+    showElement('bookingPopup');
+    playSound('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
+  }
+  
+  // Close booking popup
+  function closeBookingPopup() {
+    hideElement('bookingPopup');
+    resetForm('bookingForm');
+    
+    // Hide success message if present
+    const successMsg = getElement('successMessage');
+    if (successMsg) {
+      successMsg.style.display = 'none';
+    }
+  }
+  
+  // Handle form submission
   function sendBookingToWhatsApp(event) {
     event.preventDefault();
     
     // Get form values
-    const fullName = document.getElementById('fullName').value.trim();
-    const location = document.getElementById('location').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const selectedPackage = document.getElementById('package').value;
+    const fullName = getElement('fullName')?.value.trim() || '';
+    const location = getElement('location')?.value.trim() || '';
+    const phone = getElement('phone')?.value.trim() || '';
+    const selectedPackage = getElement('package')?.value || '';
     
     // Clear previous errors
     clearErrors();
@@ -2605,35 +2699,30 @@ document.addEventListener('DOMContentLoaded', function () {
     let hasErrors = false;
     
     if (!fullName) {
-      document.getElementById('nameError').textContent = 'Please enter your full name';
+      setFieldError('name', 'Please enter your full name');
       hasErrors = true;
     }
     
     if (!location) {
-      document.getElementById('locationError').textContent = 'Please enter your location';
+      setFieldError('location', 'Please enter your location');
       hasErrors = true;
     }
     
     if (!phone) {
-      document.getElementById('phoneError').textContent = 'Please enter your phone number';
+      setFieldError('phone', 'Please enter your phone number');
       hasErrors = true;
-    } else if (!validatePhone(phone)) {
-      document.getElementById('phoneError').textContent = 'Phone number must start with 7 followed by 8 digits';
+    } else if (!validatePhone(phone, 'kenya-7')) {
+      setFieldError('phone', 'Phone number must start with 7 followed by 8 digits');
       hasErrors = true;
     }
     
     if (!selectedPackage) {
-      document.getElementById('packageError').textContent = 'Please select a package';
+      setFieldError('package', 'Please select a package');
       hasErrors = true;
     }
     
     if (hasErrors) {
-      // Shake the form to indicate errors
-      const form = document.getElementById('bookingForm');
-      form.classList.add('shake');
-      setTimeout(() => {
-        form.classList.remove('shake');
-      }, 600);
+      shakeElement('bookingForm');
       return;
     }
     
@@ -2647,8 +2736,13 @@ document.addEventListener('DOMContentLoaded', function () {
 Thank you!`;
     
     // Show success message
-    document.getElementById('bookingForm').style.display = 'none';
-    document.getElementById('successMessage').style.display = 'block';
+    if (getElement('bookingForm')) {
+      getElement('bookingForm').style.display = 'none';
+    }
+    
+    if (getElement('successMessage')) {
+      getElement('successMessage').style.display = 'block';
+    }
     
     // Open WhatsApp after a short delay
     setTimeout(() => {
@@ -2657,236 +2751,221 @@ Thank you!`;
       
       // Reset the form after a delay
       setTimeout(() => {
-        document.getElementById('bookingForm').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none';
-        resetForm();
+        if (getElement('bookingForm')) {
+          getElement('bookingForm').style.display = 'block';
+        }
+        if (getElement('successMessage')) {
+          getElement('successMessage').style.display = 'none';
+        }
+        resetForm('bookingForm');
       }, 1000);
     }, 1500);
   }
   
-  // Close popup when clicking outside
-  window.onclick = function(event) {
-    const popup = document.getElementById('bookingPopup');
-    if (event.target === popup) {
-      closeBookingPopup('bookingPopup');
+  // ===== LOCATION CHECKER FUNCTIONS =====
+  
+  // Check if location is in service area
+  function checkLocation(event) {
+    event.preventDefault();
+    
+    const inputElement = getElement('locationInput');
+    if (!inputElement) return;
+    
+    const location = inputElement.value.trim().toLowerCase();
+    
+    if (!location) {
+      alert("Please enter your location.");
+      return;
+    }
+    
+    showElement('waitPopup');
+    
+    setTimeout(() => {
+      hideElement('waitPopup');
+      
+      if (SERVICE_AREAS.includes(location)) {
+        showElement('successPopup');
+        
+        setTimeout(() => {
+          hideElement('successPopup');
+          
+          const confirmedLocationElement = getElement('confirmedLocation');
+          if (confirmedLocationElement) {
+            confirmedLocationElement.value = inputElement.value;
+          }
+          
+          showBookingPopup();
+        }, 3000);
+      } else {
+        showElement('notAvailablePopup');
+      }
+    }, 3000);
+  }
+  
+  // ===== ANIMATION FUNCTIONS =====
+  
+  // Setup card animations and effects
+  function setupCardAnimations() {
+    const cards = document.querySelectorAll('.pack-card');
+    if (!cards.length) return;
+    
+    // Slow rotate every card
+    cards.forEach(card => {
+      let angle = 0;
+      setInterval(() => {
+        angle += 1;
+        if (angle > 360) angle = 0;
+        card.style.transform = `rotate(${angle}deg)`;
+      }, 90);
+    });
+    
+    // Coming soon popup every 4 seconds
+    if (typeof confetti === 'function') {
+      setInterval(() => {
+        cards.forEach(card => {
+          const popup = card.querySelector('.coming-soon');
+          if (!popup) return;
+          
+          // Show
+          popup.classList.add('show');
+          
+          // Confetti at the card's position
+          const rect = card.getBoundingClientRect();
+          confetti({
+            particleCount: 40,
+            spread: 30,
+            origin: {
+              x: (rect.left + rect.width / 2) / window.innerWidth,
+              y: (rect.top + rect.height / 2) / window.innerHeight
+            }
+          });
+          
+          // Hide after short burst
+          setTimeout(() => {
+            popup.classList.remove('show');
+          }, 1200);
+        });
+      }, 4000);
     }
   }
   
-  // Format phone number as user types
+  // ===== INITIALIZATION =====
+  
   function setupPhoneInput() {
-    const phoneInput = document.getElementById('phone');
+    const phoneInput = getElement('phone');
+    if (!phoneInput) return;
+    
+    phoneInput.addEventListener('input', function(e) {
+      // Remove non-digit characters
+      this.value = this.value.replace(/\D/g, '');
+      
+      // Ensure it starts with 7
+      if (this.value.length > 0 && this.value[0] !== '7') {
+        this.value = '7' + this.value.substring(1);
+      }
+    });
+  }
+  
+  function setupFormValidation() {
+    // Full name validation
+    const fullNameInput = getElement('fullName');
+    if (fullNameInput) {
+      fullNameInput.addEventListener('blur', function() {
+        if (!this.value.trim()) {
+          setFieldError('name', 'Please enter your full name');
+        } else {
+          setFieldError('name', '');
+        }
+      });
+    }
+    
+    // Location validation
+    const locationInput = getElement('location');
+    if (locationInput) {
+      locationInput.addEventListener('blur', function() {
+        if (!this.value.trim()) {
+          setFieldError('location', 'Please enter your location');
+        } else {
+          setFieldError('location', '');
+        }
+      });
+    }
+    
+    // Phone validation
+    const phoneInput = getElement('phone');
     if (phoneInput) {
-      phoneInput.addEventListener('input', function(e) {
-        // Remove non-digit characters
-        this.value = this.value.replace(/\D/g, '');
-        
-        // Ensure it starts with 7
-        if (this.value.length > 0 && this.value[0] !== '7') {
-          this.value = '7' + this.value.substring(1);
+      phoneInput.addEventListener('blur', function() {
+        if (!this.value.trim()) {
+          setFieldError('phone', 'Please enter your phone number');
+        } else if (!validatePhone(this.value, 'kenya-7')) {
+          setFieldError('phone', 'Phone number must start with 7 followed by 8 digits');
+        } else {
+          setFieldError('phone', '');
         }
       });
     }
   }
   
-  // Initialize
+  // Log visit to analytics
+  function logVisit() {
+    fetch('/api/log-visit')
+      .then(res => res.json())
+      .then(data => console.log("Visitor logged!", data))
+      .catch(err => console.warn("Failed to log visit:", err));
+  }
+  
+  // Close popup when clicking outside
+  function setupOutsideClickHandlers() {
+    window.onclick = function(event) {
+      const bookingPopup = getElement('bookingPopup');
+      if (event.target === bookingPopup) {
+        closeBookingPopup();
+      }
+      
+      const locationPopup = getElement('locationPopup');
+      if (event.target === locationPopup) {
+        hideElement('locationPopup');
+      }
+    };
+  }
+  
+  // Main initialization function
   function init() {
-    // Setup phone input formatting
     setupPhoneInput();
+    setupFormValidation();
+    setupOutsideClickHandlers();
+    logVisit();
     
-    // Add input validation on blur
-    document.getElementById('fullName').addEventListener('blur', function() {
-      if (!this.value.trim()) {
-        document.getElementById('nameError').textContent = 'Please enter your full name';
-      } else {
-        document.getElementById('nameError').textContent = '';
-      }
-    });
-    
-    document.getElementById('location').addEventListener('blur', function() {
-      if (!this.value.trim()) {
-        document.getElementById('locationError').textContent = 'Please enter your location';
-      } else {
-        document.getElementById('locationError').textContent = '';
-      }
-    });
-    
-    document.getElementById('phone').addEventListener('blur', function() {
-      if (!this.value.trim()) {
-        document.getElementById('phoneError').textContent = 'Please enter your phone number';
-      } else if (!validatePhone(this.value)) {
-        document.getElementById('phoneError').textContent = 'Phone number must start with 7 followed by 8 digits';
-      } else {
-        document.getElementById('phoneError').textContent = '';
-      }
+    // Setup card animations after DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      setupCardAnimations();
     });
   }
   
-  // Run initialization when DOM is loaded
-  document.addEventListener('DOMContentLoaded', init);
+  // Run initialization
+  init();
   
-  // Expose functions globally
+  // ===== EXPOSE PUBLIC FUNCTIONS =====
+  
+  // Core functions
   window.showBookingPopup = showBookingPopup;
   window.closeBookingPopup = closeBookingPopup;
   window.sendBookingToWhatsApp = sendBookingToWhatsApp;
-})();
-</script>
-
-<!-- Second Script -->
-<script>
-(function() {
-  const serviceAreas = [
-    "thika town", "pilot", "hospital area", "zam zam", "posta", "mukiriti", "muthaiga", "joy town", "karibaribi", "landless",
-    "kimathi estate", "section 9", "broadways", "phase 4", "phase4", "section 2", "section9", "huduma", "section2", "township", "morrison area", "salama estate",
-    "makongeni", "kiganjo", "kiganjo b", "gatuanyaga", "thika greens", "kimunyu", "munyu", "kiboko", "kihunguro", "magogoni",
-    "githima", "athii", "kiang'ombe", "kiandutu", "ngoliba", "gatitu", "makutano", "bibirioni", "magoko", "kieni",
-    "gachagi", "gachororo", "garage area", "delmonte gate", "ngurubani",
-    "kenyatta highway", "commercial street", "station road", "general kago road", "garissa road", "mugo kibiru road",
-    "madaraka avenue", "mugo street", "kwame nkrumah street", "kenyatta avenue", "uhuru street", "morris road",
-    "lumumba drive", "thika bypass", "majengo", "biashara street"
-  ];
-
-  function checkLocation(event) {
-    event.preventDefault();
-    const input = document.getElementById('locationInput');
-    const location = input.value.trim().toLowerCase();
-
-    if (!location) {
-      alert("Please enter your location.");
-      return;
-    }
-
-    document.getElementById('waitPopup').style.display = 'block';
-
-    setTimeout(() => {
-      document.getElementById('waitPopup').style.display = 'none';
-      if (serviceAreas.includes(location)) {
-        document.getElementById('successPopup').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('successPopup').style.display = 'none';
-          document.getElementById('confirmedLocation').value = input.value;
-          document.getElementById('bookingPopup').style.display = 'block';
-        }, 3000);
-      } else {
-        document.getElementById('notAvailablePopup').style.display = 'block';
-      }
-    }, 3000);
-  }
-
-  function closePopup(id) {
-    document.getElementById(id).style.display = 'none';
-  }
-
-  function sendToWhatsApp(event) {
-    event.preventDefault();
-
-    const name = document.getElementById('fullName').value.trim();
-    const location = document.getElementById('confirmedLocation').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const pack = document.getElementById('package').value;
-
-    if (!name || !location || !phone || !pack) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    if (!/^\d{10}$/.test(phone)) {
-      alert("Phone number must be exactly 10 digits.");
-      return;
-    }
-
-    const message = `Hello, I would like to book a package:\n\n` +
-                    `*Full Name:* ${name}\n` +
-                    `*Location:* ${location}\n` +
-                    `*Phone:* ${phone}\n` +
-                    `*Package:* ${pack}`;
-
-    const whatsappURL = `https://wa.me/254795211116?text=${encodeURIComponent(message)}`;
-    window.open(whatsappURL, '_blank');
-  }
-
-  // Expose to global if needed
+  
+  // Location functions
   window.checkLocation = checkLocation;
-  window.closeLocationPopup = closePopup;
-  window.sendLocationToWhatsApp = sendToWhatsApp;
+  window.showLocationPopup = function() {
+    showFlexElement('locationPopup');
+  };
+  window.closeLocationPopup = function(id) {
+    hideElement(id);
+  };
+  
+  // Modal functions
+  window.openHeroOptions = function() {
+    showElement('heroOptionsModal');
+  };
 })();
-</script>
-
-
-	
-<script>
-  fetch('/api/log-visit')
-    .then(res => res.json())
-    .then(data => console.log("Visitor logged!", data));
-</script>
-
-
-	
-
-
-
-			<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll('.pack-card');
-
-    // Slow rotate every card
-    cards.forEach(card => {
-        let angle = 0;
-        setInterval(() => {
-            angle += 1;
-            card.style.transform = `rotate(${angle}deg)`;
-        }, 90); // Faster rotation
-    });
-
-    // Coming soon popup every 4 seconds
-    setInterval(() => {
-        cards.forEach(card => {
-            const popup = card.querySelector('.coming-soon');
-
-            // Show
-            popup.classList.add('show');
-
-            // Confetti at the card's position
-            const rect = card.getBoundingClientRect();
-            confetti({
-                particleCount: 40,
-                spread: 30,
-                origin: {
-                    x: (rect.left + rect.width / 2) / window.innerWidth,
-                    y: (rect.top + rect.height / 2) / window.innerHeight
-                }
-            });
-
-            // Hide after short burst
-            setTimeout(() => {
-                popup.classList.remove('show');
-            }, 1200);
-        });
-    }, 4000); // Every 4s
-});
-</script>
-
-<!-- Script -->
-<script>
-  function openHeroOptions() {
-    document.getElementById('heroOptionsModal').style.display = 'block';
-  }
-</script>
-			  
-
-<script>
-function showLocationPopup() {
-  const popup = document.getElementById('locationPopup');
-  popup.style.display = 'flex';
-  setTimeout(() => popup.classList.add('show'), 10);
-}
-
-function closeLocationPopup(id) {
-  const popup = document.getElementById(id);
-  popup.classList.remove('show');
-  setTimeout(() => popup.style.display = 'none', 400);
-}
-</script>
 
 
 
