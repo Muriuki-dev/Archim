@@ -1,331 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Popote - Premium Services in Kenya</title>
-  <style>
-    :root {
-      --bg-color: #0a0a0a;
-      --text-color: #ffffff;
-      --card-bg: rgba(15, 15, 25, 0.9);
-      --border-color: rgba(0, 245, 255, 0.2);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popote - Premium Services in Kenya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body.light {
-      --bg-color: #f8f8f8;
-      --text-color: #111111;
-      --card-bg: #ffffff;
-      --border-color: rgba(0, 0, 0, 0.1);
-    }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    body {
-      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-      line-height: 1.6;
-      transition: all 0.3s ease;
-    }
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+        }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
 
-    .header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      backdrop-filter: blur(20px);
-      background: rgba(10, 10, 10, 0.9);
-      z-index: 1000;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(0, 245, 255, 0.1);
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+            letter-spacing: 2px;
+        }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            overflow: hidden;
+        }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      background: linear-gradient(45deg, #00f5ff, #ff00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
-      letter-spacing: 2px;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') 50px 50px;
+            animation: float 20s infinite linear;
+        }
 
-    .toggle-btn {
-      cursor: pointer;
-      padding: 8px 16px;
-      background: linear-gradient(45deg, #00f5ff, #ff00ff);
-      color: white;
-      border: none;
-      border-radius: 20px;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #00f5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(0, 245, 255, 0.3);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      background: linear-gradient(135deg, var(--bg-color) 0%, #1a1a2e 100%);
-      overflow: hidden;
-    }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .hero-content h1 {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      background: linear-gradient(45deg, #ffffff, #00f5ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 50px rgba(0, 245, 255, 0.3);
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
 
-    .hero-content p {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-      opacity: 0.9;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.5);
+        }
 
-    .cta-button {
-      display: inline-block;
-      padding: 15px 40px;
-      background: linear-gradient(45deg, #00f5ff, #ff00ff);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
-    }
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            background: #0f0f0f;
+        }
 
-    .cta-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 245, 255, 0.5);
-    }
+        .services h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #00f5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .services {
-      padding: 120px 0;
-      background: var(--bg-color);
-    }
+        .services-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 60px;
+        }
 
-    .services h2 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 20px;
-      background: linear-gradient(45deg, #ffffff, #00f5ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
 
-    .services-subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      opacity: 0.8;
-      margin-bottom: 60px;
-    }
+        .service-card {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 25, 0.9));
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
-    }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
 
-    .service-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
+        .service-card:hover::before {
+            left: 100%;
+        }
 
-    .service-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 30px;
-      background: linear-gradient(45deg, #00f5ff, #ff00ff);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-    }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 245, 255, 0.5);
+            box-shadow: 0 25px 60px rgba(0, 245, 255, 0.2);
+            background: linear-gradient(145deg, rgba(35, 35, 60, 0.95), rgba(25, 25, 40, 0.95));
+        }
 
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
 
-    .service-card p {
-      opacity: 0.9;
-      line-height: 1.6;
-    }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
 
-    .why-choose {
-      padding: 120px 0;
-      background: linear-gradient(135deg, var(--bg-color) 0%, #1a1a2e 100%);
-    }
+        .service-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
 
-    .why-choose h2 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 60px;
-      background: linear-gradient(45deg, #ffffff, #00f5ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
+        .why-choose h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #ffffff, #00f5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .feature-card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
 
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #ff00ff;
-    }
+        .feature-card {
+            background: linear-gradient(145deg, rgba(15, 15, 15, 0.9), rgba(8, 8, 8, 0.9));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
 
-    .footer {
-      background: var(--bg-color);
-      padding: 60px 0 30px;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 0, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.2);
+            background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(15, 15, 15, 0.95));
+        }
 
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff00ff;
+        }
 
-      .services h2, .why-choose h2 {
-        font-size: 2rem;
-      }
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-      .service-card {
-        padding: 30px;
-      }
-    }
-  </style>
+        .shop-section {
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .shop-section h2 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .shop-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #ffffff;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .shop-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Premium Enhancements */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+            pointer-events: none;
+        }
+
+        .premium-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(0, 245, 255, 0.03) 0%, 
+                transparent 25%, 
+                transparent 75%, 
+                rgba(255, 0, 255, 0.03) 100%);
+            pointer-events: none;
+            animation: luxury-shimmer 8s infinite linear;
+        }
+
+        @keyframes luxury-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services h2, .why-choose h2 {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                padding: 30px;
+            }
+        }
+    </style>
 </head>
-<body class="dark">
-  <!-- Header -->
-  <header class="header" id="header">
-    <nav class="container">
-      <div class="logo">POPOTE NETWORKS</div>
-      <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
-    </nav>
-  </header>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="container">
+            <div class="logo">POPOTE NETWORKS</div>
+        </nav>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Premium Technology Services</h1>
-      <p>Experience excellence with our top-tier CCTV installations, vehicle tracking solutions, and cutting-edge IT services. Popote Networks leads Kenya in quality and innovation.</p>
-      <a href="#services" class="cta-button">Explore Our Services</a>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="premium-overlay"></div>
+        <div class="hero-content">
+            <h1>Premium Technology Services</h1>
+            <p>Experience excellence with our top-tier CCTV installations, vehicle tracking solutions, and cutting-edge IT services. Popote Networks leads Kenya in quality and innovation.</p>
+            <a href="#services" class="cta-button">Explore Our Services</a>
+        </div>
+    </section>
 
-  <!-- Services Section -->
-  <section class="services" id="services">
-    <div class="container">
-      <h2>Our Premium Services</h2>
-      <p class="services-subtitle">Leading Kenya with innovative security and technology solutions</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">📹</div>
-          <h3>CCTV Installations</h3>
-          <p>State-of-the-art surveillance systems with HD quality, night vision, and remote monitoring capabilities.</p>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Premium Services</h2>
+            <p class="services-subtitle">Leading Kenya with innovative security and technology solutions</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📹</div>
+                    <h3>CCTV Installations</h3>
+                    <p>State-of-the-art surveillance systems with HD quality, night vision, and remote monitoring capabilities. Protect your property with our professional installation services.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Vehicle Tracker Installation</h3>
+                    <p>Real-time GPS tracking solutions for your vehicles. Monitor location, speed, and routes with our advanced tracking systems for ultimate peace of mind.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>IT Solutions</h3>
+                    <p>Comprehensive IT services including network setup, system maintenance, and cybersecurity solutions. Transform your business with cutting-edge technology.</p>
+                </div>
+            </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">🚗</div>
-          <h3>Vehicle Tracker Installation</h3>
-          <p>Real-time GPS tracking solutions for your vehicles. Monitor location, speed, and routes for peace of mind.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">💻</div>
-          <h3>IT Solutions</h3>
-          <p>Comprehensive IT services including network setup, maintenance, and cybersecurity solutions.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Why Choose Us Section -->
-  <section class="why-choose">
-    <div class="container">
-      <h2>Why Choose Popote?</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🏆</div>
-          <h3>Best in Kenya</h3>
-          <p>Recognized as the leading service provider with years of excellence and customer satisfaction.</p>
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2>Why Choose Popote?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Best in Kenya</h3>
+                    <p>Recognized as the leading service provider with years of excellence and customer satisfaction.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Premium Quality</h3>
+                    <p>We use only the finest materials and latest technology to ensure lasting solutions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Expert Installation</h3>
+                    <p>Our certified technicians provide professional installation with attention to detail.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock technical support and maintenance services for your peace of mind.</p>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Premium Quality</h3>
-          <p>We use only the finest materials and latest technology to ensure lasting solutions.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>Expert Installation</h3>
-          <p>Our certified technicians provide professional installation with attention to detail.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔧</div>
-          <h3>24/7 Support</h3>
-          <p>Round-the-clock technical support and maintenance services for your peace of mind.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 Popote Networks. All rights reserved.</p>
-  </footer>
+    <!-- Shop Section -->
+    <section class="shop-section">
+        <div class="container">
+            <h2>Visit Popote Shop</h2>
+            <p style="margin-bottom: 30px;">Discover our premium products and exclusive deals</p>
+            <a href="redirect.html" class="shop-button" id="shopButton">Visit Popote Shop</a>
+        </div>
+    </section>
 
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-    }
-  </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Popote Networks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header background opacity on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const scrollTop = window.pageYOffset;
+            
+            if (scrollTop > 50) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+
+        // Service cards animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        document.querySelectorAll('.service-card, .feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Shop button click handler
+        document.getElementById('shopButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Add your shop URL here
+            //alert('Redirecting to Popote Shop!');
+             window.location.href = 'redirect.html';
+        });
+
+        // Add particle effect to hero section
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = 'rgba(0, 245, 255, 0.6)';
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animation = 'float 6s infinite ease-in-out';
+            particle.style.animationDelay = Math.random() * 3 + 's';
+            
+            document.querySelector('.hero').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 50);
+    </script>
 </body>
 </html>
