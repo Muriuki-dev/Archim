@@ -44,10 +44,33 @@
       color: white;
       padding: 10px;
       border-radius: 10px 10px 0 0;
+      font-size: 20px;
+      text-align: center;
     }
 
-    .how-to ol {
-      padding-left: 20px;
+    .how-to ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .how-to li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .bubble {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #ffa726;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      line-height: 28px;
+      margin-right: 10px;
+      flex-shrink: 0;
     }
 
     .packages {
@@ -79,7 +102,7 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 40px;
-      color: white;
+      color: black;
       font-size: 16px;
     }
 
@@ -93,27 +116,9 @@
       width: 20px;
     }
 
-    .wifi-icon {
-      font-size: 100px;
-      color: #ff9933;
-      margin-top: 30px;
-    }
-
-    .step-bubble {
-      font-weight: bold;
-      margin-right: 10px;
-      background: orange;
-      color: white;
-      border-radius: 50%;
-      padding: 5px 10px;
-      display: inline-block;
-      width: 28px;
-      text-align: center;
-    }
-
     .footer-note {
       font-size: 12px;
-      color: #eee;
+      color: black;
       margin-top: 20px;
     }
   </style>
@@ -124,14 +129,14 @@
 
   <div class="how-to">
     <h2>HOW TO PURCHASE</h2>
-    <ol>
-      <li><span class="step-bubble"></span> Search for popote Wifi</li>
-      <li><span class="step-bubble"></span> Sign in</li>
-      <li><span class="step-bubble"></span> Select package</li>
-      <li><span class="step-bubble"></span> Enter your number</li>
-      <li><span class="step-bubble"></span> Input your Mpesa Pin</li>
-      <li><span class="step-bubble"></span> Start Browsing</li>
-    </ol>
+    <ul>
+      <li><div class="bubble">1</div>Search for popote Wifi</li>
+      <li><div class="bubble">2</div>Sign in</li>
+      <li><div class="bubble">3</div>Select package</li>
+      <li><div class="bubble">4</div>Enter your number</li>
+      <li><div class="bubble">5</div>Input your Mpesa Pin</li>
+      <li><div class="bubble">6</div>Start Browsing</li>
+    </ul>
   </div>
 
   <div class="packages">
@@ -155,11 +160,11 @@
 
   <div class="contact">
     <div class="contact-item">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/phone.png" alt="Call" />
+      <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Call" />
       <span>CUSTOMER CARE:<br><strong>0746 828 664</strong></span>
     </div>
     <div class="contact-item">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" />
+      <img src="https://img.icons8.com/ios-filled/50/000000/whatsapp.png" alt="WhatsApp" />
       <span>WHATSAPP NO:<br><strong>0795 211 116</strong></span>
     </div>
   </div>
@@ -167,4 +172,3 @@
   <div class="footer-note">© 2025 Popote WiFi. All rights reserved.</div>
 </body>
 </html>
-
