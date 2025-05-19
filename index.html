@@ -28,7 +28,8 @@
   rel="stylesheet"
   href="https://unpkg.com/swiper@9/swiper-bundle.min.css"
 />
-
+ <!-- AOS Animation CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<style>
 .single-testimonial {
   border: 2px solid #00b894; /* green border */
@@ -1680,69 +1681,7 @@
     </div>
 </div>
 
-<!-- STYLE -->
-
-<!-- SCRIPT -->
-<script>
-// Show Popup
-function showQuestionOptions() {
-    document.getElementById('popote-question-popup').classList.add('show');
-}
-
-// Close Popup
-function closePopotePopup() {
-    document.getElementById('popote-question-popup').classList.remove('show');
-}
-</script>
-
-
-
-
-
 </section>
-	   
-
-	 
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const container = document.getElementById('hotspot-container');
-    const packages = ["30Min- Ksh5 🔥", "3Hrs- Ksh10 🔥", "12Hrs- Ksh20 🎈", "24Hrs- Ksh30 🎈", "Hotspots 🎁"];
-
-    function createHotspot(side) {
-        const hotspot = document.createElement('div');
-        hotspot.className = 'hotspot';
-        hotspot.innerText = packages[Math.floor(Math.random() * packages.length)];
-
-        // Left side or Right side
-        if (side === 'left') {
-            hotspot.style.left = '15%'; // near bottom left
-        } else if (side === 'right') {
-            hotspot.style.right = '0.5%'; // near bottom right
-        }
-
-        container.appendChild(hotspot);
-
-        // Remove when animation ends
-        hotspot.addEventListener('animationend', () => {
-            hotspot.remove();
-        });
-    }
-
-    // Create left hotspot every 1.5 seconds
-    setInterval(() => {
-        createHotspot('left');
-    }, 1500);
-
-    // Create right hotspot every 1.7 seconds
-    setInterval(() => {
-        createHotspot('right');
-    }, 1700);
-});
-</script>
-
-
-
 
 <!-- About End -->
 
@@ -1760,71 +1699,6 @@ document.addEventListener("DOMContentLoaded", function() {
   <!-- Bubble Area -->
   <div id="bubble-container" class="bubble-container"></div>
 </section>
-
-
-
-<script>
-// Texts to pop
-const texts = [
-  "Popote Kazini 🚀",
-"Popote Networks Ltd 🚀",
-  "Popote Sokoni 🛒",
-  "Popote Nyumbani 🏠",
-  "Popote Shuleni 🎓",
-	"Popote Kila Mahali 🎓",
-];
-
-const container = document.getElementById('bubble-container');
-
-function createBubble() {
-  const bubble = document.createElement('div');
-  bubble.className = 'bubble';
-  bubble.textContent = texts[Math.floor(Math.random() * texts.length)];
-  
-  // Pick random corner
-  const corner = Math.floor(Math.random() * 4);
-  switch(corner) {
-    case 0: // left-bottom
-      bubble.style.left = '0';
-      bubble.style.bottom = '0';
-      break;
-    case 1: // right-bottom
-      bubble.style.right = '0';
-      bubble.style.bottom = '0';
-      break;
-    case 2: // left-top
-      bubble.style.left = '0';
-      bubble.style.top = '0';
-      break;
-    case 3: // right-top
-      bubble.style.right = '0';
-      bubble.style.top = '0';
-      break;
-  }
-  
-  // Slight random offsets
-  bubble.style.transform = `translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) scale(0.8)`;
-  bubble.style.animationDelay = (Math.random() * 1) + 's';
-
-  container.appendChild(bubble);
-
-  // Remove after animation
-  setTimeout(() => {
-    bubble.remove();
-  }, 11000);
-}
-
-// Spawn bubbles every second
-setInterval(createBubble, 200);
-
-// Start with some bubbles
-for (let i = 0; i < 7; i++) {
-  createBubble();
-}
-</script>
-
-
-
 
 <!--? Pricing Card Start -->
 <section class="pricing-card-area section-padding2">
@@ -2032,69 +1906,6 @@ for (let i = 0; i < 7; i++) {
     </div>
   </div>
 
-
-
-
-<!-- Optional: Simple animation script for feature highlighting -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Highlight features on hover
-  const featureItems = document.querySelectorAll('.package-features li');
-  
-  featureItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateX(5px)';
-      this.style.color = '#333';
-      this.style.transition = 'all 0.3s ease';
-    });
-    
-    item.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateX(0)';
-      this.style.color = '#666';
-    });
-  });
-  
-  // Add hover effect to cards
-  const cards = document.querySelectorAll('.single-card');
-  
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-15px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-    });
-  });
-});
-</script>
-	
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const cards = document.querySelectorAll('.single-card');
-
-  function checkCards() {
-    const triggerBottom = window.innerHeight * 0.9; // 90% of viewport
-
-    cards.forEach((card, index) => {
-      const cardTop = card.getBoundingClientRect().top;
-
-      if (cardTop < triggerBottom) {
-        // set staggered delay using CSS variable
-        card.style.setProperty('--delay', `${index * 0.2}s`);
-        card.classList.add('show');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', checkCards);
-  checkCards(); // Run once on load
-});
-</script>
-
-
-
 <section class="about-low-area section-padding2" id="popote-section" style="position: relative; overflow: hidden; padding-top: 5px; padding-bottom: 5px;">
   <div class="container">
 
@@ -2116,13 +1927,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 
   </div>
-</section>
-
-
-
-
-
-	    
+</section>	    
 	   <div id="bookingPopup" class="popup">
   <div class="popup-content">
     <span class="close" onclick="closeBookingPopup('bookingPopup')">×</span>
@@ -2305,10 +2110,6 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
 		
     <!-- About-2 Area End -->
-	<!-- 🌟 Premium Single-Slide Blog Section -->
-
-
-
  <div class="row justify-content-center mb-5">
   <div class="col-xl-8 col-lg-10 text-center">
     <div class="section-title">
@@ -2383,30 +2184,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </section>
 </section>  
-<!-- Swiper JS -->
-<script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
 
-<script>
-  const swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1, // Show 1 slide at a time
-    spaceBetween: 30,
-    loop: true,
-    autoplay: {
-      delay: 3000, // Change slide every 3 seconds
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    effect: "slide",
-    speed: 800, // 800ms transition
-  });
-</script>
 
     <!-- Blog Area End -->
    <!-- 📍 Modern Location Checker Popup -->
@@ -2425,13 +2203,9 @@ document.addEventListener('DOMContentLoaded', function () {
     </form>
   </div>
 </div>
-
-
-
-
     </main>
     <footer>      <!--? Footer Start-->
-<div class="footer-area section-bg" data-background="assets/img/gallery/footer_bg.png">
+<div class="footer-area section-bg">
     <div class="container">
         <div class="footer-top footer-padding">
             <div class="row d-flex justify-content-between">
@@ -2509,18 +2283,6 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </div>
 <!-- Footer End-->
- <!-- AOS Animation CSS -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-<!-- AOS Animation JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000, // animation duration
-    once: true,     // only once on scroll
-  });
-</script>
-
 </footer>
 
     <!-- Scroll Up -->
@@ -2539,13 +2301,27 @@ document.addEventListener('DOMContentLoaded', function () {
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon-alone">
   </a>
 </div>
+  </body>
+		    <!-- SCRIPT -->
+<script>
+// Show Popup
+function showQuestionOptions() {
+    document.getElementById('popote-question-popup').classList.add('show');
+}
 
-<!-- Add this to your <style> -->
-
-
-   
-    
-    </body>
+// Close Popup
+function closePopotePopup() {
+    document.getElementById('popote-question-popup').classList.remove('show');
+}
+</script>
+		    <!-- AOS Animation JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // animation duration
+    once: true,     // only once on scroll
+  });
+</script>
 		     <!-- JS here -->
 		    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 		    <script>
@@ -2990,6 +2766,65 @@ Thank you!`;
 		    </script>
 
 
+<script>
+// Texts to pop
+const texts = [
+  "Popote Kazini 🚀",
+"Popote Networks Ltd 🚀",
+  "Popote Sokoni 🛒",
+  "Popote Nyumbani 🏠",
+  "Popote Shuleni 🎓",
+	"Popote Kila Mahali 🎓",
+];
+
+const container = document.getElementById('bubble-container');
+
+function createBubble() {
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.textContent = texts[Math.floor(Math.random() * texts.length)];
+  
+  // Pick random corner
+  const corner = Math.floor(Math.random() * 4);
+  switch(corner) {
+    case 0: // left-bottom
+      bubble.style.left = '0';
+      bubble.style.bottom = '0';
+      break;
+    case 1: // right-bottom
+      bubble.style.right = '0';
+      bubble.style.bottom = '0';
+      break;
+    case 2: // left-top
+      bubble.style.left = '0';
+      bubble.style.top = '0';
+      break;
+    case 3: // right-top
+      bubble.style.right = '0';
+      bubble.style.top = '0';
+      break;
+  }
+  
+  // Slight random offsets
+  bubble.style.transform = `translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) scale(0.8)`;
+  bubble.style.animationDelay = (Math.random() * 1) + 's';
+
+  container.appendChild(bubble);
+
+  // Remove after animation
+  setTimeout(() => {
+    bubble.remove();
+  }, 11000);
+}
+
+// Spawn bubbles every second
+setInterval(createBubble, 200);
+
+// Start with some bubbles
+for (let i = 0; i < 7; i++) {
+  createBubble();
+}
+</script>
 
 
 
@@ -3034,4 +2869,121 @@ Thank you!`;
     <!-- Jquery Plugins, main Jquery -->	
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
+		    <!-- Swiper JS -->
+<script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1, // Show 1 slide at a time
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 3000, // Change slide every 3 seconds
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    effect: "slide",
+    speed: 800, // 800ms transition
+  });
+</script>
+<!-- Optional: Simple animation script for feature highlighting -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Highlight features on hover
+  const featureItems = document.querySelectorAll('.package-features li');
+  
+  featureItems.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateX(5px)';
+      this.style.color = '#333';
+      this.style.transition = 'all 0.3s ease';
+    });
+    
+    item.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateX(0)';
+      this.style.color = '#666';
+    });
+  });
+  
+  // Add hover effect to cards
+  const cards = document.querySelectorAll('.single-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-15px)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+    });
+  });
+});
+</script>
+	
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const cards = document.querySelectorAll('.single-card');
+
+  function checkCards() {
+    const triggerBottom = window.innerHeight * 0.9; // 90% of viewport
+
+    cards.forEach((card, index) => {
+      const cardTop = card.getBoundingClientRect().top;
+
+      if (cardTop < triggerBottom) {
+        // set staggered delay using CSS variable
+        card.style.setProperty('--delay', `${index * 0.2}s`);
+        card.classList.add('show');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkCards);
+  checkCards(); // Run once on load
+});
+</script>	
+		    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.getElementById('hotspot-container');
+    const packages = ["30Min- Ksh5 🔥", "3Hrs- Ksh10 🔥", "12Hrs- Ksh20 🎈", "24Hrs- Ksh30 🎈", "Hotspots 🎁"];
+
+    function createHotspot(side) {
+        const hotspot = document.createElement('div');
+        hotspot.className = 'hotspot';
+        hotspot.innerText = packages[Math.floor(Math.random() * packages.length)];
+
+        // Left side or Right side
+        if (side === 'left') {
+            hotspot.style.left = '15%'; // near bottom left
+        } else if (side === 'right') {
+            hotspot.style.right = '0.5%'; // near bottom right
+        }
+
+        container.appendChild(hotspot);
+
+        // Remove when animation ends
+        hotspot.addEventListener('animationend', () => {
+            hotspot.remove();
+        });
+    }
+
+    // Create left hotspot every 1.5 seconds
+    setInterval(() => {
+        createHotspot('left');
+    }, 1500);
+
+    // Create right hotspot every 1.7 seconds
+    setInterval(() => {
+        createHotspot('right');
+    }, 1700);
+});
+</script>
 </html>
