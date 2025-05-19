@@ -2651,7 +2651,17 @@ Thank you!`;
       });
     }
     
-   
+    // Location validation
+    const locationInput = getElement('location');
+    if (locationInput) {
+      locationInput.addEventListener('blur', function() {
+        if (!this.value.trim()) {
+          setFieldError('location', 'Please enter your location');
+        } else {
+          setFieldError('location', '');
+        }
+      });
+    }
     
     // Phone validation
     const phoneInput = getElement('phone');
