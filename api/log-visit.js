@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   };
 
   // Replace this with your actual Google Apps Script endpoint
-  const googleScriptURL = "https://script.google.com/macros/s/AKfycbzehpeKd2F8QvYktWChwYr718oF8AsIVgv0sXbqKtdYC9INLpKvabQLG2BYCxcIC5CjWA/exec";
+  const googleScriptURL = "#";
 
   await fetch(googleScriptURL, {
     method: "POST",
