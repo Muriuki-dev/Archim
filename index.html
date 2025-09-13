@@ -1472,19 +1472,66 @@
   object-fit: contain;
   display: block;
 }
-					.styled-heading {
+					.single-slider {
+  min-height: 100vh;
+  padding: 60px 0;
+  color: #fff;
+  text-align: center;
+}
+
+.styled-heading {
   font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
   background: linear-gradient(135deg, #2c6bac, #4ea3ff);
   padding: 15px 25px;
   border-radius: 25px;
   display: inline-block;
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  animation: fadeInUp 1s ease;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.styled-subtext {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #f5f5f5;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero-features {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 25px;
+}
+
+.hero-features li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #ffffff;
+  background: rgba(0,0,0,0.3);
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.hero-btn {
+  background: #2c6bac;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #4ea3ff;
+  transform: translateY(-2px);
 }
 
 
@@ -1556,28 +1603,33 @@
 	    
       <!-- Single Slider -->
 <!-- Single Slider -->
-<div class="single-slider slider-height d-flex align-items-center" style="background-image: url('assets/img/blog/archimabout.jpg'); background-size: cover; background-position: center;">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10">
+<!-- Single Slider -->
+<div class="single-slider slider-height d-flex align-items-center" 
+     style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+            url('assets/img/blog/archimabout.jpg') center/cover no-repeat;">
+  <div class="container text-center text-md-start">
+    <div class="row justify-content-center">
+      <div class="col-xl-7 col-lg-8 col-md-10 col-sm-12">
         <div class="hero__caption">
+
           <h2 class="styled-heading" data-animation="fadeInUp" data-delay=".4s">
-  Your Reliable Partner for Internet, Electronics, and CCTV Installations In 🇰🇪
-</h2>
-          <div data-animation="fadeInUp" data-delay=".6s">
-            <p>Delivering fast, reliable internet and expert IT services — proudly serving Kiambu, Machakos, Ithanga and beyond. Explore our solutions below 👇</p>
+            Your Reliable Partner for Internet, Electronics, and CCTV Installations In 🇰🇪
+          </h2>
+
+          <div class="styled-subtext" data-animation="fadeInUp" data-delay=".6s">
+            Delivering fast, reliable internet and expert IT services — proudly serving Kiambu, Machakos, Ithanga and beyond. Explore our solutions below 👇
           </div>
 
-         <!-- 🌟 New Features List -->
-          <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s" style="list-style: none; padding-left: 0; margin-top: 20px;">
-            <li style="margin-bottom: 10px; font-size: 18px; color: blue;">✅ Super Fast Internet</li>
-            <li style="margin-bottom: 10px; font-size: 18px; color: white;">✅ Free Net First Month</li>
-            <li style="margin-bottom: 10px; font-size: 18px; color: #2c3e50;">✅ 24/7 Customer Service</li>
+          <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s">
+            <li>✅ Super Fast Internet</li>
+            <li>✅ Free Net First Month</li>
+            <li>✅ 24/7 Customer Service</li>
           </ul>
-          
-          <!-- Hero-btn -->
-          <div class="hero__btn">
-            <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">ARCHIM SERVICES</button>
+
+          <div class="hero__btn mt-3">
+            <button onclick="openHeroOptions()" class="btn hero-btn" data-animation="fadeInUp" data-delay=".8s">
+              ARCHIM SERVICES
+            </button>
           </div>
 
         </div>
@@ -1585,6 +1637,7 @@
     </div>
   </div>
 </div>
+
 	    <!-- Single Slider -->
             <div class="single-slider slider-height d-flex align-items-center">
                 <div class="container">
