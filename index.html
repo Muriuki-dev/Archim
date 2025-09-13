@@ -1472,6 +1472,21 @@
   object-fit: contain;
   display: block;
 }
+					.styled-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2c6bac, #4ea3ff);
+  padding: 15px 25px;
+  border-radius: 25px;
+  display: inline-block;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 1s ease;
+}
+
 
 /* Mobile */
 @media (max-width: 767px) {
@@ -1546,7 +1561,9 @@
     <div class="row">
       <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10">
         <div class="hero__caption">
-          <h3 data-animation="fadeInUp" data-delay=".4s">Trusted Internet, Electronics & CCTV Installations Partner In 🇰🇪</h3>
+          <h2 class="styled-heading" data-animation="fadeInUp" data-delay=".4s">
+  Trusted Internet, Electronics & CCTV Installations Partner In 🇰🇪
+</h2>
           <div data-animation="fadeInUp" data-delay=".6s">
             <p>Delivering fast, reliable internet and expert IT services — proudly serving Kiambu, Machakos, Ithanga and beyond. Explore our solutions below 👇</p>
           </div>
