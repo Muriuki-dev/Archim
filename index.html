@@ -1590,10 +1590,10 @@
 </div>
 
 <style>
-	/* 🖥 Only apply these on large screens */
+	/* Large screen only */
 @media (min-width: 1024px) {
   .single-slider {
-    background-image: url('assets/img/blog/archimabout.jpg') !important;
+    background-image: url('assets/img/gallery/new.png') !important;
     background-size: cover;
     background-position: center;
     min-height: 100vh;
@@ -1605,27 +1605,49 @@
   .hero__caption {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 60px 70px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 30px;
     box-shadow: 0 15px 45px rgba(0,0,0,0.3);
-    max-width: 800px;
+    padding: 60px 70px;
+    max-width: 950px;
+
+    /* ⬅️ NEW: layout inside the card */
+    display: grid;
+    grid-template-columns: 1fr 1fr;       /* split in two columns */
+    grid-gap: 40px;
+    align-items: center;
   }
 
-  .styled-heading {
+  /* Left side: text content (heading + paragraph) */
+  .hero__caption > div:first-child,
+  .hero__caption h2,
+  .hero__caption p {
+    grid-column: 1 / 2;
+  }
+
+  /* Right side: features and button */
+  .hero-features,
+  .hero__btn {
+    grid-column: 2 / 3;
+  }
+
+  .hero__caption h2.styled-heading {
     font-size: clamp(2.6rem, 3.5vw, 3.8rem);
     padding: 20px 35px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 
   .hero__caption p {
     font-size: 1.25rem;
     color: #f5f5f5;
     line-height: 1.7;
-    margin-top: 15px;
-    margin-bottom: 30px;
   }
 
+  .hero-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+  }
   .hero-features li {
     font-size: 1.2rem;
     color: #f0f0f0;
