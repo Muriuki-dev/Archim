@@ -1395,19 +1395,37 @@
 	
 </head>
 <body>
-    <!-- Preloader Start -->
+   <style>
+/* Preloader Logo Size */
+.preloader-img img {
+  width: 250px;         /* Bigger for desktop */
+  height: 250px;
+  object-fit: contain;  /* Keeps full logo shape */
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .preloader-img img {
+    width: 150px;       /* Smaller on mobile */
+    height: 150px;
+  }
+}
+</style>
+
+<!-- Preloader Start -->
 <div id="preloader-active">
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-inner position-relative">
-            <div class="preloader-circle"></div>
-            <div class="preloader-img pere-text" style="text-align: center; padding: 10px;">
-                <img src="assets/img/blog/image-removebg-preview (2).png" 
-                     alt="Logo" 
-                     style="width: 180px; height: auto; display: block; margin: 0 auto;">
-            </div>
-        </div>
+  <div class="preloader d-flex align-items-center justify-content-center">
+    <div class="preloader-inner position-relative">
+      <div class="preloader-circle"></div>
+      <div class="preloader-img pere-text" style="text-align: center; padding: 10px;">
+        <img src="assets/img/blog/image-removebg-preview (2).png" 
+             alt="Logo">
+      </div>
     </div>
+  </div>
 </div>
+
 
 
 
