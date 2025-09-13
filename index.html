@@ -1554,111 +1554,101 @@
 
     <main> 
    <!-- slider Area Start-->
-<div class="slider-area">
+  <div class="slider-area">
     <div class="slider-active">
-	    
-      
-<!-- Single Slider -->
-<div class="single-slider slider-height d-flex align-items-center"
-     style="background-image: url('assets/img/gallery/about-shape.png'); background-size: cover; background-position: center;">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10">
+      <!-- Single Slider -->
+      <div class="single-slider slider-height d-flex align-items-center"
+           style="background-image: url('assets/img/blog/archimabout.jpg'); background-size: cover; background-position: center;">
+        
         <div class="hero__caption">
-          <h2 class="styled-heading" data-animation="fadeInUp" data-delay=".4s">
-            Your Reliable Partner for Internet, Electronics, and CCTV Installations In 🇰🇪
-          </h2>
-          <div data-animation="fadeInUp" data-delay=".6s">
-            <p>Delivering fast, reliable internet and expert IT services — proudly serving Kiambu, Machakos, Ithanga and beyond. Explore our solutions below 👇</p>
+          <div class="hero-left">
+            <h2 class="styled-heading" data-animation="fadeInUp" data-delay=".4s">
+              Your Reliable Partner for Internet, Electronics, and CCTV Installations In 🇰🇪
+            </h2>
+            <p data-animation="fadeInUp" data-delay=".6s">
+              Delivering fast, reliable internet and expert IT services — proudly serving Kiambu, Machakos, Ithanga and beyond. Explore our solutions below 👇
+            </p>
           </div>
 
-          <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s">
-            <li>✅ Super Fast Internet</li>
-            <li>✅ Free Net First Month</li>
-            <li>✅ 24/7 Customer Service</li>
-          </ul>
+          <div class="hero-right">
+            <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s">
+              <li>✅ Super Fast Internet</li>
+              <li>✅ Free Net First Month</li>
+              <li>✅ 24/7 Customer Service</li>
+            </ul>
 
-          <div class="hero__btn">
-            <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">
-              ARCHIM SERVICES
-            </button>
+            <div class="hero__btn">
+              <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">
+                ARCHIM SERVICES
+              </button>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
-</div>
 
 <style>
 	/* Large screen only */
 @media (min-width: 1024px) {
+
   .single-slider {
-    background-image: url('assets/img/blog/archimabout.jpg') !important;
-    background-size: cover;
-    background-position: center;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 100px 0;
+    background: url('assets/img/blog/archimabout.jpg') center/cover no-repeat;
+    padding: 0 8%;
   }
 
+  /* remove container look */
   .hero__caption {
-    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+
+    width: 100%;
+    padding: 80px;
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 30px;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.3);
-    padding: 60px 70px;
-    max-width: 950px;
-
-    /* ⬅️ NEW: layout inside the card */
-    display: grid;
-    grid-template-columns: 1fr 1fr;       /* split in two columns */
-    grid-gap: 40px;
-    align-items: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
   }
 
-  /* Left side: text content (heading + paragraph) */
-  .hero__caption > div:first-child,
-  .hero__caption h2,
-  .hero__caption p {
-    grid-column: 1 / 2;
+  .hero-left {
+    flex: 1;
   }
-
-  /* Right side: features and button */
-  .hero-features,
-  .hero__btn {
-    grid-column: 2 / 3;
-  }
-
-  .hero__caption h2.styled-heading {
-    font-size: clamp(2.6rem, 3.5vw, 3.8rem);
-    padding: 20px 35px;
-    margin-bottom: 25px;
-  }
-
-  .hero__caption p {
+  .hero-left p {
     font-size: 1.25rem;
-    color: #f5f5f5;
+    color: #f0f0f0;
+    margin-top: 25px;
     line-height: 1.7;
+  }
+
+  .hero-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-features {
     list-style: none;
     padding: 0;
-    margin: 0 0 30px 0;
+    margin: 0 0 40px 0;
   }
   .hero-features li {
     font-size: 1.2rem;
-    color: #f0f0f0;
-    margin-bottom: 12px;
+    color: #f5f5f5;
+    margin-bottom: 15px;
   }
 
   .hero-btn {
     background: #2c6bac;
     color: #fff;
     font-size: 1.2rem;
-    padding: 15px 35px;
+    padding: 18px 40px;
     border-radius: 40px;
     border: none;
     transition: all 0.3s ease;
@@ -1666,7 +1656,7 @@
   .hero-btn:hover {
     background: #4ea3ff;
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
   }
 }
 </style>
