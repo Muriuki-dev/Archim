@@ -1552,79 +1552,370 @@
 </header>
 <!-- header end -->
 
-    <main> <!-- slider Area Start--> <div class="slider-area"> <div class="slider-active"> <!-- Single Slider --> <div class="single-slider slider-height d-flex align-items-center" style="background-image: url('assets/img/gallery/about-shape.png'); background-size: cover; background-position: center;"> <div class="container"> <div class="row"> <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10"> <div class="hero__caption"> <h2 class="styled-heading" data-animation="fadeInUp" data-delay=".4s"> Your Reliable Partner for Internet, Electronics, and CCTV Installations In 🇰🇪 </h2> <div data-animation="fadeInUp" data-delay=".6s"> <p>Delivering fast, reliable internet and expert IT services — proudly serving Kiambu, Machakos, Ithanga and beyond. Explore our solutions below 👇</p> </div> <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s"> <li>✅ Super Fast Internet</li> <li>✅ Free Net First Month</li> <li>✅ 24/7 Customer Service</li> </ul> <div class="hero__btn"> <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s"> ARCHIM SERVICES </button> </div> </div> </div> </div> </div> </div>
+    <main> <style>
 
-<style>
-	/* Large screen only */
-@media (min-width: 1024px) {
+        /* Mobile styles (unchanged) */
+        .slider-area {
+            width: 100%;
+        }
+        
+        .single-slider {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url('assets/img/blog/archimabout.jpg') center/cover no-repeat;
+            padding: 0 5%;
+        }
+        
+        .hero__caption {
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+        
+        .styled-heading {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #2c6bac, #4ea3ff);
+            padding: 15px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            margin-bottom: 20px;
+        }
+        
+        .hero__caption p {
+            font-size: 1.1rem;
+            color: #f0f0f0;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .hero-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+        
+        .hero-features li {
+            font-size: 1.1rem;
+            color: #f5f5f5;
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .hero-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4ea3ff;
+            font-weight: bold;
+        }
+        
+        .hero-btn {
+            background: #2c6bac;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 15px 30px;
+            border-radius: 40px;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .hero-btn:hover {
+            background: #4ea3ff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
 
-  .single-slider {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background: url('assets/img/blog/archimabout.jpg') center/cover no-repeat;
-    padding: 0 8%;
-  }
+        /* Laptop/Desktop styles */
+        @media (min-width: 1024px) {
+            .single-slider {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                background: url('assets/img/blog/archimabout.jpg') center/cover no-repeat;
+                padding: 0 8%;
+                position: relative;
+            }
 
-  /* remove container look */
-  .hero__caption {
-    display: flex;
-    justify-content: space-between;
-    gap: 60px;
+            .single-slider:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(105deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.7) 100%);
+            }
 
-    width: 100%;
-    padding: 80px;
-    border-radius: 35px;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-  }
+            .container {
+                position: relative;
+                z-index: 2;
+                width: 100%;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
 
-  .hero-left {
-    flex: 1;
-  }
-  .hero-left p {
-    font-size: 1.25rem;
-    color: #f0f0f0;
-    margin-top: 25px;
-    line-height: 1.7;
-  }
+            .row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 60px;
+            }
 
-  .hero-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+            .hero__caption {
+                display: flex;
+                justify-content: space-between;
+                gap: 60px;
+                width: 100%;
+                padding: 80px;
+                border-radius: 35px;
+                background: rgba(255, 255, 255, 0.06);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            }
 
-  .hero-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 40px 0;
-  }
-  .hero-features li {
-    font-size: 1.2rem;
-    color: #f5f5f5;
-    margin-bottom: 15px;
-  }
+            .hero-left {
+                flex: 1;
+            }
+            
+            .hero-right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+            }
 
-  .hero-btn {
-    background: #2c6bac;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 18px 40px;
-    border-radius: 40px;
-    border: none;
-    transition: all 0.3s ease;
-  }
-  .hero-btn:hover {
-    background: #4ea3ff;
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-  }
-}
-</style>
+            .styled-heading {
+                font-size: 3.2rem;
+                padding: 20px 35px;
+                border-radius: 30px;
+                margin-bottom: 30px;
+                line-height: 1.2;
+            }
+
+            .hero-left p {
+                font-size: 1.35rem;
+                color: #f0f0f0;
+                margin-top: 25px;
+                line-height: 1.7;
+                max-width: 90%;
+            }
+
+            .hero-features {
+                margin: 0 0 40px 0;
+            }
+            
+            .hero-features li {
+                font-size: 1.3rem;
+                margin-bottom: 18px;
+                padding-left: 40px;
+            }
+
+            .hero-btn {
+                background: linear-gradient(135deg, #2c6bac 0%, #4ea3ff 100%);
+                color: #fff;
+                font-size: 1.3rem;
+                padding: 20px 45px;
+                border-radius: 50px;
+                border: none;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                box-shadow: 0 10px 30px rgba(44, 107, 172, 0.3);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-btn:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: 0.5s;
+            }
+
+            .hero-btn:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(44, 107, 172, 0.4);
+            }
+
+            .hero-btn:hover:before {
+                left: 100%;
+            }
+
+            /* Additional premium elements */
+            .floating-shapes {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                overflow: hidden;
+                z-index: 1;
+            }
+
+            .shape {
+                position: absolute;
+                border-radius: 50%;
+                opacity: 0.1;
+                background: linear-gradient(135deg, #2c6bac, #4ea3ff);
+            }
+
+            .shape-1 {
+                width: 300px;
+                height: 300px;
+                top: -150px;
+                right: -150px;
+            }
+
+            .shape-2 {
+                width: 200px;
+                height: 200px;
+                bottom: 50px;
+                left: 100px;
+            }
+
+            .shape-3 {
+                width: 150px;
+                height: 150px;
+                top: 50%;
+                left: 50px;
+            }
+
+            /* Service highlights */
+            .service-highlights {
+                display: flex;
+                gap: 25px;
+                margin-top: 40px;
+            }
+
+            .highlight-item {
+                background: rgba(255, 255, 255, 0.08);
+                padding: 20px;
+                border-radius: 20px;
+                text-align: center;
+                flex: 1;
+                transition: transform 0.3s ease;
+            }
+
+            .highlight-item:hover {
+                transform: translateY(-10px);
+                background: rgba(255, 255, 255, 0.12);
+            }
+
+            .highlight-item i {
+                font-size: 2.5rem;
+                color: #4ea3ff;
+                margin-bottom: 15px;
+            }
+
+            .highlight-item h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                color: #fff;
+            }
+
+            .highlight-item p {
+                font-size: 0.9rem;
+                color: #d1d5db;
+            }
+        }
+
+        /* Ultra-wide screen adjustments */
+        @media (min-width: 1600px) {
+            .hero__caption {
+                padding: 100px;
+            }
+            
+            .styled-heading {
+                font-size: 3.5rem;
+            }
+            
+            .hero-left p {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+    <!-- slider Area Start-->
+    <div class="slider-area">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height d-flex align-items-center">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10">
+                            <div class="hero__caption">
+                                <div class="hero-left">
+                                    <h2 class="styled-heading" data-animation="fadeInUp" data-delay=".4s">
+                                        Your Reliable Partner for Internet, Electronics, and CCTV Installations In 🇰🇪
+                                    </h2>
+                                    <div data-animation="fadeInUp" data-delay=".6s">
+                                        <p>Delivering fast, reliable internet and expert IT services — proudly serving Kiambu, Machakos, Ithanga and beyond. Explore our solutions below 👇</p>
+                                    </div>
+                                </div>
+                                <div class="hero-right">
+                                    <ul class="hero-features" data-animation="fadeInUp" data-delay=".7s">
+                                        <li>✅ Super Fast Internet</li>
+                                        <li>✅ Free Net First Month</li>
+                                        <li>✅ 24/7 Customer Service</li>
+                                    </ul>
+                                    <div class="hero__btn">
+                                        <button onclick="openHeroOptions()" class="btn hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">ARCHIM SERVICES</button>
+                                    </div>
+                                    
+                                    <div class="service-highlights">
+                                        <div class="highlight-item">
+                                            <i>📶</i>
+                                            <h3>Internet</h3>
+                                            <p>High-speed connectivity</p>
+                                        </div>
+                                        <div class="highlight-item">
+                                            <i>🎮</i>
+                                            <h3>Electronics</h3>
+                                            <p>Quality devices & repair</p>
+                                        </div>
+                                        <div class="highlight-item">
+                                            <i>📹</i>
+                                            <h3>CCTV</h3>
+                                            <p>Security solutions</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openHeroOptions() {
+            alert("Archim Services: \n- Internet Solutions \n- Electronics Sales & Repair \n- CCTV Installation \n- IT Services");
+        }
+    </script>
+
 
 
 	    <!-- Single Slider -->
