@@ -26,20 +26,36 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-     <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text" style="font-size: 24px; color: hsl(118, 95%, 31%); font-weight: bold; text-align: center; padding: 10px; font-family: 'Arial', sans-serif;">
-    Popote
-</div>
+      <style>
+/* Preloader Logo Size */
+.preloader-img img {
+  width: 250px;         /* Bigger for desktop */
+  height: 250px;
+  object-fit: contain;  /* Keeps full logo shape */
+  display: block;
+  margin: 0 auto;
+}
 
+@media (max-width: 767px) {
+  .preloader-img img {
+    width: 150px;       /* Smaller on mobile */
+    height: 150px;
+  }
+}
+</style>
 
-            </div>
-        </div>
+<!-- Preloader Start -->
+<div id="preloader-active">
+  <div class="preloader d-flex align-items-center justify-content-center">
+    <div class="preloader-inner position-relative">
+      <div class="preloader-circle"></div>
+      <div class="preloader-img pere-text" style="text-align: center; padding: 10px;">
+        <img src="assets/img/blog/image-removebg-preview (2).png" 
+             alt="Logo">
+      </div>
     </div>
-    <!-- Preloader Start -->
+  </div>
+</div>
     <header>
         <!-- Header Start -->
         <div class="header-area header-transparent">
@@ -50,13 +66,13 @@
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left d-flex">
                                     <ul>      
-                                        <li>Call Us: +254795211116</li>
-                                        <li>popotenetworks@gmail.com </li>
+                                        <li>Call Us: 0713735187</li>
+                                        <li>archimnet@gmail.com </li>
                                     </ul>
                                     <div class="header-social">    
                                         <ul>
                                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a  href="#"><i class="fab fa-facebook-f"></i></a></li>
                                             <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                             <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                                         </ul>
@@ -90,7 +106,7 @@
                                     </div>
                                     <!-- Header-btn -->
                                     <div class="header-right-btn d-none d-lg-block ml-30">
-                                        <a href="#" class="btn header-btn">Get Started</a>
+                                        <a href="index.html" class="btn header-btn">Get Started</a>
                                     </div>
                                 </div>
                             </div> 
@@ -257,22 +273,16 @@
 <div class="header">
   <h1>RELIABLE</h1>
   <h2>INTERNET CONNECTION</h2>
-  <h3>With POPOPE FIBRE</h3>
+  <h3>With ARCHIM NET</h3>
 </div>
 
-<div class="installation">Ksh.3,000</div>
-<div class="sub-note">Our subscriptions runs for 33 days</div>
+<div class="installation">HOT DEALS</div>
+<div class="sub-note">Our free subscriptions runs for one month</div>
 
 <div class="plans">
   <div class="plan">
     <a href=""onclick="showBookingPopup()">
-      <div class="top">4 Mbps</div>
-      <div class="bottom">1,000</div>
-    </a>
-  </div>
-  <div class="plan">
-    <a href="">
-      <div class="top">7 Mbps</div>
+      <div class="top">6 Mbps</div>
       <div class="bottom">1,500</div>
     </a>
   </div>
@@ -288,23 +298,19 @@
       <div class="bottom">2,500</div>
     </a>
   </div>
+  
   <div class="plan">
     <a href="">
       <div class="top">20 Mbps</div>
       <div class="bottom">3,000</div>
     </a>
   </div>
-  <div class="plan">
-    <a href="">
-      <div class="top">30 Mbps</div>
-      <div class="bottom">4,000</div>
-    </a>
-  </div>
+  
 </div>
 
 <div class="contacts">
-  <button onclick="window.location.href='tel:0746828664'">Call Customer Care</button>
-  <button onclick="window.location.href='https://wa.me/254795211116'">Chat on WhatsApp</button>
+  <button onclick="window.location.href='tel:0713735187'">Call Customer Care</button>
+  <button onclick="window.location.href='https://wa.me/254713735187'">Chat on WhatsApp</button>
 </div>
 
     
