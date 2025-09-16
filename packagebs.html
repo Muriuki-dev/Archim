@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archim Home Fibre - Business Plans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .plan-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .plan-card:hover::before {
+            left: 100%;
+        }
+
+        .plan-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 1.5rem -2rem;
+            border-radius: 20px 20px 0 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .popular {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        }
+
+        .speed {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #333;
+            margin: 1rem 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .users {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+        }
+
+        .features li::before {
+            content: '✓';
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin: 1rem 0;
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: #999;
+        }
+
+        .btn-book {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-book:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .offer-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: popIn 0.5s ease-out;
+        }
+
+        .offer-popup h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .offer-popup p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .close-offer {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+        }
+
+        .booking-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 1001;
+            max-width: 500px;
+            width: 90%;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-booking {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-booking:hover {
+            transform: scale(1.05);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            pointer-events: none;
+            z-index: 999;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        .confetti:nth-child(odd) {
+            background: #667eea;
+        }
+
+        .confetti:nth-child(3n) {
+            background: #4CAF50;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #ff9800;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -70%);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem 0.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .plans-grid {
+                gap: 1rem;
+            }
+            
+            .plan-card {
+                padding: 1.5rem;
+            }
+            
+            .speed {
+                font-size: 2.5rem;
+            }
+            
+            .price {
+                font-size: 2rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">ARCHIM HOME FIBRE</div>
+            <div class="subtitle">Premium Business Internet Solutions</div>
+        </div>
+
+        <div class="plans-grid">
+            <div class="plan-card" style="animation-delay: 0.1s">
+                <div class="plan-header">Business Start</div>
+                <div class="speed">10 Mbps</div>
+                <div class="users">Ideal for 1-10 users</div>
+                <ul class="features">
+                    <li>Unlimited internet speeds up to 10 Mbps</li>
+                    <li>24/7 Support</li>
+                    <li>99.9% Uptime Guarantee</li>
+                    <li>Free Installation</li>
+                </ul>
+                <div class="price">Ksh.5,000<span class="price-unit">/Month</span></div>
+                <button class="btn-book" onclick="openBookingModal('Business Start', '10 Mbps', 'Ksh.5,000')">Book Internet Plan</button>
+            </div>
+
+            <div class="plan-card" style="animation-delay: 0.2s">
+                <div class="plan-header">Business Lite</div>
+                <div class="speed">15 Mbps</div>
+                <div class="users">Ideal for 10-20 users</div>
+                <ul class="features">
+                    <li>Unlimited internet speeds up to 15 Mbps</li>
+                    <li>24/7 Support</li>
+                    <li>99.9% Uptime Guarantee</li>
+                    <li>Free Installation & Setup</li>
+                </ul>
+                <div class="price">Ksh.8,500<span class="price-unit">/Month</span></div>
+                <button class="btn-book" onclick="openBookingModal('Business Lite', '15 Mbps', 'Ksh.8,500')">Book Internet Plan</button>
+            </div>
+
+            <div class="plan-card" style="animation-delay: 0.3s">
+                <div class="plan-header popular">Business Standard</div>
+                <div class="speed">20 Mbps</div>
+                <div class="users">Ideal for 20-30 users</div>
+                <ul class="features">
+                    <li>Unlimited internet speeds up to 20 Mbps</li>
+                    <li>24/7 Support</li>
+                    <li>99.9% Uptime Guarantee</li>
+                    <li>Priority Support</li>
+                </ul>
+                <div class="price">Ksh.10,000<span class="price-unit">/Month</span></div>
+                <button class="btn-book" onclick="openBookingModal('Business Standard', '20 Mbps', 'Ksh.10,000')">Book Internet Plan</button>
+            </div>
+
+            <div class="plan-card" style="animation-delay: 0.4s">
+                <div class="plan-header">Business Pro</div>
+                <div class="speed">50 Mbps</div>
+                <div class="users">Ideal for 30+ users</div>
+                <ul class="features">
+                    <li>Unlimited internet speeds up to 50 Mbps</li>
+                    <li>24/7 Premium Support</li>
+                    <li>99.9% Uptime Guarantee</li>
+                    <li>Dedicated Account Manager</li>
+                </ul>
+                <div class="price">Ksh.15,000<span class="price-unit">/Month</span></div>
+                <button class="btn-book" onclick="openBookingModal('Business Pro', '50 Mbps', 'Ksh.15,000')">Book Internet Plan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offer Popup -->
+    <div id="offerPopup" class="offer-popup">
+        <h3>🎉 Special Offer!</h3>
+        <p>Get 2 months FREE installation and setup with any business plan. Limited time offer!</p>
+        <button class="close-offer" onclick="closeOffer()">Claim Offer</button>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="modalOverlay" class="modal-overlay hidden"></div>
+    <div id="bookingModal" class="booking-modal hidden">
+        <button class="close-modal" onclick="closeBookingModal()">×</button>
+        <h2 style="margin-bottom: 1.5rem; color: #333;">Book Your Plan</h2>
+        <form class="booking-form" onsubmit="submitBooking(event)">
+            <div class="form-group">
+                <label for="customerName">Full Name</label>
+                <input type="text" id="customerName" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Phone Number</label>
+                <input type="tel" id="customerPhone" required placeholder="e.g., +254700000000">
+            </div>
+            <div class="form-group">
+                <label for="selectedPackage">Selected Package</label>
+                <input type="text" id="selectedPackage" readonly>
+            </div>
+            <div class="form-group">
+                <label for="businessAddress">Business Address (Optional)</label>
+                <input type="text" id="businessAddress" placeholder="Enter your business address">
+            </div>
+            <button type="submit" class="submit-booking">Send WhatsApp Message</button>
+        </form>
+    </div>
+
+    <script>
+        // Show offer popup after 2 seconds with confetti
+        setTimeout(() => {
+            showConfetti();
+            document.getElementById('offerPopup').style.display = 'block';
+        }, 2000);
+
+        function showConfetti() {
+            for (let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 3 + 's';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 6000);
+        }
+
+        function closeOffer() {
+            document.getElementById('offerPopup').style.display = 'none';
+        }
+
+        let selectedPlanDetails = {};
+
+        function openBookingModal(planName, speed, price) {
+            selectedPlanDetails = { planName, speed, price };
+            document.getElementById('selectedPackage').value = `${planName} - ${speed} - ${price}/month`;
+            document.getElementById('modalOverlay').classList.remove('hidden');
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function submitBooking(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('businessAddress').value;
+            const packageDetails = document.getElementById('selectedPackage').value;
+            
+            // Create WhatsApp message
+            const message = `Hello Archim Home Fibre!
+            
+I would like to book the following business internet plan:
+
+📦 Package: ${packageDetails}
+👤 Name: ${name}
+📱 Phone: ${phone}
+🏢 Business Address: ${address || 'Not provided'}
+
+Please contact me to proceed with the installation.
+
+Thank you!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/254713735187?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Close modal
+            closeBookingModal();
+            
+            // Show success message
+            alert('Redirecting to WhatsApp. Our team will contact you shortly!');
+        }
+
+        // Animate cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.plan-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Close modal when clicking overlay
+        document.getElementById('modalOverlay').addEventListener('click', closeBookingModal);
+
+        // Add some interactive elements
+        document.querySelectorAll('.plan-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.background = 'rgba(255,255,255,0.98)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'rgba(255,255,255,0.95)';
+            });
+        });
+
+        // Close offer popup when clicking outside
+        document.addEventListener('click', (e) => {
+            const offerPopup = document.getElementById('offerPopup');
+            if (offerPopup.style.display === 'block' && !offerPopup.contains(e.target)) {
+                closeOffer();
+            }
+        });
+    </script>
+</body>
+</html>
