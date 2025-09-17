@@ -1710,6 +1710,41 @@
 		<div class="col-xl-5 col-lg-6 col-md-9">
     <div class="about-img" style="position: relative; overflow: hidden;">
         <img src="assets/img/gallery/popote.png" alt="" style="width: 100%;">
+		<!-- Floating animated button -->
+    <a href="packagebs.html" class="floating-button">Business Packages</a>
+		<style>
+			.floating-button {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff5f6d;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    animation: float 2.5s ease-in-out infinite;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.floating-button:hover {
+    background-color: #ff416c;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+}
+
+		</style>
         <div id="hotspot-container"></div> <!-- Container for dynamic hotspots -->
     </div>
 </div>
