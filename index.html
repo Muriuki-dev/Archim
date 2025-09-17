@@ -1706,7 +1706,7 @@
  <!--? About 1 Start-->
 	    <section class="about-low-area section-padding2">
 			<!-- Floating animated button -->
-    <a href="packagebs.html" class="floating-button">Business Packages</a>
+    <a href="packagebs.html" class="floating-button">View Business Packages</a>
     <div class="container">
         <div class="row justify-content-between">
 		<div class="col-xl-5 col-lg-6 col-md-9">
@@ -1714,7 +1714,7 @@
         <img src="assets/img/gallery/popote.png" alt="" style="width: 100%;">
 		
 		<style>
-			.floating-button {
+.floating-button {
     position: absolute;
     top: 10px;
     left: 50%;
@@ -1730,12 +1730,10 @@
     animation: float 2.5s ease-in-out infinite;
     z-index: 10;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
-.floating-button:hover {
-    background-color: #ff416c;
-}
-
+/* Animation */
 @keyframes float {
     0%, 100% {
         transform: translateX(-50%) translateY(0);
@@ -1744,6 +1742,29 @@
         transform: translateX(-50%) translateY(-8px);
     }
 }
+
+.floating-button:hover {
+    background-color: #ff416c;
+}
+
+/* 📱 Mobile responsiveness */
+@media (max-width: 768px) {
+    .floating-button {
+        font-size: 14px;
+        padding: 10px 20px;
+        top: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-button {
+        font-size: 13px;
+        padding: 8px 18px;
+        top: 6px;
+    }
+}
+</style>
+
 
 		</style>
         <div id="hotspot-container"></div> <!-- Container for dynamic hotspots -->
